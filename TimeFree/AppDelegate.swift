@@ -7,19 +7,16 @@
 //
 
 import Cocoa
-import CoreGraphics
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Outlets
-    @IBOutlet weak var window: NSWindow!
-    @IBOutlet weak var statusMenu: NSMenu!
+    @IBOutlet weak var statusMenu: NSMenu?
     
     // MARK: - Properties
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
-
-    // MARK: - NSApplicationDelegate
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         personalizeStatusItem()
     }
@@ -27,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
-    
+
     // MARK: - IBActions
     @IBAction func startOrStop(sender: AnyObject) {
         let point = CGPointMake(100, 100)
@@ -39,12 +36,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.sharedApplication().terminate(self)
     }
     
-    
     // MARK: - Private
     func personalizeStatusItem() {
         statusItem.image = NSImage(named: "spy")
         statusItem.menu = statusMenu
     }
-    
 }
 
