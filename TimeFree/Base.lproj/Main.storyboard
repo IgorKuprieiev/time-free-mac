@@ -649,7 +649,7 @@
                 </customObject>
                 <menu title="Test" autoenablesItems="NO" id="n7p-Px-fhX">
                     <items>
-                        <menuItem title="Start" id="flm-t9-yMX">
+                        <menuItem title="Start or stop simulation" id="flm-t9-yMX">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="startOrStop:" target="Voe-Tx-rLC" id="ThL-VT-A68"/>
@@ -684,25 +684,151 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
                     </window>
                     <connections>
-                        <segue destination="aKj-Oz-UId" kind="relationship" relationship="window.shadowedContentViewController" id="pZc-Eg-WUL"/>
+                        <segue destination="GFq-3L-OVe" kind="relationship" relationship="window.shadowedContentViewController" id="vdr-JZ-2aG"/>
                     </connections>
                 </windowController>
                 <customObject id="9OB-YD-esv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="74" y="377"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="3Qm-vT-nQf">
+        <!--Preferences-->
+        <scene sceneID="cCC-4o-lRu">
             <objects>
-                <viewController id="aKj-Oz-UId" sceneMemberID="viewController">
-                    <view key="view" id="4rr-vI-BsC">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <tabViewController title="Preferences" selectedTabViewItemIndex="0" id="GFq-3L-OVe" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="AxU-b5-qkI"/>
+                        <tabViewItem identifier="" id="G8J-hU-kyG"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="hqZ-9x-eUm">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="ngj-Ti-99X" kind="relationship" relationship="tabItems" id="PCy-OW-Hec"/>
+                        <segue destination="DMD-Mn-VMn" kind="relationship" relationship="tabItems" id="DDc-gr-Jua"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="sk2-sr-WuW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="74" y="829"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="9lk-Fd-HT3">
+            <objects>
+                <viewController title="General" id="ngj-Ti-99X" customClass="GeneralPreferencesViewController" customModule="TimeFree" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" focusRingType="none" id="CcH-XP-4YM">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="y7Y-Ph-Cq0">
+                                <rect key="frame" x="18" y="226" width="273" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="hoI-mV-Jtp"/>
+                                    <constraint firstAttribute="width" constant="269" id="rMD-cw-eA0"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Randomly move the mouse pointer every " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VIy-9H-zPt">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="randomlyMovingMouse:" target="ngj-Ti-99X" id="b1c-9r-AHK"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="AkK-OK-nGN">
+                                <rect key="frame" x="18" y="256" width="414" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="JYr-tg-btm"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Avoid energy saving mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nzE-Nr-0cd">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="disableSystemSleep:" target="ngj-Ti-99X" id="Gaj-Rf-YdK"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j4L-aI-mMo">
+                                <rect key="frame" x="293" y="228" width="50" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="IdY-QQ-jIm"/>
+                                    <constraint firstAttribute="width" constant="50" id="iEU-WZ-SdP"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="xFT-xF-3KY">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="zvM-r3-zhh"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="movingMouseDelay:" target="ngj-Ti-99X" id="p2o-KV-qU4"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ILy-jP-XDF">
+                                <rect key="frame" x="345" y="228" width="87" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="vqY-Uy-GTT"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="seconds" id="VF7-Yj-GYb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Qg1-uA-oa8">
+                                <rect key="frame" x="18" y="196" width="414" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="SdE-Gz-xnq"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Automatically disable events if the user is present" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="WYf-OD-Y7e">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="automaticallyDisableEvents:" target="ngj-Ti-99X" id="A09-d0-Hku"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="j4L-aI-mMo" firstAttribute="leading" secondItem="y7Y-Ph-Cq0" secondAttribute="trailing" constant="4" id="0Fe-Qa-idw"/>
+                            <constraint firstItem="y7Y-Ph-Cq0" firstAttribute="leading" secondItem="CcH-XP-4YM" secondAttribute="leading" constant="20" id="9dE-Ng-wqI"/>
+                            <constraint firstItem="Qg1-uA-oa8" firstAttribute="leading" secondItem="CcH-XP-4YM" secondAttribute="leading" constant="20" id="Cok-yb-jBW"/>
+                            <constraint firstItem="j4L-aI-mMo" firstAttribute="top" secondItem="AkK-OK-nGN" secondAttribute="bottom" constant="8" id="EBV-HI-rwZ"/>
+                            <constraint firstItem="ILy-jP-XDF" firstAttribute="top" secondItem="AkK-OK-nGN" secondAttribute="bottom" constant="10" id="UIe-Pa-ktg"/>
+                            <constraint firstItem="AkK-OK-nGN" firstAttribute="leading" secondItem="CcH-XP-4YM" secondAttribute="leading" constant="20" id="Y1T-m0-Ugj"/>
+                            <constraint firstItem="Qg1-uA-oa8" firstAttribute="top" secondItem="y7Y-Ph-Cq0" secondAttribute="bottom" constant="8" id="avK-QE-v2Q"/>
+                            <constraint firstAttribute="trailing" secondItem="ILy-jP-XDF" secondAttribute="trailing" constant="20" id="caR-qK-6ik"/>
+                            <constraint firstItem="y7Y-Ph-Cq0" firstAttribute="top" secondItem="AkK-OK-nGN" secondAttribute="bottom" constant="8" id="fiV-LU-oaN"/>
+                            <constraint firstItem="ILy-jP-XDF" firstAttribute="leading" secondItem="j4L-aI-mMo" secondAttribute="trailing" constant="4" id="fu4-kQ-uZD"/>
+                            <constraint firstAttribute="trailing" secondItem="Qg1-uA-oa8" secondAttribute="trailing" constant="20" id="jzz-Cp-IXg"/>
+                            <constraint firstAttribute="trailing" secondItem="AkK-OK-nGN" secondAttribute="trailing" constant="20" id="pjt-a2-3kO"/>
+                            <constraint firstItem="AkK-OK-nGN" firstAttribute="top" secondItem="CcH-XP-4YM" secondAttribute="top" constant="20" id="wNu-HH-Hcm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="automaticallyDisableEventsButton" destination="Qg1-uA-oa8" id="lYu-fF-JbS"/>
+                        <outlet property="disableSystemSleepButton" destination="AkK-OK-nGN" id="YyP-dK-1GE"/>
+                        <outlet property="movingMouseDelayTextField" destination="j4L-aI-mMo" id="5hK-TQ-Y6L"/>
+                        <outlet property="randomlyMovingMouseButton" destination="y7Y-Ph-Cq0" id="Dfw-zE-SGr"/>
+                    </connections>
+                </viewController>
+                <customObject id="6Gu-0G-Sy4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-235" y="1339"/>
+        </scene>
+        <!--Events-->
+        <scene sceneID="dsO-aw-mec">
+            <objects>
+                <viewController title="Events" id="DMD-Mn-VMn" sceneMemberID="viewController">
+                    <view key="view" id="kCQ-P4-sNc">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
-                <customObject id="fFz-w6-BIK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="L2H-h2-nav" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="724" y="377"/>
+            <point key="canvasLocation" x="381" y="1339"/>
         </scene>
     </scenes>
 </document>
