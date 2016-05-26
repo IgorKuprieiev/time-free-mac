@@ -23,6 +23,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateIconsAndMenuButtons()
         reloadManagers()
         registrationObservers()
+        
+        NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.MouseMovedMask) { (event) in
+            print(event)
+        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
