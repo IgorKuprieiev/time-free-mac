@@ -41,13 +41,13 @@ class PowerManager {
         let assertionLevel = IOPMAssertionLevel(kIOPMAssertionLevelOn)
         if IOPMAssertionCreateWithName(kIOPMAssertionTypeNoDisplaySleep, assertionLevel, assertionName,  &powerId) == kIOReturnSuccess {
             isSleepEnabled = false
-            print("Disable screen sleep indefinitely")
+            print("Disable Sleep Mode")
         }
     }
     
     private static func releaseSleepAssertion() {
         if IOPMAssertionRelease(powerId) == kIOReturnSuccess {
-            print("Enable display sleep")
+            print("Enable Sleep Mode")
             isSleepEnabled = true
         }
     }

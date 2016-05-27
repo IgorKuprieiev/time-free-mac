@@ -10,11 +10,6 @@ import Cocoa
 
 class Preferences: NSObject, NSCoding {
     
-    // MARK: - NotificationKeys
-    struct NotificationKeys {
-        static let propertiesHaveBeenUpdatedKey = "PropertiesHaveBeenUpdated"
-    }
-    
     // MARK: - PreferenceKeys
     private struct PropertyKeys {
         static let preferencesKey = "preferences"
@@ -24,6 +19,7 @@ class Preferences: NSObject, NSCoding {
         static let movingMousePointerDelayKey = "movingMousePointerDelay"
         static let automaticallyDisableEventsIfUserIsPresentKey = "automaticallyDisableEventsIfUserIsPresent"
         static let timeoutOfUserActivityKey = "timeoutOfUserActivity"
+//        static let scriptsKey = "scripts"
     }
     
     // MARK: - Shared Instance
@@ -72,34 +68,30 @@ class Preferences: NSObject, NSCoding {
         }
     }
     
+//    var scripts: [Script] = {
+//        //Default scripts
+//    }
+//    
+//    // MARK: - Public
+//    func addScript(script: Script) {
+//        
+//    }
+//    
+//    func removeScript(script: Script) {
+//        
+//    }
+    
     // MARK: - Initialization
     override init() {
         enableManagers = false
         disableSystemSleep = true
         randomlyMovingMousePointer = true
-        movingMousePointerDelay = 30
+        movingMousePointerDelay = 10
         automaticallyDisableEventsIfUserIsPresent = true
-        timeoutOfUserActivity = 180
-
-        
+        timeoutOfUserActivity = 20
+//        scripts = [Script]()
         
         super.init()
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
     
     // MARK: - NSCoding
@@ -110,6 +102,11 @@ class Preferences: NSObject, NSCoding {
         aCoder.encodeInteger(movingMousePointerDelay, forKey: PropertyKeys.movingMousePointerDelayKey)
         aCoder.encodeBool(automaticallyDisableEventsIfUserIsPresent, forKey: PropertyKeys.automaticallyDisableEventsIfUserIsPresentKey)
         aCoder.encodeInteger(timeoutOfUserActivity, forKey: PropertyKeys.timeoutOfUserActivityKey)
+        
+//        let scriptsData = NSKeyedArchiver.archivedDataWithRootObject(scripts)
+//        if scriptsData.length > 0 {
+//            aCoder.encodeObject(scriptsData, forKey:PropertyKeys.scriptsKey)
+//        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -119,6 +116,12 @@ class Preferences: NSObject, NSCoding {
         movingMousePointerDelay = aDecoder.decodeIntegerForKey(PropertyKeys.movingMousePointerDelayKey)
         automaticallyDisableEventsIfUserIsPresent = aDecoder.decodeBoolForKey(PropertyKeys.automaticallyDisableEventsIfUserIsPresentKey)
         timeoutOfUserActivity = aDecoder.decodeIntegerForKey(PropertyKeys.timeoutOfUserActivityKey)
+        
+//        if let scriptsData = aDecoder.decodeObjectForKey(PropertyKeys.scriptsKey) as? NSData {
+//            scripts = NSKeyedUnarchiver.unarchiveObjectWithData(scriptsData) as! [Script]
+//        } else {
+//            scripts = [Script]()
+//        }
     }
     
     // MARK: - Private
@@ -127,7 +130,5 @@ class Preferences: NSObject, NSCoding {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.setObject(archivedData, forKey: PropertyKeys.preferencesKey)
         userDefaults.synchronize()
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.propertiesHaveBeenUpdatedKey, object: nil)
     }
 }

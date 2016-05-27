@@ -12,32 +12,39 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Outlets
-    @IBOutlet weak var statusMenu: NSMenu?
+    @IBOutlet weak var statusMenu: NSMenu? {
+        didSet {
+            statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
+            statusItem!.menu = statusMenu
+        }
+    }
     
     // MARK: - Properties
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
-    
+    private var statusItem: NSStatusItem?
+    private lazy var activitiesManager = ActivitiesManager()
+    private lazy var preferences = Preferences.sharedPreferences
+
     // MARK: - NSApplicationDelegate
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        personalizeStatusItem()
-        updateIconsAndMenuButtons()
-        reloadManagers()
-        registrationObservers()
-        
-        NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.MouseMovedMask) { (event) in
-            print(event)
+        if preferences.enableManagers == true {
+            activitiesManager.startActivities()
         }
+        updateStatusItemIconAndMenuButtons()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
-        unregisterObservers()
-        stopManagers()
+        activitiesManager.stopActivities()
     }
 
     // MARK: - IBActions
     @IBAction func startOrStop(sender: AnyObject) {
-        let preferences = Preferences.sharedPreferences
         preferences.enableManagers = !preferences.enableManagers
+        if preferences.enableManagers == true {
+            activitiesManager.startActivities()
+        } else {
+            activitiesManager.stopActivities()
+        }
+        updateStatusItemIconAndMenuButtons()
     }
     
     @IBAction func quit(sender: AnyObject) {
@@ -45,48 +52,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: - Private
-    private func personalizeStatusItem() {
-        statusItem.menu = statusMenu
-    }
-    
-    func propertiesHaveBeenUpdated(notification: NSNotification) {
-        reloadManagers()
-        updateIconsAndMenuButtons()
-    }
-
-    private func reloadManagers() {
-        stopManagers()
-        
-        let preferences = Preferences.sharedPreferences
-
-        guard preferences.enableManagers == true else {
-            return
-        }
-        
-        print("Start managers")
-        
-        if preferences.disableSystemSleep == true {
-            PowerManager.disableSleep()
-        }
-        
-        if preferences.randomlyMovingMousePointer == true && preferences.movingMousePointerDelay > 0 {
-            MouseManager.simulateMouseMovements(preferences.movingMousePointerDelay)
-        }
-        
-    }
-    
-    private func stopManagers() {
-        print("Stop managers")
-        PowerManager.enableSleep()
-        MouseManager.endMouseMovements()
-    }
-    
-    private func updateIconsAndMenuButtons() {
-        let preferences = Preferences.sharedPreferences
-        
+    private func updateStatusItemIconAndMenuButtons() {
         //set icon
-        let statusItemImageName = preferences.enableManagers == true ? "spy1" : "spy"
-        statusItem.image = NSImage(named: statusItemImageName)
+        if let statusItem = statusItem {
+            let statusItemImageName = preferences.enableManagers == true ? "spy1" : "spy"
+            statusItem.image = NSImage(named: statusItemImageName)
+        }
         
         //set names for items
         if let statusMenu = statusMenu, let startOrStopItem = statusMenu.itemAtIndex(0) {
