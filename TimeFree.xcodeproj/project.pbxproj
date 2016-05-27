@@ -13,7 +13,8 @@
 		1B2567F11CF6F59E005D909C /* PowerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F01CF6F59E005D909C /* PowerManager.swift */; };
 		1B2567F31CF71862005D909C /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F21CF71862005D909C /* Preferences.swift */; };
 		1B2567F51CF72724005D909C /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F41CF72724005D909C /* GeneralPreferencesViewController.swift */; };
-		1B2567F71CF7343F005D909C /* MouseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F61CF7343F005D909C /* MouseManager.swift */; };
+		1B2567F71CF7343F005D909C /* MouseActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F61CF7343F005D909C /* MouseActivities.swift */; };
+		1B90022B1CF81D86004462CF /* ActivitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90022A1CF81D86004462CF /* ActivitiesManager.swift */; };
 		1BF489161CF641CA00A3CA97 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF489141CF641CA00A3CA97 /* Event.swift */; };
 		1BF489171CF641CA00A3CA97 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF489151CF641CA00A3CA97 /* EventManager.swift */; };
 /* End PBXBuildFile section */
@@ -27,7 +28,8 @@
 		1B2567F01CF6F59E005D909C /* PowerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerManager.swift; sourceTree = "<group>"; };
 		1B2567F21CF71862005D909C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		1B2567F41CF72724005D909C /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
-		1B2567F61CF7343F005D909C /* MouseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseManager.swift; sourceTree = "<group>"; };
+		1B2567F61CF7343F005D909C /* MouseActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseActivities.swift; sourceTree = "<group>"; };
+		1B90022A1CF81D86004462CF /* ActivitiesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesManager.swift; sourceTree = "<group>"; };
 		1BF489141CF641CA00A3CA97 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1BF489151CF641CA00A3CA97 /* EventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,9 +68,10 @@
 				1BF489141CF641CA00A3CA97 /* Event.swift */,
 				1BF489151CF641CA00A3CA97 /* EventManager.swift */,
 				1B2567F01CF6F59E005D909C /* PowerManager.swift */,
-				1B2567F61CF7343F005D909C /* MouseManager.swift */,
+				1B2567F61CF7343F005D909C /* MouseActivities.swift */,
 				1B2567F21CF71862005D909C /* Preferences.swift */,
 				1B2567F41CF72724005D909C /* GeneralPreferencesViewController.swift */,
+				1B90022A1CF81D86004462CF /* ActivitiesManager.swift */,
 				1B093A5E1CF63E1A001B8500 /* Assets.xcassets */,
 				1B093A601CF63E1A001B8500 /* Main.storyboard */,
 				1B093A631CF63E1A001B8500 /* Info.plist */,
@@ -146,10 +149,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B90022B1CF81D86004462CF /* ActivitiesManager.swift in Sources */,
 				1B2567F11CF6F59E005D909C /* PowerManager.swift in Sources */,
 				1B2567F31CF71862005D909C /* Preferences.swift in Sources */,
 				1BF489161CF641CA00A3CA97 /* Event.swift in Sources */,
-				1B2567F71CF7343F005D909C /* MouseManager.swift in Sources */,
+				1B2567F71CF7343F005D909C /* MouseActivities.swift in Sources */,
 				1BF489171CF641CA00A3CA97 /* EventManager.swift in Sources */,
 				1B2567F51CF72724005D909C /* GeneralPreferencesViewController.swift in Sources */,
 				1B093A5B1CF63E1A001B8500 /* AppDelegate.swift in Sources */,

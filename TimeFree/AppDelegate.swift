@@ -49,17 +49,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu = statusMenu
     }
     
-    private func registrationObservers() {
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(AppDelegate.propertiesHaveBeenUpdated(_:)),
-                                                         name: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey,
-                                                         object: nil)
-    }
-    
-    private func unregisterObservers() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey, object: nil)
-    }
-    
     func propertiesHaveBeenUpdated(notification: NSNotification) {
         reloadManagers()
         updateIconsAndMenuButtons()

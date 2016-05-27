@@ -23,6 +23,7 @@ class Preferences: NSObject, NSCoding {
         static let randomlyMovingMousePointerKey = "randomlyMovingMousePointer"
         static let movingMousePointerDelayKey = "movingMousePointerDelay"
         static let automaticallyDisableEventsIfUserIsPresentKey = "automaticallyDisableEventsIfUserIsPresent"
+        static let timeoutOfUserActivityKey = "timeoutOfUserActivity"
     }
     
     // MARK: - Shared Instance
@@ -65,6 +66,12 @@ class Preferences: NSObject, NSCoding {
         }
     }
     
+    var timeoutOfUserActivity: Int {
+        didSet {
+            synchronizePreferences()
+        }
+    }
+    
     // MARK: - Initialization
     override init() {
         enableManagers = false
@@ -72,8 +79,27 @@ class Preferences: NSObject, NSCoding {
         randomlyMovingMousePointer = true
         movingMousePointerDelay = 30
         automaticallyDisableEventsIfUserIsPresent = true
+        timeoutOfUserActivity = 180
+
+        
         
         super.init()
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     // MARK: - NSCoding
@@ -83,6 +109,7 @@ class Preferences: NSObject, NSCoding {
         aCoder.encodeBool(randomlyMovingMousePointer, forKey: PropertyKeys.randomlyMovingMousePointerKey)
         aCoder.encodeInteger(movingMousePointerDelay, forKey: PropertyKeys.movingMousePointerDelayKey)
         aCoder.encodeBool(automaticallyDisableEventsIfUserIsPresent, forKey: PropertyKeys.automaticallyDisableEventsIfUserIsPresentKey)
+        aCoder.encodeInteger(timeoutOfUserActivity, forKey: PropertyKeys.timeoutOfUserActivityKey)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -91,6 +118,7 @@ class Preferences: NSObject, NSCoding {
         randomlyMovingMousePointer = aDecoder.decodeBoolForKey(PropertyKeys.randomlyMovingMousePointerKey)
         movingMousePointerDelay = aDecoder.decodeIntegerForKey(PropertyKeys.movingMousePointerDelayKey)
         automaticallyDisableEventsIfUserIsPresent = aDecoder.decodeBoolForKey(PropertyKeys.automaticallyDisableEventsIfUserIsPresentKey)
+        timeoutOfUserActivity = aDecoder.decodeIntegerForKey(PropertyKeys.timeoutOfUserActivityKey)
     }
     
     // MARK: - Private
