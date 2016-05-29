@@ -43,5 +43,27 @@ class Script: NSObject, NSCoding {
         scriptDescription = aDecoder.decodeObjectForKey(PropertyKeys.scriptDescriptionKey) as? String
 //        scriptEnabled = aDecoder.decodeBoolForKey(PropertyKeys.scriptEnabledKey)
     }
+}
+
+extension Script {
     
+    func runScript() -> Bool {
+        guard let scriptSource = self.scriptSource else {
+            return false
+        }
+        guard let appleScript = NSAppleScript(source: scriptSource) else {
+            return false
+        }
+        print("Run script")
+        var error: NSDictionary? = nil
+        if let output: NSAppleEventDescriptor = appleScript.executeAndReturnError(&error) {
+            print(output.stringValue)
+            return true
+        } else {
+            if (error != nil) {
+                print("error: \(error)")
+            }
+            return false
+        }
+    }
 }

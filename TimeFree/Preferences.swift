@@ -19,16 +19,16 @@ class Preferences: NSObject, NSCoding {
         static let movingMousePointerDelayKey = "movingMousePointerDelay"
         static let automaticallyDisableEventsIfUserIsPresentKey = "automaticallyDisableEventsIfUserIsPresent"
         static let timeoutOfUserActivityKey = "timeoutOfUserActivity"
-//        static let scriptsKey = "scripts"
+        static let scriptsKey = "scripts"
     }
     
     // MARK: - Shared Instance
     static let sharedPreferences: Preferences = {
-        if let preferencesData = NSUserDefaults.standardUserDefaults().objectForKey(PropertyKeys.preferencesKey) as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(preferencesData) as! Preferences
-        } else {
+//        if let preferencesData = NSUserDefaults.standardUserDefaults().objectForKey(PropertyKeys.preferencesKey) as? NSData {
+//            return NSKeyedUnarchiver.unarchiveObjectWithData(preferencesData) as! Preferences
+//        } else {
             return Preferences()
-        }
+//        }
     }()
     
     // MARK: - Properties
@@ -68,29 +68,42 @@ class Preferences: NSObject, NSCoding {
         }
     }
     
-//    var scripts: [Script] = {
-//        //Default scripts
-//    }
-//    
-//    // MARK: - Public
-//    func addScript(script: Script) {
-//        
-//    }
-//    
-//    func removeScript(script: Script) {
-//        
-//    }
+    var scripts: [Script] = {
+        let source = "tell application \"System Events\"\n" +
+        "if exists process \"Xcode\" then\n" +
+        "tell application \"Xcode\"\n" +
+        "activate\n" +
+        "end tell\n" +
+        "tell process \"Xcode\"\n" +
+        "keystroke \"}\" using {command down, shift down}\n" +
+        "end tell\n" +
+        "end if\n" +
+        "end tell"
+        print(source)
+        let testScript = Script(scriptSource: source, scriptDescription: "TestDescription")
+        return [testScript]
+    }()
+    
+    // MARK: - Public
+    func addScript(script: Script) {
+        
+        synchronizePreferences()
+    }
+    
+    func removeScript(script: Script) {
+        
+        synchronizePreferences()
+    }
     
     // MARK: - Initialization
     override init() {
         enableManagers = false
         disableSystemSleep = true
         randomlyMovingMousePointer = true
-        movingMousePointerDelay = 10
+        movingMousePointerDelay = 5
         automaticallyDisableEventsIfUserIsPresent = true
-        timeoutOfUserActivity = 20
-//        scripts = [Script]()
-        
+        timeoutOfUserActivity = 5
+
         super.init()
     }
     
@@ -103,10 +116,10 @@ class Preferences: NSObject, NSCoding {
         aCoder.encodeBool(automaticallyDisableEventsIfUserIsPresent, forKey: PropertyKeys.automaticallyDisableEventsIfUserIsPresentKey)
         aCoder.encodeInteger(timeoutOfUserActivity, forKey: PropertyKeys.timeoutOfUserActivityKey)
         
-//        let scriptsData = NSKeyedArchiver.archivedDataWithRootObject(scripts)
-//        if scriptsData.length > 0 {
-//            aCoder.encodeObject(scriptsData, forKey:PropertyKeys.scriptsKey)
-//        }
+        let scriptsData = NSKeyedArchiver.archivedDataWithRootObject(scripts)
+        if scriptsData.length > 0 {
+            aCoder.encodeObject(scriptsData, forKey:PropertyKeys.scriptsKey)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -117,11 +130,9 @@ class Preferences: NSObject, NSCoding {
         automaticallyDisableEventsIfUserIsPresent = aDecoder.decodeBoolForKey(PropertyKeys.automaticallyDisableEventsIfUserIsPresentKey)
         timeoutOfUserActivity = aDecoder.decodeIntegerForKey(PropertyKeys.timeoutOfUserActivityKey)
         
-//        if let scriptsData = aDecoder.decodeObjectForKey(PropertyKeys.scriptsKey) as? NSData {
-//            scripts = NSKeyedUnarchiver.unarchiveObjectWithData(scriptsData) as! [Script]
-//        } else {
-//            scripts = [Script]()
-//        }
+        if let scriptsData = aDecoder.decodeObjectForKey(PropertyKeys.scriptsKey) as? NSData {
+            scripts = NSKeyedUnarchiver.unarchiveObjectWithData(scriptsData) as! [Script]
+        }
     }
     
     // MARK: - Private

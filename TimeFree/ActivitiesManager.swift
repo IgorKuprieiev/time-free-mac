@@ -11,9 +11,9 @@ import Cocoa
 class ActivitiesManager: AnyObject {
     
     // MARK: - Properties
-    private var globalTimer: NSTimer? = nil
-    private let globalTimerTickDuration = 1
-    private var globalTickCounter = 0
+    private var timer: NSTimer? = nil
+    private let timerTickDuration = 1
+    private var tickCounter = 0
     private let preferences = Preferences.sharedPreferences
     private lazy var globalMonitors = [AnyObject]()
     
@@ -30,11 +30,11 @@ class ActivitiesManager: AnyObject {
             registrationObservers()
         }
         
-        globalTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(globalTimerTickDuration),
-                                                             target: self,
-                                                             selector: #selector(ActivitiesManager.globalTick),
-                                                             userInfo: nil,
-                                                             repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(timerTickDuration),
+                                                       target: self,
+                                                       selector: #selector(ActivitiesManager.tick),
+                                                       userInfo: nil,
+                                                       repeats: true)
     }
     
     func stopActivities() {
@@ -45,17 +45,17 @@ class ActivitiesManager: AnyObject {
         unregisterObservers()
         
         //Reset counter
-        globalTickCounter = 0
+        tickCounter = 0
         
         //Remove timer
-        if globalTimer != nil {
-            globalTimer!.invalidate()
-            globalTimer = nil
+        if timer != nil {
+            timer!.invalidate()
+            timer = nil
         }
     }
     
-    @objc func globalTick() {
-        globalTickCounter += globalTimerTickDuration
+    @objc func tick() {
+        tickCounter += timerTickDuration
         
         //Enable or disable Sleep Mode
         if preferences.disableSystemSleep == true && PowerManager.isSleepEnabled == true {
@@ -65,13 +65,18 @@ class ActivitiesManager: AnyObject {
         }
         
         //Disable the simulation, if there is user activity
-        if preferences.automaticallyDisableEventsIfUserIsPresent == true && globalTickCounter < preferences.timeoutOfUserActivity {
+        if preferences.automaticallyDisableEventsIfUserIsPresent == true && tickCounter < preferences.timeoutOfUserActivity {
             return
         }
         
         //Move mouse
-        if preferences.randomlyMovingMousePointer == true && (globalTickCounter % preferences.movingMousePointerDelay) == 0 {
+        if preferences.randomlyMovingMousePointer == true && (tickCounter % preferences.movingMousePointerDelay) == 0 {
             MouseManager.moveMousePointerToRandomPosition()
+        }
+        
+        //Run script
+        if preferences.scripts.count > 0 && (tickCounter % preferences.movingMousePointerDelay) == 0 {
+            preferences.scripts.randomItem().runScript()
         }
     }
     
@@ -84,7 +89,7 @@ class ActivitiesManager: AnyObject {
             }
             
             //Reset counter
-            strongSelf.globalTickCounter = 0
+            strongSelf.tickCounter = 0
             print("Detect user activity")
         }
         
