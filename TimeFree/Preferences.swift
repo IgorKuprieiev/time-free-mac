@@ -24,11 +24,11 @@ class Preferences: NSObject, NSCoding {
     
     // MARK: - Shared Instance
     static let sharedPreferences: Preferences = {
-//        if let preferencesData = NSUserDefaults.standardUserDefaults().objectForKey(PropertyKeys.preferencesKey) as? NSData {
-//            return NSKeyedUnarchiver.unarchiveObjectWithData(preferencesData) as! Preferences
-//        } else {
+        if let preferencesData = NSUserDefaults.standardUserDefaults().objectForKey(PropertyKeys.preferencesKey) as? NSData {
+            return NSKeyedUnarchiver.unarchiveObjectWithData(preferencesData) as! Preferences
+        } else {
             return Preferences()
-//        }
+        }
     }()
     
     // MARK: - Properties
@@ -68,33 +68,12 @@ class Preferences: NSObject, NSCoding {
         }
     }
     
-    var scripts: [Script] = {
-        let source = "tell application \"System Events\"\n" +
-        "if exists process \"Xcode\" then\n" +
-        "tell application \"Xcode\"\n" +
-        "activate\n" +
-        "end tell\n" +
-        "tell process \"Xcode\"\n" +
-        "keystroke \"}\" using {command down, shift down}\n" +
-        "end tell\n" +
-        "end if\n" +
-        "end tell"
-        print(source)
-        let testScript = Script(scriptSource: source, scriptDescription: "TestDescription")
-        return [testScript]
-    }()
-    
-    // MARK: - Public
-    func addScript(script: Script) {
-        
-        synchronizePreferences()
+    var scripts: [Script] {
+        didSet {
+            synchronizePreferences()
+        }
     }
-    
-    func removeScript(script: Script) {
-        
-        synchronizePreferences()
-    }
-    
+
     // MARK: - Initialization
     override init() {
         enableManagers = false
@@ -104,6 +83,46 @@ class Preferences: NSObject, NSCoding {
         automaticallyDisableEventsIfUserIsPresent = true
         timeoutOfUserActivity = 5
 
+        scripts = {
+            let source1 = "tell application \"System Events\"\n" +
+            "if exists process \"Xcode\" then\n" +
+            "tell application \"Xcode\"\n" +
+            "activate\n" +
+            "end tell\n" +
+            "tell process \"Xcode\"\n" +
+            "keystroke \"}\" using {command down, shift down}\n" +
+            "end tell\n" +
+            "end if\n" +
+        "end tell"
+        let testScript1 = Script(scriptSource: source1, scriptDescription: "TestDescription")
+//        
+//        let source2 = "tell application \"System Events\"\n" +
+//            "if exists process \"Xcode\" then\n" +
+//            "tell application \"Xcode\"\n" +
+//            "activate\n" +
+//            "end tell\n" +
+//            "tell process \"Xcode\"\n" +
+//            "keystroke \"}\" using {command down, shift down}\n" +
+//            "end tell\n" +
+//            "end if\n" +
+//        "end tell"
+//        let testScript2 = Script(scriptSource: source2, scriptDescription: "TestDescription")
+//        
+//        let source3 = "tell application \"System Events\"\n" +
+//            "if exists process \"Xcode\" then\n" +
+//            "tell application \"Xcode\"\n" +
+//            "activate\n" +
+//            "end tell\n" +
+//            "tell process \"Xcode\"\n" +
+//            "keystroke \"}\" using {command down, shift down}\n" +
+//            "end tell\n" +
+//            "end if\n" +
+//        "end tell"
+//        let testScript3 = Script(scriptSource: source3, scriptDescription: "TestDescription")
+        
+        return [testScript1]
+        }()
+        
         super.init()
     }
     
@@ -132,6 +151,8 @@ class Preferences: NSObject, NSCoding {
         
         if let scriptsData = aDecoder.decodeObjectForKey(PropertyKeys.scriptsKey) as? NSData {
             scripts = NSKeyedUnarchiver.unarchiveObjectWithData(scriptsData) as! [Script]
+        } else {
+            scripts = [Script]()
         }
     }
     

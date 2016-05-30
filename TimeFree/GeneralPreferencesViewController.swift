@@ -17,7 +17,7 @@ class GeneralPreferencesViewController: NSViewController {
     @IBOutlet weak var automaticallyDisableEventsButton: NSButton!
     
     // MARK: - Properties
-    let preferences = Preferences.sharedPreferences
+    private let preferences = Preferences.sharedPreferences
     
     // MARK: - NSViewController
     override func viewDidLoad() {
@@ -54,8 +54,8 @@ class GeneralPreferencesViewController: NSViewController {
     func setupInterface() {
         disableSystemSleepButton.state = (preferences.disableSystemSleep == true) ? NSOnState : NSOffState
         randomlyMovingMouseButton.state = (preferences.randomlyMovingMousePointer == true) ? NSOnState : NSOffState
-        movingMouseDelayTextField.enabled = preferences.randomlyMovingMousePointer
-        movingMouseDelayTextField.stringValue = "\(preferences.movingMousePointerDelay)"
+//        movingMouseDelayTextField.enabled = preferences.randomlyMovingMousePointer
+//        movingMouseDelayTextField.stringValue = "\(preferences.movingMousePointerDelay)"
         automaticallyDisableEventsButton.state = (preferences.automaticallyDisableEventsIfUserIsPresent == true) ? NSOnState : NSOffState
     }
 }
