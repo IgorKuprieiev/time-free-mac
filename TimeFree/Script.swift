@@ -14,7 +14,7 @@ class Script: NSObject, NSCoding {
     private struct PropertyKeys {
         static let scriptSourceKey = "scriptSource"
         static let scriptDescriptionKey = "scriptDescription"
-//        static let scriptEnabledKey = "scriptEnabled"
+        static let scriptEnabledKey = "scriptEnabled"
     }
     
     // MARK: - Properties
@@ -26,7 +26,7 @@ class Script: NSObject, NSCoding {
     init(scriptSource: String, scriptDescription: String, scriptEnabled: Bool = true) {
         self.scriptSource = scriptSource
         self.scriptDescription = scriptDescription
-//        self.scriptEnabled = scriptEnabled
+        self.scriptEnabled = scriptEnabled
         
         super.init()
     }
@@ -35,13 +35,13 @@ class Script: NSObject, NSCoding {
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(scriptSource, forKey: PropertyKeys.scriptSourceKey)
         aCoder.encodeObject(scriptDescription, forKey: PropertyKeys.scriptDescriptionKey)
-//        aCoder.encodeBool(scriptEnabled, forKey: PropertyKeys.scriptEnabledKey)
+        aCoder.encodeBool(scriptEnabled, forKey: PropertyKeys.scriptEnabledKey)
     }
     
     required init?(coder aDecoder: NSCoder) {
         scriptSource = aDecoder.decodeObjectForKey(PropertyKeys.scriptSourceKey) as? String
         scriptDescription = aDecoder.decodeObjectForKey(PropertyKeys.scriptDescriptionKey) as? String
-//        scriptEnabled = aDecoder.decodeBoolForKey(PropertyKeys.scriptEnabledKey)
+        scriptEnabled = aDecoder.decodeBoolForKey(PropertyKeys.scriptEnabledKey)
     }
 }
 

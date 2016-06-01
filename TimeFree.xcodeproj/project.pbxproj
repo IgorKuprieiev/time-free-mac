@@ -15,7 +15,7 @@
 		1B2567F51CF72724005D909C /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F41CF72724005D909C /* GeneralPreferencesViewController.swift */; };
 		1B2567F71CF7343F005D909C /* MouseActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F61CF7343F005D909C /* MouseActivities.swift */; };
 		1B90022B1CF81D86004462CF /* ActivitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90022A1CF81D86004462CF /* ActivitiesManager.swift */; };
-		1BA4CB1F1CF8E93400D08F34 /* AppleScripts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BA4CB1E1CF8E93400D08F34 /* AppleScripts.plist */; };
+		1BA4CB1F1CF8E93400D08F34 /* DefaultScripts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BA4CB1E1CF8E93400D08F34 /* DefaultScripts.plist */; };
 		1BA4CB211CFB2A3A00D08F34 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA4CB201CFB2A3A00D08F34 /* Array+Extensions.swift */; };
 		1BF071751CFCA001003EC255 /* EventsPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF071741CFCA001003EC255 /* EventsPreferencesViewController.swift */; };
 		1BF489161CF641CA00A3CA97 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF489141CF641CA00A3CA97 /* Script.swift */; };
@@ -32,7 +32,7 @@
 		1B2567F41CF72724005D909C /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		1B2567F61CF7343F005D909C /* MouseActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseActivities.swift; sourceTree = "<group>"; };
 		1B90022A1CF81D86004462CF /* ActivitiesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesManager.swift; sourceTree = "<group>"; };
-		1BA4CB1E1CF8E93400D08F34 /* AppleScripts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppleScripts.plist; sourceTree = "<group>"; };
+		1BA4CB1E1CF8E93400D08F34 /* DefaultScripts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultScripts.plist; sourceTree = "<group>"; };
 		1BA4CB201CFB2A3A00D08F34 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		1BF071741CFCA001003EC255 /* EventsPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsPreferencesViewController.swift; sourceTree = "<group>"; };
 		1BF489141CF641CA00A3CA97 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 				1B093A5E1CF63E1A001B8500 /* Assets.xcassets */,
 				1B093A601CF63E1A001B8500 /* Main.storyboard */,
 				1B093A631CF63E1A001B8500 /* Info.plist */,
-				1BA4CB1E1CF8E93400D08F34 /* AppleScripts.plist */,
+				1BA4CB1E1CF8E93400D08F34 /* DefaultScripts.plist */,
 			);
 			path = TimeFree;
 			sourceTree = "<group>";
@@ -143,7 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BA4CB1F1CF8E93400D08F34 /* AppleScripts.plist in Resources */,
+				1BA4CB1F1CF8E93400D08F34 /* DefaultScripts.plist in Resources */,
 				1B093A5F1CF63E1A001B8500 /* Assets.xcassets in Resources */,
 				1B093A621CF63E1A001B8500 /* Main.storyboard in Resources */,
 			);

@@ -12,7 +12,7 @@ class ActivitiesManager: AnyObject {
     
     // MARK: - Properties
     private var timer: NSTimer? = nil
-    private let timerTickDuration = 1
+    private let timerTickDuration = 5
     private var tickCounter = 0
     private let preferences = Preferences.sharedPreferences
     private lazy var globalMonitors = [AnyObject]()
@@ -60,7 +60,7 @@ class ActivitiesManager: AnyObject {
         }
         
         //Move mouse
-        if preferences.moveMousePointer == true && (tickCounter % preferences.movingMousePointerDelay) == 0 {
+        if preferences.moveMousePointer == true && (tickCounter % preferences.moveMousePointerFrequency) == 0 {
             MouseManager.moveMousePointerToRandomPosition()
         }
         

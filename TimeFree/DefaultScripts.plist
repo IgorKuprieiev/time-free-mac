@@ -3,11 +3,11 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>enabled</key>
+		<key>scriptEnabled</key>
 		<true/>
-		<key>description</key>
+		<key>scriptDescription</key>
 		<string>Блуждаем по вкладкам</string>
-		<key>source</key>
+		<key>scriptSource</key>
 		<string>Test</string>
 	</dict>
 </array>
