@@ -649,18 +649,29 @@
                 </customObject>
                 <menu title="Test" autoenablesItems="NO" id="n7p-Px-fhX">
                     <items>
-                        <menuItem title="Start or stop simulation" id="flm-t9-yMX">
+                        <menuItem title="Don't Allow Sleeping" id="YA3-gz-HGL">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="startOrStop:" target="Voe-Tx-rLC" id="ThL-VT-A68"/>
+                                <action selector="dontAllowSleeping:" target="Voe-Tx-rLC" id="4vr-hm-lCx"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Properties" id="3UY-th-MP3">
+                        <menuItem title="Move Mouse" id="flm-t9-yMX">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <segue destination="waW-GR-ZBM" kind="show" id="I1o-61-tQb"/>
+                                <action selector="moveMouse:" target="Voe-Tx-rLC" id="PIL-Gu-1hL"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Run Scripts" id="3UY-th-MP3">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="runScripts:" target="Voe-Tx-rLC" id="dxm-hL-aDR"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="QSB-ss-6X5"/>
+                        <menuItem title="Properties" id="v19-Q2-Zif">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="vHx-qT-UbW"/>
                         <menuItem title="Quit" id="Ity-gW-7p1">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
@@ -854,7 +865,7 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbI-52-GR0">
                                 <rect key="frame" x="20" y="126" width="440" height="100"/>
                                 <clipView key="contentView" id="1uP-hJ-AZJ">
-                                    <rect key="frame" x="1" y="23" width="438" height="76"/>
+                                    <rect key="frame" x="1" y="0.0" width="438" height="99"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="q2Y-m2-ZXL" id="ztP-gS-at6">

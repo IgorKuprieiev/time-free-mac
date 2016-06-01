@@ -10,14 +10,18 @@ import Cocoa
 
 class Preferences: NSObject, NSCoding {
     
+    // MARK: - NotificationKeys
+    struct NotificationKeys {
+        static let propertiesHaveBeenUpdatedKey = "PropertiesHaveBeenUpdated"
+    }
+    
     // MARK: - PreferenceKeys
     private struct PropertyKeys {
         static let preferencesKey = "preferences"
-        static let enableManagersKey = "enableManagers"
-        static let disableSystemSleepKey = "disableSystemSleep"
-        static let randomlyMovingMousePointerKey = "randomlyMovingMousePointer"
+        static let dontAllowSleepingKey = "dontAllowSleeping"
+        static let moveMousePointerKey = "moveMousePointer"
         static let movingMousePointerDelayKey = "movingMousePointerDelay"
-        static let automaticallyDisableEventsIfUserIsPresentKey = "automaticallyDisableEventsIfUserIsPresent"
+        static let runScriptsKey = "runScripts"
         static let timeoutOfUserActivityKey = "timeoutOfUserActivity"
         static let scriptsKey = "scripts"
     }
@@ -31,20 +35,16 @@ class Preferences: NSObject, NSCoding {
         }
     }()
     
+    private let synchronizePreferencesQueue = dispatch_queue_create("com.timefree.synchronize.preferences.queue", nil)
+    
     // MARK: - Properties
-    var disableSystemSleep: Bool {
+    var dontAllowSleeping: Bool {
         didSet {
             synchronizePreferences()
         }
     }
     
-    var enableManagers: Bool {
-        didSet {
-            synchronizePreferences()
-        }
-    }
-    
-    var randomlyMovingMousePointer: Bool {
+    var moveMousePointer: Bool {
         didSet {
             synchronizePreferences()
         }
@@ -56,7 +56,7 @@ class Preferences: NSObject, NSCoding {
         }
     }
 
-    var automaticallyDisableEventsIfUserIsPresent: Bool {
+    var runScripts: Bool {
         didSet {
             synchronizePreferences()
         }
@@ -76,11 +76,10 @@ class Preferences: NSObject, NSCoding {
 
     // MARK: - Initialization
     override init() {
-        enableManagers = false
-        disableSystemSleep = true
-        randomlyMovingMousePointer = true
+        dontAllowSleeping = false
+        moveMousePointer = false
         movingMousePointerDelay = 5
-        automaticallyDisableEventsIfUserIsPresent = true
+        runScripts = true
         timeoutOfUserActivity = 5
 
         scripts = {
@@ -128,11 +127,10 @@ class Preferences: NSObject, NSCoding {
     
     // MARK: - NSCoding
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeBool(enableManagers, forKey: PropertyKeys.enableManagersKey)
-        aCoder.encodeBool(disableSystemSleep, forKey: PropertyKeys.disableSystemSleepKey)
-        aCoder.encodeBool(randomlyMovingMousePointer, forKey: PropertyKeys.randomlyMovingMousePointerKey)
+        aCoder.encodeBool(dontAllowSleeping, forKey: PropertyKeys.dontAllowSleepingKey)
+        aCoder.encodeBool(moveMousePointer, forKey: PropertyKeys.moveMousePointerKey)
         aCoder.encodeInteger(movingMousePointerDelay, forKey: PropertyKeys.movingMousePointerDelayKey)
-        aCoder.encodeBool(automaticallyDisableEventsIfUserIsPresent, forKey: PropertyKeys.automaticallyDisableEventsIfUserIsPresentKey)
+        aCoder.encodeBool(runScripts, forKey: PropertyKeys.runScriptsKey)
         aCoder.encodeInteger(timeoutOfUserActivity, forKey: PropertyKeys.timeoutOfUserActivityKey)
         
         let scriptsData = NSKeyedArchiver.archivedDataWithRootObject(scripts)
@@ -142,11 +140,10 @@ class Preferences: NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        enableManagers = aDecoder.decodeBoolForKey(PropertyKeys.enableManagersKey)
-        disableSystemSleep = aDecoder.decodeBoolForKey(PropertyKeys.disableSystemSleepKey)
-        randomlyMovingMousePointer = aDecoder.decodeBoolForKey(PropertyKeys.randomlyMovingMousePointerKey)
+        dontAllowSleeping = aDecoder.decodeBoolForKey(PropertyKeys.dontAllowSleepingKey)
+        moveMousePointer = aDecoder.decodeBoolForKey(PropertyKeys.moveMousePointerKey)
         movingMousePointerDelay = aDecoder.decodeIntegerForKey(PropertyKeys.movingMousePointerDelayKey)
-        automaticallyDisableEventsIfUserIsPresent = aDecoder.decodeBoolForKey(PropertyKeys.automaticallyDisableEventsIfUserIsPresentKey)
+        runScripts = aDecoder.decodeBoolForKey(PropertyKeys.runScriptsKey)
         timeoutOfUserActivity = aDecoder.decodeIntegerForKey(PropertyKeys.timeoutOfUserActivityKey)
         
         if let scriptsData = aDecoder.decodeObjectForKey(PropertyKeys.scriptsKey) as? NSData {
@@ -158,9 +155,18 @@ class Preferences: NSObject, NSCoding {
     
     // MARK: - Private
     private func synchronizePreferences() {
-        let archivedData = NSKeyedArchiver.archivedDataWithRootObject(self)
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setObject(archivedData, forKey: PropertyKeys.preferencesKey)
-        userDefaults.synchronize()
+//        dispatch_sync(synchronizePreferencesQueue) { 
+            let archivedData = NSKeyedArchiver.archivedDataWithRootObject(self)
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setObject(archivedData, forKey: PropertyKeys.preferencesKey)
+            userDefaults.synchronize()
+//            dispatch_sync(dispatch_get_main_queue()) {
+                self.noticeThatPreferencesHaveChanged()
+//            }
+//        }
+    }
+    
+    private func noticeThatPreferencesHaveChanged() {
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.propertiesHaveBeenUpdatedKey, object: nil)
     }
 }

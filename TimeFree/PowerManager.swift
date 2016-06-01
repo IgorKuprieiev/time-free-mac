@@ -20,14 +20,12 @@ class PowerManager {
     private static var powerId: IOPMAssertionID = IOPMAssertionID(0)
     
     // MARK: - Public
-    static func enableSleep() -> Bool {
-        releaseSleepAssertion()
-        return isSleepEnabled == true;
-    }
-    
-    static func disableSleep() -> Bool {
-        preventSleep()
-        return isSleepEnabled == false;
+    static func dontAllowSleeping(disableSleeping: Bool) {
+        if disableSleeping == true {
+            preventSleep()
+        } else {
+            releaseSleepAssertion()
+        }
     }
     
     // MARK: - Private

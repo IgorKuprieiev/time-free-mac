@@ -26,7 +26,7 @@ class ActivitiesManager: AnyObject {
         stopActivities()
         
         //Enable a user's observation
-        if preferences.automaticallyDisableEventsIfUserIsPresent == true {
+        if preferences.timeoutOfUserActivity > 0 {
             registrationObservers()
         }
         
@@ -38,9 +38,6 @@ class ActivitiesManager: AnyObject {
     }
     
     func stopActivities() {
-        //Enable Sleep Mode
-        PowerManager.enableSleep()
-        
         //Turn off a user's observation
         unregisterObservers()
         
@@ -57,27 +54,20 @@ class ActivitiesManager: AnyObject {
     @objc func tick() {
         tickCounter += timerTickDuration
         
-        //Enable or disable Sleep Mode
-        if preferences.disableSystemSleep == true && PowerManager.isSleepEnabled == true {
-            PowerManager.disableSleep()
-        } else if preferences.disableSystemSleep == false && PowerManager.isSleepEnabled == false {
-            PowerManager.enableSleep()
-        }
-        
         //Disable the simulation, if there is user activity
-        if preferences.automaticallyDisableEventsIfUserIsPresent == true && tickCounter < preferences.timeoutOfUserActivity {
+        if tickCounter < preferences.timeoutOfUserActivity {
             return
         }
         
         //Move mouse
-        if preferences.randomlyMovingMousePointer == true && (tickCounter % preferences.movingMousePointerDelay) == 0 {
+        if preferences.moveMousePointer == true && (tickCounter % preferences.movingMousePointerDelay) == 0 {
             MouseManager.moveMousePointerToRandomPosition()
         }
         
         //Run script
-        if preferences.scripts.count > 0 && (tickCounter % preferences.movingMousePointerDelay) == 0 {
-            preferences.scripts.randomItem().runScript()
-        }
+//        if preferences.scripts.count > 0 && (tickCounter % preferences.movingMousePointerDelay) == 0 {
+//            preferences.scripts.randomItem().runScript()
+//        }
     }
     
     // MARK: - Private
