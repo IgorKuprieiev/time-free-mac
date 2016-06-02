@@ -27,7 +27,7 @@ class Preferences: NSObject, NSCoding {
         static let scriptsKey = "scripts"
     }
     
-    // MARK: - Shared Instance
+    // MARK: - Shared Instance=
     static let sharedPreferences: Preferences = {
 //        if let preferencesData = NSUserDefaults.standardUserDefaults().objectForKey(PropertyKeys.preferencesKey) as? NSData {
 //            return NSKeyedUnarchiver.unarchiveObjectWithData(preferencesData) as! Preferences
@@ -89,57 +89,12 @@ class Preferences: NSObject, NSCoding {
         moveMousePointerFrequency = 5
         runScripts = true
         runScriptsFrequency = 5
-        
-//        scripts = [Script]()
-//        if let path = NSBundle.mainBundle().pathForResource("DefaultScripts", ofType: "plist") {
-//            if let scriptsInfo = NSArray(contentsOfFile: path) {
-//                for scriptInfo in scriptsInfo {
-//                    
-//                }
-//
-//            }
-//            
-//        }
-
         scripts = {
-            let source1 = "tell application \"System Events\"\n" +
-            "if exists process \"Xcode\" then\n" +
-            "tell application \"Xcode\"\n" +
-            "activate\n" +
-            "end tell\n" +
-            "tell process \"Xcode\"\n" +
-            "keystroke \"}\" using {command down, shift down}\n" +
-            "end tell\n" +
-            "end if\n" +
-        "end tell"
-        let testScript1 = Script(scriptSource: source1, scriptDescription: "TestDescription")
-//        
-//        let source2 = "tell application \"System Events\"\n" +
-//            "if exists process \"Xcode\" then\n" +
-//            "tell application \"Xcode\"\n" +
-//            "activate\n" +
-//            "end tell\n" +
-//            "tell process \"Xcode\"\n" +
-//            "keystroke \"}\" using {command down, shift down}\n" +
-//            "end tell\n" +
-//            "end if\n" +
-//        "end tell"
-//        let testScript2 = Script(scriptSource: source2, scriptDescription: "TestDescription")
-//        
-//        let source3 = "tell application \"System Events\"\n" +
-//            "if exists process \"Xcode\" then\n" +
-//            "tell application \"Xcode\"\n" +
-//            "activate\n" +
-//            "end tell\n" +
-//            "tell process \"Xcode\"\n" +
-//            "keystroke \"}\" using {command down, shift down}\n" +
-//            "end tell\n" +
-//            "end if\n" +
-//        "end tell"
-//        let testScript3 = Script(scriptSource: source3, scriptDescription: "TestDescription")
-        
-        return [testScript1]
+            let path = NSBundle.mainBundle().pathForResource("DefaultScripts", ofType: "plist")
+            return Script.scriptsFromFile(path)
         }()
+
+        scripts.first?.runScript()
         
         super.init()
     }

@@ -23,12 +23,22 @@ class Script: NSObject, NSCoding {
     var scriptEnabled: Bool = true
     
     // MARK: - Initialization
-    init(scriptSource: String, scriptDescription: String, scriptEnabled: Bool = true) {
+    init(scriptSource: String?, scriptDescription: String?, scriptEnabled: Bool = true) {
         self.scriptSource = scriptSource
         self.scriptDescription = scriptDescription
         self.scriptEnabled = scriptEnabled
         
         super.init()
+    }
+    
+    convenience init?(info: NSDictionary?) {
+        guard let info = info else {
+            return nil
+        }
+        
+        self.init(scriptSource: info[PropertyKeys.scriptSourceKey] as? String,
+                  scriptDescription: info[PropertyKeys.scriptDescriptionKey] as? String,
+                  scriptEnabled: info[PropertyKeys.scriptEnabledKey] as! Bool)
     }
     
     // MARK: - NSCoding
@@ -66,4 +76,27 @@ extension Script {
             return false
         }
     }
+}
+
+extension Script {
+    
+    static func scriptsFromFile(path: String?) -> [Script] {
+        var scripts = [Script]()
+        
+        guard let path = path else {
+            return scripts
+        }
+        
+        guard let scriptsInfo = NSArray(contentsOfFile: path) else {
+            return scripts
+        }
+        
+        for scriptInfo in scriptsInfo {
+            if let script = Script(info: scriptInfo as? NSDictionary) {
+                scripts.append(script)
+            }
+        }
+        return scripts
+    }
+    
 }

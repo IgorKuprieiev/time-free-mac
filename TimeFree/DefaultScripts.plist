@@ -6,9 +6,20 @@
 		<key>scriptEnabled</key>
 		<true/>
 		<key>scriptDescription</key>
-		<string>Блуждаем по вкладкам</string>
+		<string>Листать табы в Xcode </string>
 		<key>scriptSource</key>
-		<string>Test</string>
+        <string>
+            tell application "System Events"
+                if exists process "Xcode" then
+                    tell application "Xcode"
+                        activate
+                    end tell
+                    tell process "Xcode"=
+                        keystroke "}" using {command down, shift down}
+                    end tell
+                end if
+            end tell
+        </string>
 	</dict>
 </array>
 </plist>
