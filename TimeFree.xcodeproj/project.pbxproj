@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B02B3DE1D0067A300C71E93 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02B3DD1D0067A300C71E93 /* PreferencesViewController.swift */; };
 		1B093A5B1CF63E1A001B8500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */; };
 		1B093A5F1CF63E1A001B8500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B093A5E1CF63E1A001B8500 /* Assets.xcassets */; };
 		1B093A621CF63E1A001B8500 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B093A601CF63E1A001B8500 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B02B3DD1D0067A300C71E93 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		1B093A571CF63E1A001B8500 /* TimeFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B093A5E1CF63E1A001B8500 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				1B093A601CF63E1A001B8500 /* Main.storyboard */,
 				1B093A631CF63E1A001B8500 /* Info.plist */,
 				1BA4CB1E1CF8E93400D08F34 /* DefaultScripts.plist */,
+				1B02B3DD1D0067A300C71E93 /* PreferencesViewController.swift */,
 			);
 			path = TimeFree;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				1B2567F31CF71862005D909C /* Preferences.swift in Sources */,
 				1BF071751CFCA001003EC255 /* EventsPreferencesViewController.swift in Sources */,
 				1BF489161CF641CA00A3CA97 /* Script.swift in Sources */,
+				1B02B3DE1D0067A300C71E93 /* PreferencesViewController.swift in Sources */,
 				1B2567F71CF7343F005D909C /* MouseActivities.swift in Sources */,
 				1B2567F51CF72724005D909C /* GeneralPreferencesViewController.swift in Sources */,
 				1BA4CB211CFB2A3A00D08F34 /* Array+Extensions.swift in Sources */,
