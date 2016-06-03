@@ -27,13 +27,13 @@ class Preferences: NSObject, NSCoding {
         static let scriptsKey = "scripts"
     }
     
-    // MARK: - Shared Instance=
+    // MARK: - Shared Instance
     static let sharedPreferences: Preferences = {
-//        if let preferencesData = NSUserDefaults.standardUserDefaults().objectForKey(PropertyKeys.preferencesKey) as? NSData {
-//            return NSKeyedUnarchiver.unarchiveObjectWithData(preferencesData) as! Preferences
-//        } else {
+        if let preferencesData = NSUserDefaults.standardUserDefaults().objectForKey(PropertyKeys.preferencesKey) as? NSData {
+            return NSKeyedUnarchiver.unarchiveObjectWithData(preferencesData) as! Preferences
+        } else {
             return Preferences()
-//        }
+        }
     }()
     
     private let synchronizePreferencesQueue = dispatch_queue_create("com.timefree.synchronize.preferences.queue", nil)
@@ -84,17 +84,15 @@ class Preferences: NSObject, NSCoding {
     // MARK: - Initialization
     override init() {
         dontAllowSleeping = false
-        timeoutOfUserActivity = 10
+        timeoutOfUserActivity = 30
         moveMousePointer = false
-        moveMousePointerFrequency = 5
+        moveMousePointerFrequency = 30
         runScripts = true
-        runScriptsFrequency = 5
+        runScriptsFrequency = 30
         scripts = {
             let path = NSBundle.mainBundle().pathForResource("DefaultScripts", ofType: "plist")
             return Script.scriptsFromFile(path)
         }()
-
-        scripts.first?.runScript()
         
         super.init()
     }

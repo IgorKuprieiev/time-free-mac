@@ -20,7 +20,7 @@ class MouseManager {
         let randomY = CGFloat(random() % Int(screen.visibleFrame.height));
         let point = CGPointMake(randomX, randomY)
         moveMousePointer(point)
-        print("The cursor has been moved to a random location")
+        print("The cursor has been moved to a random location.")
     }
 
     class func moveMousePointer(point: CGPoint) {

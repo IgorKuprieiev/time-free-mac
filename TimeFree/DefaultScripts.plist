@@ -6,7 +6,7 @@
 		<key>scriptEnabled</key>
 		<true/>
 		<key>scriptDescription</key>
-		<string>Листать табы в Xcode </string>
+		<string>Переключать табы в Xcode</string>
 		<key>scriptSource</key>
         <string>
             tell application "System Events"
@@ -14,12 +14,50 @@
                     tell application "Xcode"
                         activate
                     end tell
-                    tell process "Xcode"=
+                    tell process "Xcode"
+                        delay 0.5
                         keystroke "}" using {command down, shift down}
                     end tell
                 end if
             end tell
         </string>
 	</dict>
+    <dict>
+        <key>scriptEnabled</key>
+        <false/>
+        <key>scriptDescription</key>
+        <string>Переключать табы в Safari</string>
+        <key>scriptSource</key>
+        <string>
+            tell application "System Events"
+                if exists process "Safari" then
+                    tell application "Safari"
+                        activate
+                    end tell
+                    tell process "Safari"
+                        delay 0.5
+                        keystroke "}" using {command down, shift down}
+                    end tell
+                end if
+            end tell
+        </string>
+    </dict>
+    <dict>
+        <key>scriptEnabled</key>
+        <false/>
+        <key>scriptDescription</key>
+        <string>Открыть Skype</string>
+        <key>scriptSource</key>
+        <string>
+            tell application "System Events"
+                if exists process "Skype" then
+                    tell application "Skype"
+                        activate
+                    end tell
+                end if
+            end tell
+        </string>
+    </dict>
+
 </array>
 </plist>

@@ -11,10 +11,14 @@ import Cocoa
 class PreferencesViewController: NSViewController {
 
     // MARK: - Outlets
-    @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var timeoutOfUserActivitySlider: NSSlider?
+    @IBOutlet weak var moveMousePointerFrequencySlider: NSSlider?
+    @IBOutlet weak var runScriptsFrequencySlider: NSSlider?
+    @IBOutlet weak var scriptsTableView: NSTableView?
 
     // MARK: - Properties
-    private let scripts = Preferences.sharedPreferences.scripts
+    private let preferences = Preferences.sharedPreferences
+    private var scripts = Preferences.sharedPreferences.scripts
 
     // MARK: - UIViewController
     override func viewDidLoad() {
@@ -23,19 +27,30 @@ class PreferencesViewController: NSViewController {
 
     override func viewWillAppear() {
         super.viewWillAppear()
-        preferredContentSize = NSSize(width: 400, height: 280)
-    }
-
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
         
-        Preferences.sharedPreferences.scripts = scripts
+        setupInterface()
     }
-
-//    // MARK: - Private
-//    func doubleClickOnRow() {
-//        performSegueWithIdentifier("ShowEventDetails", sender: tableView)
-//    }
+    
+    // MARK: - IBActions
+    @IBAction func timeoutOfUserActivityDidChanged(sender: NSSlider) {
+        preferences.timeoutOfUserActivity = sender.integerValue
+    }
+    
+    @IBAction func frequencyOfMovingMouseDidChanged(sender: NSSlider) {
+        preferences.moveMousePointerFrequency = sender.integerValue
+    }
+    
+    @IBAction func frequencyOfRunningScriptsDidChanged(sender: NSSlider) {
+        preferences.runScriptsFrequency = sender.integerValue
+    }
+    
+    // MARK: - Private
+    func setupInterface() {
+        timeoutOfUserActivitySlider?.integerValue = preferences.timeoutOfUserActivity
+        moveMousePointerFrequencySlider?.integerValue = preferences.moveMousePointerFrequency
+        runScriptsFrequencySlider?.integerValue = preferences.runScriptsFrequency
+        scriptsTableView?.reloadData()
+    }
 }
 
 extension PreferencesViewController: NSTableViewDataSource {
@@ -69,20 +84,21 @@ extension PreferencesViewController: NSTableViewDataSource {
     }
     
     func tableView(tableView: NSTableView, setObjectValue object: AnyObject?, forTableColumn tableColumn: NSTableColumn?, row: Int) {
-        print(object)
         guard let object = object, let tableColumn = tableColumn else {
             return
         }
-        
+
         let script = scripts[row]
         
         switch tableColumn.identifier {
         case TableColumnIdentifiers.enabled:
             script.scriptEnabled = object as! Bool
+            break
         case TableColumnIdentifiers.description:
             script.scriptDescription = object as? String
+            break
         default:
-            return
+            break
         }
     }
 }

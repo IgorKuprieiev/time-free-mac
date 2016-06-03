@@ -64,14 +64,16 @@ extension Script {
         guard let appleScript = NSAppleScript(source: scriptSource) else {
             return false
         }
-        print("Run script")
+        print("Run script \"\(scriptDescription)\"")
         var error: NSDictionary? = nil
         if let output: NSAppleEventDescriptor = appleScript.executeAndReturnError(&error) {
-            print(output.stringValue)
+            if output.stringValue?.characters.count > 0 {
+                print("Output: \(output.stringValue)")
+            }
             return true
         } else {
             if (error != nil) {
-                print("error: \(error)")
+                print("Error: \(error)")
             }
             return false
         }

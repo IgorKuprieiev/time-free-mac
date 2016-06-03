@@ -75,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func updateStatusItemIconAndMenuButtons() {
         //set icon
         if let statusItem = statusItem {
-            let statusItemImageName = "spy1"
+            let statusItemImageName = "spy"
             statusItem.image = NSImage(named: statusItemImageName)
         }
         

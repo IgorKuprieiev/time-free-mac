@@ -31,21 +31,21 @@ class PowerManager {
     // MARK: - Private
     private static func preventSleep() {
         if isSleepEnabled == false {
-            print("Sleep already prevented; releasing existing assertion first.")
+            print("Sleep already prevented. Releasing existing assertion first.")
             releaseSleepAssertion()
         }
         
-        let assertionName = "Keep screen on for set time" as CFString
+        let assertionName = "Keep screen on for set time." as CFString
         let assertionLevel = IOPMAssertionLevel(kIOPMAssertionLevelOn)
         if IOPMAssertionCreateWithName(kIOPMAssertionTypeNoDisplaySleep, assertionLevel, assertionName,  &powerId) == kIOReturnSuccess {
             isSleepEnabled = false
-            print("Disable Sleep Mode")
+            print("Disable Sleep Mode.")
         }
     }
     
     private static func releaseSleepAssertion() {
         if IOPMAssertionRelease(powerId) == kIOReturnSuccess {
-            print("Enable Sleep Mode")
+            print("Enable Sleep Mode.")
             isSleepEnabled = true
         }
     }

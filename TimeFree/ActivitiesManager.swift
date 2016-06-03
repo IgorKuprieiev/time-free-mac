@@ -65,9 +65,14 @@ class ActivitiesManager: AnyObject {
         }
         
         //Run script
-//        if preferences.scripts.count > 0 && (tickCounter % preferences.movingMousePointerDelay) == 0 {
-//            preferences.scripts.randomItem().runScript()
-//        }
+        if preferences.runScripts == true && (tickCounter % preferences.runScriptsFrequency) == 0 {
+            let enabledScripts = preferences.scripts.filter({ (script) -> Bool in
+                return script.scriptEnabled
+            })
+            if enabledScripts.count > 0 {
+                preferences.scripts.randomItem().runScript()
+            }
+        }
     }
     
     // MARK: - Private
@@ -80,7 +85,7 @@ class ActivitiesManager: AnyObject {
             
             //Reset counter
             strongSelf.tickCounter = 0
-            print("Detect user activity")
+//            print("Detect user activity")
         }
         
         //Run monitors
