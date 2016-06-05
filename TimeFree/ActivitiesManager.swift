@@ -54,9 +54,13 @@ class ActivitiesManager: AnyObject {
     @objc func tick() {
         tickCounter += timerTickDuration
         
+//        print("\(NSDate() ) - \(tickCounter)")
+
         //Disable the simulation, if there is user activity
         if tickCounter < preferences.timeoutOfUserActivity {
             return
+        } else if tickCounter == preferences.timeoutOfUserActivity && preferences.timeoutOfUserActivity > 0 {
+            NSSound(named: "Hero")?.play()
         }
         
         //Move mouse
@@ -75,8 +79,21 @@ class ActivitiesManager: AnyObject {
         }
     }
     
+    private func resetTickCounter() {
+        print("reset tick counter")
+        tickCounter = 0
+    }
+    
     // MARK: - Private
     private func registrationObservers() {
+        //Check grant access
+        let options = NSDictionary(object: kCFBooleanTrue,
+                                   forKey: kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString) as CFDictionaryRef
+        guard AXIsProcessTrustedWithOptions(options) == true else {
+            print("Grant access to this application in Security & Privacy preferences, located in System Preferences.")
+            return
+        }
+        
         //Action after user activity
         let handler:(NSEvent) -> Void = {[weak self] (event) in
             guard let strongSelf = self else {
@@ -84,12 +101,17 @@ class ActivitiesManager: AnyObject {
             }
             
             //Reset counter
-            strongSelf.tickCounter = 0
-//            print("Detect user activity")
+            strongSelf.resetTickCounter()
         }
         
         //Run monitors
-        let eventMasks = [NSEventMask.MouseMovedMask, NSEventMask.ScrollWheelMask]
+        let eventMasks: [NSEventMask] = [.MouseMovedMask,
+                                         .ScrollWheelMask,
+                                         .KeyDownMask,
+                                         .EventMaskGesture,
+                                         .EventMaskSwipe,
+                                         .EventMaskRotate,
+                                         .EventMaskPressure]
         for eventMask in eventMasks {
             if let eventMonitor = NSEvent.addGlobalMonitorForEventsMatchingMask(eventMask, handler: handler) {
                 globalMonitors.append(eventMonitor)

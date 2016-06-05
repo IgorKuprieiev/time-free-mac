@@ -36,8 +36,6 @@ class Preferences: NSObject, NSCoding {
         }
     }()
     
-    private let synchronizePreferencesQueue = dispatch_queue_create("com.timefree.synchronize.preferences.queue", nil)
-    
     // MARK: - Properties
     var dontAllowSleeping: Bool {
         didSet {
@@ -80,7 +78,7 @@ class Preferences: NSObject, NSCoding {
             synchronizePreferences()
         }
     }
-
+    
     // MARK: - Initialization
     override init() {
         dontAllowSleeping = false
@@ -129,15 +127,11 @@ class Preferences: NSObject, NSCoding {
     
     // MARK: - Private
     private func synchronizePreferences() {
-//        dispatch_sync(synchronizePreferencesQueue) { 
-            let archivedData = NSKeyedArchiver.archivedDataWithRootObject(self)
-            let userDefaults = NSUserDefaults.standardUserDefaults()
-            userDefaults.setObject(archivedData, forKey: PropertyKeys.preferencesKey)
-            userDefaults.synchronize()
-//            dispatch_sync(dispatch_get_main_queue()) {
-                self.noticeThatPreferencesHaveChanged()
-//            }
-//        }
+        let archivedData = NSKeyedArchiver.archivedDataWithRootObject(self)
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(archivedData, forKey: PropertyKeys.preferencesKey)
+        userDefaults.synchronize()
+        self.noticeThatPreferencesHaveChanged()
     }
     
     private func noticeThatPreferencesHaveChanged() {
