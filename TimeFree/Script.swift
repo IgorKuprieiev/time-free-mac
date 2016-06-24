@@ -42,16 +42,16 @@ class Script: NSObject, NSCoding {
     }
     
     // MARK: - NSCoding
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(scriptSource, forKey: PropertyKeys.scriptSourceKey)
-        aCoder.encodeObject(scriptDescription, forKey: PropertyKeys.scriptDescriptionKey)
-        aCoder.encodeBool(scriptEnabled, forKey: PropertyKeys.scriptEnabledKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(scriptSource, forKey: PropertyKeys.scriptSourceKey)
+        aCoder.encode(scriptDescription, forKey: PropertyKeys.scriptDescriptionKey)
+        aCoder.encode(scriptEnabled, forKey: PropertyKeys.scriptEnabledKey)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        scriptSource = aDecoder.decodeObjectForKey(PropertyKeys.scriptSourceKey) as? String
-        scriptDescription = aDecoder.decodeObjectForKey(PropertyKeys.scriptDescriptionKey) as? String
-        scriptEnabled = aDecoder.decodeBoolForKey(PropertyKeys.scriptEnabledKey)
+        scriptSource = aDecoder.decodeObject(forKey: PropertyKeys.scriptSourceKey) as? String
+        scriptDescription = aDecoder.decodeObject(forKey: PropertyKeys.scriptDescriptionKey) as? String
+        scriptEnabled = aDecoder.decodeBool(forKey: PropertyKeys.scriptEnabledKey)
     }
 }
 
@@ -82,7 +82,7 @@ extension Script {
 
 extension Script {
     
-    static func scriptsFromFile(path: String?) -> [Script] {
+    static func scriptsFromFile(_ path: String?) -> [Script] {
         var scripts = [Script]()
         
         guard let path = path else {

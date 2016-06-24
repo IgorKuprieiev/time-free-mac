@@ -20,7 +20,7 @@ class PowerManager {
     private static var powerId: IOPMAssertionID = IOPMAssertionID(0)
     
     // MARK: - Public
-    static func dontAllowSleeping(disableSleeping: Bool) {
+    static func dontAllowSleeping(_ disableSleeping: Bool) {
         if disableSleeping == true {
             preventSleep()
         } else {

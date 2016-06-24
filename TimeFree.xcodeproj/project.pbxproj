@@ -109,12 +109,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Oleksii Naboichenko";
 				TargetAttributes = {
 					1B093A561CF63E1A001B8500 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = PVDZWY67J6;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -273,6 +274,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = QArea.TimeFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -288,6 +290,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = QArea.TimeFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

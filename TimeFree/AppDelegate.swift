@@ -12,87 +12,94 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Outlets
-    @IBOutlet weak var statusMenu: NSMenu? {
-        didSet {
-            statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
-            statusItem!.menu = statusMenu
-        }
-    }
-    
-    // MARK: - Properties
+    @IBOutlet weak var statusMenu: NSMenu?
+
+    // MARK: - Private Properties
     private var statusItem: NSStatusItem?
     private lazy var activitiesManager = ActivitiesManager()
     private lazy var preferences = Preferences.sharedPreferences
 
     // MARK: - NSApplicationDelegate
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        prepareStatusItem()
         updateStatusItemIconAndMenuButtons()
         registrationObservers()
         PowerManager.dontAllowSleeping(preferences.dontAllowSleeping)
         activitiesManager.startActivities()
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         activitiesManager.stopActivities()
         unregisterObservers()
         PowerManager.dontAllowSleeping(false)
     }
 
     // MARK: - IBActions
-    @IBAction func dontAllowSleeping(sender: AnyObject) {
+    @IBAction func dontAllowSleeping(_ sender: AnyObject) {
         preferences.dontAllowSleeping = !preferences.dontAllowSleeping
     }
     
-    @IBAction func moveMouse(sender: NSMenuItem) {
+    @IBAction func moveMouse(_ sender: NSMenuItem) {
         preferences.moveMousePointer = !preferences.moveMousePointer
     }
 
-    @IBAction func runScripts(sender: NSMenuItem) {
+    @IBAction func runScripts(_ sender: NSMenuItem) {
         preferences.runScripts = !preferences.runScripts
     }
 
-    @IBAction func quit(sender: AnyObject) {
-        NSApplication.sharedApplication().terminate(self)
+    @IBAction func quit(_ sender: AnyObject) {
+        NSApplication.shared().terminate(self)
     }
     
-    // MARK: - Private
+    // MARK: - Actions
+    func propertiesHaveBeenUpdated(_ notification: Notification) {
+        prepareStatusMenuButtons()
+        PowerManager.dontAllowSleeping(preferences.dontAllowSleeping)
+    }
+    
+    // MARK: - Private methods
     private func registrationObservers() {
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(AppDelegate.propertiesHaveBeenUpdated(_:)),
-                                                         name: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey,
-                                                         object: nil)
+        NotificationCenter.default().addObserver(self,
+                                                 selector: #selector(AppDelegate.propertiesHaveBeenUpdated(_:)),
+                                                 name: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey,
+                                                 object: nil)
     }
     
     private func unregisterObservers() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey, object: nil)
+        let propertiesHaveBeenUpdatedKey = NSNotification.Name(rawValue: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey)
+        NotificationCenter.default().removeObserver(self, name: propertiesHaveBeenUpdatedKey, object: nil)
     }
     
-    func propertiesHaveBeenUpdated(notification: NSNotification) {
-        updateStatusItemIconAndMenuButtons()
-        PowerManager.dontAllowSleeping(preferences.dontAllowSleeping)
-    }
-
-    private func updateStatusItemIconAndMenuButtons() {
-        //set icon
-        if let statusItem = statusItem {
-            let statusItemImageName = "beer"
-            statusItem.image = NSImage(named: statusItemImageName)
+    func prepareStatusItem() {
+        guard let statusMenu = statusMenu else {
+            return
         }
         
-        //set names for items
-        if let statusMenu = statusMenu {
-            if let dontAllowSleepingItem = statusMenu.itemAtIndex(0) {
-                dontAllowSleepingItem.state = preferences.dontAllowSleeping == true ? 1 : 0
-            }
-            
-            if let moveMousePointerItem = statusMenu.itemAtIndex(1) {
-                moveMousePointerItem.state = preferences.moveMousePointer == true ? 1 : 0
-            }
-            
-            if let runScriptsItem = statusMenu.itemAtIndex(2) {
-                runScriptsItem.state = preferences.runScripts == true ? 1 : 0
-            }
+        statusItem = NSStatusBar.system().statusItem(withLength: -2)
+        statusItem?.menu = statusMenu
+        if let statusItemImage = NSImage(named: "clock_color_icon") {
+            statusItem?.image = statusItemImage
+            statusItem?.alternateImage = statusItemImage
+        }
+    }
+    
+    private func prepareStatusMenuButtons() {
+        guard let statusMenu = statusMenu else {
+            return
+        }
+        
+        if let dontAllowSleepingItem = statusMenu.item(at: 0) {
+            dontAllowSleepingItem.state = preferences.dontAllowSleeping == true ? NSOnState : NSOffState
+        }
+        
+        if let moveMousePointerItem = statusMenu.item(at: 1) {
+            moveMousePointerItem.state = preferences.moveMousePointer == true ? NSOnState : NSOffState
+        }
+        
+        if let runScriptsItem = statusMenu.item(at: 2) {
+            runScriptsItem.state = preferences.runScripts == true ? NSOnState : NSOffState
         }
     }
 }
+
 

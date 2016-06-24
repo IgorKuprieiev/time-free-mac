@@ -29,8 +29,8 @@ class Preferences: NSObject, NSCoding {
     
     // MARK: - Shared Instance
     static let sharedPreferences: Preferences = {
-        if let preferencesData = NSUserDefaults.standardUserDefaults().objectForKey(PropertyKeys.preferencesKey) as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(preferencesData) as! Preferences
+        if let preferencesData = UserDefaults.standard().object(forKey: PropertyKeys.preferencesKey) as? Data {
+            return NSKeyedUnarchiver.unarchiveObject(with: preferencesData) as! Preferences
         } else {
             return Preferences()
         }
@@ -88,7 +88,7 @@ class Preferences: NSObject, NSCoding {
         runScripts = true
         runScriptsFrequency = 30
         scripts = {
-            let path = NSBundle.mainBundle().pathForResource("DefaultScripts", ofType: "plist")
+            let path = Bundle.main().pathForResource("DefaultScripts", ofType: "plist")
             return Script.scriptsFromFile(path)
         }()
         
@@ -96,30 +96,30 @@ class Preferences: NSObject, NSCoding {
     }
     
     // MARK: - NSCoding
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeBool(dontAllowSleeping, forKey: PropertyKeys.dontAllowSleepingKey)
-        aCoder.encodeInteger(timeoutOfUserActivity, forKey: PropertyKeys.timeoutOfUserActivityKey)
-        aCoder.encodeBool(moveMousePointer, forKey: PropertyKeys.moveMousePointerKey)
-        aCoder.encodeInteger(moveMousePointerFrequency, forKey: PropertyKeys.moveMousePointerFrequencyKey)
-        aCoder.encodeBool(runScripts, forKey: PropertyKeys.runScriptsKey)
-        aCoder.encodeInteger(runScriptsFrequency, forKey: PropertyKeys.runScriptsFrequencyKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(dontAllowSleeping, forKey: PropertyKeys.dontAllowSleepingKey)
+        aCoder.encode(timeoutOfUserActivity, forKey: PropertyKeys.timeoutOfUserActivityKey)
+        aCoder.encode(moveMousePointer, forKey: PropertyKeys.moveMousePointerKey)
+        aCoder.encode(moveMousePointerFrequency, forKey: PropertyKeys.moveMousePointerFrequencyKey)
+        aCoder.encode(runScripts, forKey: PropertyKeys.runScriptsKey)
+        aCoder.encode(runScriptsFrequency, forKey: PropertyKeys.runScriptsFrequencyKey)
 
-        let scriptsData = NSKeyedArchiver.archivedDataWithRootObject(scripts)
-        if scriptsData.length > 0 {
-            aCoder.encodeObject(scriptsData, forKey:PropertyKeys.scriptsKey)
+        let scriptsData = NSKeyedArchiver.archivedData(withRootObject: scripts)
+        if scriptsData.count > 0 {
+            aCoder.encode(scriptsData, forKey:PropertyKeys.scriptsKey)
         }
     }
     
     required init?(coder aDecoder: NSCoder) {
-        dontAllowSleeping = aDecoder.decodeBoolForKey(PropertyKeys.dontAllowSleepingKey)
-        timeoutOfUserActivity = aDecoder.decodeIntegerForKey(PropertyKeys.timeoutOfUserActivityKey)
-        moveMousePointer = aDecoder.decodeBoolForKey(PropertyKeys.moveMousePointerKey)
-        moveMousePointerFrequency = aDecoder.decodeIntegerForKey(PropertyKeys.moveMousePointerFrequencyKey)
-        runScripts = aDecoder.decodeBoolForKey(PropertyKeys.runScriptsKey)
-        runScriptsFrequency = aDecoder.decodeIntegerForKey(PropertyKeys.runScriptsFrequencyKey)
+        dontAllowSleeping = aDecoder.decodeBool(forKey: PropertyKeys.dontAllowSleepingKey)
+        timeoutOfUserActivity = aDecoder.decodeInteger(forKey: PropertyKeys.timeoutOfUserActivityKey)
+        moveMousePointer = aDecoder.decodeBool(forKey: PropertyKeys.moveMousePointerKey)
+        moveMousePointerFrequency = aDecoder.decodeInteger(forKey: PropertyKeys.moveMousePointerFrequencyKey)
+        runScripts = aDecoder.decodeBool(forKey: PropertyKeys.runScriptsKey)
+        runScriptsFrequency = aDecoder.decodeInteger(forKey: PropertyKeys.runScriptsFrequencyKey)
 
-        if let scriptsData = aDecoder.decodeObjectForKey(PropertyKeys.scriptsKey) as? NSData {
-            scripts = NSKeyedUnarchiver.unarchiveObjectWithData(scriptsData) as! [Script]
+        if let scriptsData = aDecoder.decodeObject(forKey: PropertyKeys.scriptsKey) as? Data {
+            scripts = NSKeyedUnarchiver.unarchiveObject(with: scriptsData) as! [Script]
         } else {
             scripts = [Script]()
         }
@@ -127,14 +127,14 @@ class Preferences: NSObject, NSCoding {
     
     // MARK: - Private
     private func synchronizePreferences() {
-        let archivedData = NSKeyedArchiver.archivedDataWithRootObject(self)
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setObject(archivedData, forKey: PropertyKeys.preferencesKey)
+        let archivedData = NSKeyedArchiver.archivedData(withRootObject: self)
+        let userDefaults = UserDefaults.standard()
+        userDefaults.set(archivedData, forKey: PropertyKeys.preferencesKey)
         userDefaults.synchronize()
         self.noticeThatPreferencesHaveChanged()
     }
     
     private func noticeThatPreferencesHaveChanged() {
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.propertiesHaveBeenUpdatedKey, object: nil)
+        NotificationCenter.default().post(name: Notification.Name(rawValue: NotificationKeys.propertiesHaveBeenUpdatedKey), object: nil)
     }
 }

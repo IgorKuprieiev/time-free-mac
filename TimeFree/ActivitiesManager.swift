@@ -11,7 +11,7 @@ import Cocoa
 class ActivitiesManager: AnyObject {
     
     // MARK: - Properties
-    private var timer: NSTimer? = nil
+    private var timer: Timer? = nil
     private let timerTickDuration = 5
     private var tickCounter = 0
     private let preferences = Preferences.sharedPreferences
@@ -30,7 +30,7 @@ class ActivitiesManager: AnyObject {
             registrationObservers()
         }
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(timerTickDuration),
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(timerTickDuration),
                                                        target: self,
                                                        selector: #selector(ActivitiesManager.tick),
                                                        userInfo: nil,
@@ -88,7 +88,7 @@ class ActivitiesManager: AnyObject {
     private func registrationObservers() {
         //Check grant access
         let options = NSDictionary(object: kCFBooleanTrue,
-                                   forKey: kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString) as CFDictionaryRef
+                                   forKey: kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString) as CFDictionary
         guard AXIsProcessTrustedWithOptions(options) == true else {
             print("Grant access to this application in Security & Privacy preferences, located in System Preferences.")
             return
@@ -105,15 +105,15 @@ class ActivitiesManager: AnyObject {
         }
         
         //Run monitors
-        let eventMasks: [NSEventMask] = [.MouseMovedMask,
-                                         .ScrollWheelMask,
-                                         .KeyDownMask,
-                                         .EventMaskGesture,
-                                         .EventMaskSwipe,
-                                         .EventMaskRotate,
-                                         .EventMaskPressure]
+        let eventMasks: [NSEventMask] = [.mouseMoved,
+                                         .scrollWheel,
+                                         .keyDown,
+                                         .gesture,
+                                         .swipe,
+                                         .rotate,
+                                         .pressure]
         for eventMask in eventMasks {
-            if let eventMonitor = NSEvent.addGlobalMonitorForEventsMatchingMask(eventMask, handler: handler) {
+            if let eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: eventMask, handler: handler) {
                 globalMonitors.append(eventMonitor)
             }
         }

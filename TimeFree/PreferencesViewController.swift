@@ -32,15 +32,15 @@ class PreferencesViewController: NSViewController {
     }
     
     // MARK: - IBActions
-    @IBAction func timeoutOfUserActivityDidChanged(sender: NSSlider) {
+    @IBAction func timeoutOfUserActivityDidChanged(_ sender: NSSlider) {
         preferences.timeoutOfUserActivity = sender.integerValue
     }
     
-    @IBAction func frequencyOfMovingMouseDidChanged(sender: NSSlider) {
+    @IBAction func frequencyOfMovingMouseDidChanged(_ sender: NSSlider) {
         preferences.moveMousePointerFrequency = sender.integerValue
     }
     
-    @IBAction func frequencyOfRunningScriptsDidChanged(sender: NSSlider) {
+    @IBAction func frequencyOfRunningScriptsDidChanged(_ sender: NSSlider) {
         preferences.runScriptsFrequency = sender.integerValue
     }
     
@@ -62,11 +62,11 @@ extension PreferencesViewController: NSTableViewDataSource {
     }
     
     // MARK: - NSTableViewDataSource
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return scripts.count
     }
     
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
         guard let tableColumn = tableColumn else {
             return nil
         }
@@ -83,7 +83,7 @@ extension PreferencesViewController: NSTableViewDataSource {
         }
     }
     
-    func tableView(tableView: NSTableView, setObjectValue object: AnyObject?, forTableColumn tableColumn: NSTableColumn?, row: Int) {
+    func tableView(_ tableView: NSTableView, setObjectValue object: AnyObject?, for tableColumn: NSTableColumn?, row: Int) {
         guard let object = object, let tableColumn = tableColumn else {
             return
         }
