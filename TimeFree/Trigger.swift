@@ -8,36 +8,50 @@
 
 import Cocoa
 
-class ActivitiesManager: AnyObject {
+// MARK: - ActivitiesManagerDelegate
+protocol TriggerDelegate: class {
     
-    // MARK: - Properties
+    // MARK: - Methods of instance
+    func didStartActivities()
+    func didPausedActivities()
+    func triggerTick(trigger: Trigger)
+}
+
+// MARK: - ActivitiesManager
+class Trigger: AnyObject {
+    
+    // MARK: - Public Properties
+    weak var delegate: TriggerDelegate?
+    var triggerTickDuration = 5
+    var tickCounter = 0
+    var timeoutOfUserActivity = 0
+    
+    // MARK: - Private Properties
     private var timer: Timer? = nil
-    private let timerTickDuration = 5
-    private var tickCounter = 0
-    private let preferences = Preferences.sharedPreferences
     private lazy var globalMonitors = [AnyObject]()
     
     deinit {
-        stopActivities()
+        stop()
     }
     
     // MARK: - Public
-    func startActivities() {
-        stopActivities()
+    func start() {
+        //Invalidate previous timer
+        stop()
         
         //Enable a user's observation
-        if preferences.timeoutOfUserActivity > 0 {
+        if timeoutOfUserActivity > 0 {
             registrationObservers()
         }
         
-        timer = Timer.scheduledTimer(timeInterval: TimeInterval(timerTickDuration),
-                                                       target: self,
-                                                       selector: #selector(ActivitiesManager.tick),
-                                                       userInfo: nil,
-                                                       repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(triggerTickDuration),
+                                     target: self,
+                                     selector: #selector(Trigger.tick),
+                                     userInfo: nil,
+                                     repeats: true)
     }
     
-    func stopActivities() {
+    func stop() {
         //Turn off a user's observation
         unregisterObservers()
         
@@ -52,39 +66,27 @@ class ActivitiesManager: AnyObject {
     }
     
     @objc func tick() {
-        tickCounter += timerTickDuration
+        tickCounter += triggerTickDuration
         
-//        print("\(NSDate() ) - \(tickCounter)")
-
         //Disable the simulation, if there is user activity
-        if tickCounter < preferences.timeoutOfUserActivity {
+        if tickCounter < timeoutOfUserActivity {
             return
-        } else if tickCounter == preferences.timeoutOfUserActivity && preferences.timeoutOfUserActivity > 0 {
-            NSSound(named: "Hero")?.play()
+        } else if tickCounter == timeoutOfUserActivity {
+            delegate?.didStartActivities()
         }
         
-        //Move mouse
-        if preferences.moveMousePointer == true && (tickCounter % preferences.moveMousePointerFrequency) == 0 {
-            MouseManager.moveMousePointerToRandomPosition()
-        }
-        
-        //Run script
-        if preferences.runScripts == true && (tickCounter % preferences.runScriptsFrequency) == 0 {
-            let enabledScripts = preferences.scripts.filter({ (script) -> Bool in
-                return script.scriptEnabled
-            })
-            if enabledScripts.count > 0 {
-                preferences.scripts.randomItem().runScript()
-            }
-        }
+        delegate?.triggerTick(trigger: self)
     }
     
+    // MARK: - Private methods
     private func resetTickCounter() {
         print("reset tick counter")
+        if tickCounter > timeoutOfUserActivity {
+            delegate?.didStartActivities()
+        }
         tickCounter = 0
     }
     
-    // MARK: - Private
     private func registrationObservers() {
         //Check grant access
         let options = NSDictionary(object: kCFBooleanTrue,

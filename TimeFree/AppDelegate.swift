@@ -9,6 +9,8 @@
 import Cocoa
 
 @NSApplicationMain
+
+// MARK: - ActivitiesManager
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Outlets
@@ -16,25 +18,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Private Properties
     private var statusItem: NSStatusItem?
-    private lazy var activitiesManager = ActivitiesManager()
+    private lazy var trigger = Trigger()
     private lazy var preferences = Preferences.sharedPreferences
 
     // MARK: - NSApplicationDelegate
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        //Customize UI
         prepareStatusItem()
-        updateStatusItemIconAndMenuButtons()
+        prepareStatusMenuButtons()
         registrationObservers()
+        
+        //Disable slipping(if needed)
         PowerManager.dontAllowSleeping(preferences.dontAllowSleeping)
-        activitiesManager.startActivities()
+        
+        //Start random activities
+        prepareAndStartTrigger()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        activitiesManager.stopActivities()
+        trigger.stop()
         unregisterObservers()
         PowerManager.dontAllowSleeping(false)
     }
 
-    // MARK: - IBActions
+    // MARK: - Actions
     @IBAction func dontAllowSleeping(_ sender: AnyObject) {
         preferences.dontAllowSleeping = !preferences.dontAllowSleeping
     }
@@ -51,7 +58,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.shared().terminate(self)
     }
     
-    // MARK: - Actions
     func propertiesHaveBeenUpdated(_ notification: Notification) {
         prepareStatusMenuButtons()
         PowerManager.dontAllowSleeping(preferences.dontAllowSleeping)
@@ -70,7 +76,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default().removeObserver(self, name: propertiesHaveBeenUpdatedKey, object: nil)
     }
     
-    func prepareStatusItem() {
+    private func prepareAndStartTrigger() {
+        trigger.delegate = self
+        trigger.timeoutOfUserActivity = preferences.timeoutOfUserActivity
+        trigger.start()
+    }
+    
+    private func prepareStatusItem() {
         guard let statusMenu = statusMenu else {
             return
         }
@@ -99,6 +111,39 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let runScriptsItem = statusMenu.item(at: 2) {
             runScriptsItem.state = preferences.runScripts == true ? NSOnState : NSOffState
         }
+    }
+}
+
+// MARK: - ActivitiesManagerDelegate
+extension AppDelegate: TriggerDelegate {
+    
+    func didStartActivities() {
+        NSSound(named: "Hero")?.play()
+        print("didStartActivities")
+    }
+    
+    func didPausedActivities() {
+        print("didPausedActivities")
+    }
+    
+    func triggerTick(trigger: Trigger) {
+        print("triggerTick")
+
+        //Move mouse
+        if preferences.moveMousePointer == true && (trigger.tickCounter % preferences.moveMousePointerFrequency) == 0 {
+            MouseManager.moveMousePointerToRandomPosition()
+        }
+        
+        //Run script
+        if preferences.runScripts == true && (trigger.tickCounter % preferences.runScriptsFrequency) == 0 {
+            let enabledScripts = preferences.scripts.filter({ (script) -> Bool in
+                return script.scriptEnabled
+            })
+            if enabledScripts.count > 0 {
+                preferences.scripts.randomItem().runScript()
+            }
+        }
+
     }
 }
 
