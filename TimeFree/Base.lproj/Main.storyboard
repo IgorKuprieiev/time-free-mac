@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11163.2" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11163.2"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -671,7 +671,8 @@
                         <menuItem title="Preferences" id="v19-Q2-Zif">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <segue destination="h6x-1M-NFT" kind="show" id="RaW-e1-1HL"/>
+                                <action selector="preferences:" target="Voe-Tx-rLC" id="BPp-6P-4od"/>
+                                <segue destination="h6x-1M-NFT" kind="show" id="mpo-NQ-ZNZ"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="vHx-qT-UbW"/>
@@ -690,8 +691,8 @@
         <!--Window Controller-->
         <scene sceneID="NxX-uL-EMI">
             <objects>
-                <windowController id="h6x-1M-NFT" sceneMemberID="viewController">
-                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="aTz-qi-ko5">
+                <windowController storyboardIdentifier="PreferencesWindowController" showSeguePresentationStyle="single" id="h6x-1M-NFT" sceneMemberID="viewController">
+                    <window key="window" identifier="PreferencesWindowController" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="aTz-qi-ko5">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="249" width="600" height="300"/>
@@ -703,18 +704,18 @@
                 </windowController>
                 <customObject id="SLG-ix-Lis" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-707" y="234"/>
+            <point key="canvasLocation" x="-623" y="210"/>
         </scene>
         <!--Preferences-->
         <scene sceneID="ZLo-n4-0py">
             <objects>
-                <viewController title="Preferences" id="VYi-5p-01e" customClass="PreferencesViewController" customModule="TimeFree" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Preferences" storyboardIdentifier="PreferencesViewController" id="VYi-5p-01e" customClass="PreferencesViewController" customModule="TimeFree" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="XJa-EM-XJE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="520"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="gMX-8i-esD">
-                                <rect key="frame" x="20" y="370" width="560" height="70"/>
+                                <rect key="frame" x="20" y="430" width="560" height="70"/>
                                 <subviews>
                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aX6-Mj-bK8">
                                         <rect key="frame" x="18" y="20" width="524" height="27"/>
@@ -827,7 +828,7 @@
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="7QC-KY-hSG">
-                                <rect key="frame" x="20" y="280" width="560" height="70"/>
+                                <rect key="frame" x="20" y="340" width="560" height="70"/>
                                 <subviews>
                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rB1-QE-4Xx">
                                         <rect key="frame" x="18" y="20" width="524" height="27"/>
@@ -954,7 +955,7 @@
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="XRS-fK-h7s">
-                                <rect key="frame" x="20" y="190" width="560" height="70"/>
+                                <rect key="frame" x="20" y="250" width="560" height="70"/>
                                 <subviews>
                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9tX-Vs-ryH">
                                         <rect key="frame" x="18" y="20" width="524" height="27"/>
@@ -1081,16 +1082,16 @@
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="cte-tI-Kjs">
-                                <rect key="frame" x="20" y="20" width="560" height="150"/>
+                                <rect key="frame" x="20" y="88" width="560" height="142"/>
                                 <subviews>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuU-30-0Ps">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="125"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="117"/>
                                         <clipView key="contentView" id="ow8-7g-Isc">
-                                            <rect key="frame" x="1" y="0.0" width="558" height="124"/>
+                                            <rect key="frame" x="1" y="0.0" width="558" height="116"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="4Fx-b8-ePI" id="M2g-lE-hcW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="558" height="101"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="558" height="93"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1128,7 +1129,6 @@
                                                     </connections>
                                                 </tableView>
                                             </subviews>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="yTK-v9-dHh">
                                             <rect key="frame" x="1" y="169" width="408" height="16"/>
@@ -1144,7 +1144,7 @@
                                         </tableHeaderView>
                                     </scrollView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fuq-V8-9P9">
-                                        <rect key="frame" x="-2" y="133" width="564" height="17"/>
+                                        <rect key="frame" x="-2" y="125" width="564" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Scripts:" id="2tO-xE-FER">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1162,33 +1162,67 @@
                                     <constraint firstItem="DuU-30-0Ps" firstAttribute="top" secondItem="Fuq-V8-9P9" secondAttribute="bottom" constant="8" id="t5G-3n-Whg"/>
                                 </constraints>
                             </customView>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="9CD-df-T8z">
+                                <rect key="frame" x="18" y="52" width="564" height="18"/>
+                                <buttonCell key="cell" type="check" title="Запускать TimeFree при загрузке Mac OS X" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VgI-qh-TWI">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <metadata>
+                                    <string key="libraryAssetSourceID">Xcode.InterfaceBuilderKit.ClassDescriptions.Cocoa:IBLibrary-CheckBox</string>
+                                </metadata>
+                                <connections>
+                                    <action selector="autoLaunch:" target="VYi-5p-01e" id="5k1-7Z-Qm6"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="1WL-0a-M0T">
+                                <rect key="frame" x="18" y="18" width="564" height="18"/>
+                                <buttonCell key="cell" type="check" title="Показывать окно Настройки при запуске приложения" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="54e-PH-fMh">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <metadata>
+                                    <string key="libraryAssetSourceID">Xcode.InterfaceBuilderKit.ClassDescriptions.Cocoa:IBLibrary-CheckBox</string>
+                                </metadata>
+                                <connections>
+                                    <action selector="showPreferencesAtStartApp:" target="VYi-5p-01e" id="skc-uC-ngN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9CD-df-T8z" secondAttribute="trailing" constant="20" id="1LB-8H-pb6"/>
                             <constraint firstItem="cte-tI-Kjs" firstAttribute="top" secondItem="XRS-fK-h7s" secondAttribute="bottom" constant="20" id="2xE-wR-6Ea"/>
                             <constraint firstItem="7QC-KY-hSG" firstAttribute="top" secondItem="gMX-8i-esD" secondAttribute="bottom" constant="20" id="3Hx-TU-wXq"/>
                             <constraint firstItem="7QC-KY-hSG" firstAttribute="leading" secondItem="XJa-EM-XJE" secondAttribute="leading" constant="20" id="LEv-uP-Xff"/>
                             <constraint firstItem="XRS-fK-h7s" firstAttribute="top" secondItem="7QC-KY-hSG" secondAttribute="bottom" constant="20" id="MyD-Oe-hBl"/>
-                            <constraint firstAttribute="bottom" secondItem="cte-tI-Kjs" secondAttribute="bottom" constant="20" id="Ram-Nz-mRf"/>
+                            <constraint firstItem="9CD-df-T8z" firstAttribute="leading" secondItem="XJa-EM-XJE" secondAttribute="leading" constant="20" id="UaM-ft-9dG"/>
                             <constraint firstAttribute="trailing" secondItem="cte-tI-Kjs" secondAttribute="trailing" constant="20" id="fBt-Pu-4oJ"/>
+                            <constraint firstItem="1WL-0a-M0T" firstAttribute="leading" secondItem="XJa-EM-XJE" secondAttribute="leading" constant="20" id="hPa-hn-9PZ"/>
+                            <constraint firstAttribute="bottom" secondItem="1WL-0a-M0T" secondAttribute="bottom" constant="20" id="hTo-Nq-mgp"/>
                             <constraint firstItem="cte-tI-Kjs" firstAttribute="leading" secondItem="XJa-EM-XJE" secondAttribute="leading" constant="20" id="hu4-VU-KIs"/>
                             <constraint firstAttribute="trailing" secondItem="XRS-fK-h7s" secondAttribute="trailing" constant="20" id="hyt-xW-JV0"/>
+                            <constraint firstItem="1WL-0a-M0T" firstAttribute="top" secondItem="9CD-df-T8z" secondAttribute="bottom" constant="20" id="kbf-s5-1wM"/>
+                            <constraint firstItem="9CD-df-T8z" firstAttribute="top" secondItem="cte-tI-Kjs" secondAttribute="bottom" constant="20" id="nVn-N5-HD2"/>
                             <constraint firstAttribute="trailing" secondItem="7QC-KY-hSG" secondAttribute="trailing" constant="20" id="oya-Rg-aib"/>
                             <constraint firstItem="gMX-8i-esD" firstAttribute="top" secondItem="XJa-EM-XJE" secondAttribute="top" constant="20" id="raH-nc-6V9"/>
                             <constraint firstAttribute="trailing" secondItem="gMX-8i-esD" secondAttribute="trailing" constant="20" id="s2h-fI-4cq"/>
+                            <constraint firstAttribute="trailing" secondItem="1WL-0a-M0T" secondAttribute="trailing" constant="20" id="snU-PO-uLA"/>
                             <constraint firstItem="gMX-8i-esD" firstAttribute="leading" secondItem="XJa-EM-XJE" secondAttribute="leading" constant="20" id="w04-Vm-sei"/>
                             <constraint firstItem="XRS-fK-h7s" firstAttribute="leading" secondItem="XJa-EM-XJE" secondAttribute="leading" constant="20" id="yTp-7E-gui"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="autoLaunchButton" destination="9CD-df-T8z" id="v8l-V1-Nud"/>
                         <outlet property="moveMousePointerFrequencySlider" destination="rB1-QE-4Xx" id="rV6-fC-egY"/>
                         <outlet property="runScriptsFrequencySlider" destination="9tX-Vs-ryH" id="1Y7-1y-hWO"/>
                         <outlet property="scriptsTableView" destination="M2g-lE-hcW" id="Fh9-gp-fD9"/>
+                        <outlet property="showPreferencesAtStartAppButton" destination="1WL-0a-M0T" id="7Zw-Vf-2Kv"/>
                         <outlet property="timeoutOfUserActivitySlider" destination="aX6-Mj-bK8" id="ZRU-nJ-Cai"/>
                     </connections>
                 </viewController>
                 <customObject id="5JQ-7n-uID" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-707" y="806"/>
+            <point key="canvasLocation" x="-623" y="763"/>
         </scene>
     </scenes>
 </document>

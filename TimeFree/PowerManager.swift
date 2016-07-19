@@ -15,11 +15,13 @@ let kIOPMAssertionTypeNoDisplaySleep = "PreventUserIdleDisplaySleep" as CFString
 
 class PowerManager {
     
-    // MARK: - Properties
+    // MARK: - Public Properties
     static var isSleepEnabled: Bool = true
+    
+    // MARK: - Private Properties
     private static var powerId: IOPMAssertionID = IOPMAssertionID(0)
     
-    // MARK: - Public
+    // MARK: - Methods of class
     static func dontAllowSleeping(_ disableSleeping: Bool) {
         if disableSleeping == true {
             preventSleep()
@@ -28,7 +30,7 @@ class PowerManager {
         }
     }
     
-    // MARK: - Private
+    // MARK: - Private methods
     private static func preventSleep() {
         if isSleepEnabled == false {
             print("Sleep already prevented. Releasing existing assertion first.")

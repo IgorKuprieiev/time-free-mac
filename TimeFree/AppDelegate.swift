@@ -15,21 +15,47 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Outlets
     @IBOutlet weak var statusMenu: NSMenu?
+    @IBOutlet weak var preferencesWindowController: NSWindowController?
 
     // MARK: - Private Properties
     private var statusItem: NSStatusItem?
     private lazy var trigger = Trigger()
-    private lazy var preferences = Preferences.sharedPreferences
-
+    
     // MARK: - NSApplicationDelegate
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+        //Check Grant Access
+        checkGrantAccess()
+        if checkGrantAccess() == false {
+            let alert = NSAlert()
+            alert.messageText = "TimeFree needs your permission to run"
+            alert.informativeText = "Enable TimeFree in Security & Privacy preferences -> Privacy -> Accessibility, in System Preferences.\nThen restart TimeFree."
+            alert.alertStyle = .critical
+            alert.addButton(withTitle: "Exit & Open System Preferences")
+            alert.addButton(withTitle: "Exit")
+            switch alert.runModal() {
+            case NSAlertFirstButtonReturn:
+                NSWorkspace.shared().openFile("/System/Library/PreferencePanes/Security.prefPane")
+                fallthrough
+            default:
+                NSApp.terminate(nil)
+            }
+        }
+        
         //Customize UI
         prepareStatusItem()
         prepareStatusMenuButtons()
         registrationObservers()
         
-        //Disable slipping(if needed)
-        PowerManager.dontAllowSleeping(preferences.dontAllowSleeping)
+        //Disable sleeping(if needed)
+        PowerManager.dontAllowSleeping(Preferences.shared.dontAllowSleeping)
+        
+        //Enable Autolaunching(if needed)
+        if Preferences.shared.autoLaunch == true {
+            addHelperAppToLoginItems()
+        } else {
+            removeHelperAppFromLoginItems()
+        }
         
         //Start random activities
         prepareAndStartTrigger()
@@ -40,47 +66,59 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         unregisterObservers()
         PowerManager.dontAllowSleeping(false)
     }
+}
 
+extension AppDelegate {
+    
     // MARK: - Actions
     @IBAction func dontAllowSleeping(_ sender: AnyObject) {
-        preferences.dontAllowSleeping = !preferences.dontAllowSleeping
+        Preferences.shared.dontAllowSleeping = !Preferences.shared.dontAllowSleeping
     }
     
     @IBAction func moveMouse(_ sender: NSMenuItem) {
-        preferences.moveMousePointer = !preferences.moveMousePointer
+        Preferences.shared.moveMousePointer = !Preferences.shared.moveMousePointer
     }
-
+    
     @IBAction func runScripts(_ sender: NSMenuItem) {
-        preferences.runScripts = !preferences.runScripts
+        Preferences.shared.runScripts = !Preferences.shared.runScripts
     }
-
+    
     @IBAction func quit(_ sender: AnyObject) {
         NSApplication.shared().terminate(self)
     }
+}
+
+extension AppDelegate {
     
     func propertiesHaveBeenUpdated(_ notification: Notification) {
         prepareStatusMenuButtons()
-        PowerManager.dontAllowSleeping(preferences.dontAllowSleeping)
+        
+        //Sleep Mode
+        PowerManager.dontAllowSleeping(Preferences.shared.dontAllowSleeping)
+        
+        //Autolaunching
+        if Preferences.shared.autoLaunch == true {
+            addHelperAppToLoginItems()
+        } else {
+            removeHelperAppFromLoginItems()
+        }
     }
     
     // MARK: - Private methods
     private func registrationObservers() {
-        NotificationCenter.default().addObserver(self,
-                                                 selector: #selector(AppDelegate.propertiesHaveBeenUpdated(_:)),
-                                                 name: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey,
-                                                 object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(AppDelegate.propertiesHaveBeenUpdated(_:)),
+                                               name: NSNotification.Name(rawValue: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey),
+                                               object: nil)
     }
     
     private func unregisterObservers() {
         let propertiesHaveBeenUpdatedKey = NSNotification.Name(rawValue: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey)
-        NotificationCenter.default().removeObserver(self, name: propertiesHaveBeenUpdatedKey, object: nil)
+        NotificationCenter.default.removeObserver(self, name: propertiesHaveBeenUpdatedKey, object: nil)
     }
-    
-    private func prepareAndStartTrigger() {
-        trigger.delegate = self
-        trigger.timeoutOfUserActivity = preferences.timeoutOfUserActivity
-        trigger.start()
-    }
+}
+
+extension AppDelegate {
     
     private func prepareStatusItem() {
         guard let statusMenu = statusMenu else {
@@ -101,16 +139,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         if let dontAllowSleepingItem = statusMenu.item(at: 0) {
-            dontAllowSleepingItem.state = preferences.dontAllowSleeping == true ? NSOnState : NSOffState
+            dontAllowSleepingItem.state = Preferences.shared.dontAllowSleeping == true ? NSOnState : NSOffState
         }
         
         if let moveMousePointerItem = statusMenu.item(at: 1) {
-            moveMousePointerItem.state = preferences.moveMousePointer == true ? NSOnState : NSOffState
+            moveMousePointerItem.state = Preferences.shared.moveMousePointer == true ? NSOnState : NSOffState
         }
         
         if let runScriptsItem = statusMenu.item(at: 2) {
-            runScriptsItem.state = preferences.runScripts == true ? NSOnState : NSOffState
+            runScriptsItem.state = Preferences.shared.runScripts == true ? NSOnState : NSOffState
         }
+    }
+    
+    private func prepareAndStartTrigger() {
+        trigger.delegate = self
+        trigger.timeoutOfUserActivity = Preferences.shared.timeoutOfUserActivity
+        trigger.start()
+    }
+}
+
+extension AppDelegate {
+    
+    @discardableResult private func checkGrantAccess() -> Bool {
+        let trustedCheckOptionPromptString = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
+        let options: CFDictionary = [trustedCheckOptionPromptString: kCFBooleanTrue]
+        return AXIsProcessTrustedWithOptions(options)
     }
 }
 
@@ -118,11 +171,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate: TriggerDelegate {
     
     func didStartActivities() {
-        NSSound(named: "Hero")?.play()
+        NotificationManager.shared.showNotification(title: NSLocalizedString("TimeFree found the lack of user activity", comment: ""),
+                                                    informativeText: NSLocalizedString("", comment: ""))
         print("didStartActivities")
     }
     
     func didPausedActivities() {
+        NotificationManager.shared.showNotification(title: NSLocalizedString("The user has returned", comment: ""),
+                                                    informativeText: NSLocalizedString("", comment: ""))
+
         print("didPausedActivities")
     }
     
@@ -130,17 +187,17 @@ extension AppDelegate: TriggerDelegate {
         print("triggerTick")
 
         //Move mouse
-        if preferences.moveMousePointer == true && (trigger.tickCounter % preferences.moveMousePointerFrequency) == 0 {
+        if Preferences.shared.moveMousePointer == true && (trigger.tickCounter % Preferences.shared.moveMousePointerFrequency) == 0 {
             MouseManager.moveMousePointerToRandomPosition()
         }
         
         //Run script
-        if preferences.runScripts == true && (trigger.tickCounter % preferences.runScriptsFrequency) == 0 {
-            let enabledScripts = preferences.scripts.filter({ (script) -> Bool in
+        if Preferences.shared.runScripts == true && (trigger.tickCounter % Preferences.shared.runScriptsFrequency) == 0 {
+            let enabledScripts = Preferences.shared.scripts.filter({ (script) -> Bool in
                 return script.scriptEnabled
             })
             if enabledScripts.count > 0 {
-                preferences.scripts.randomItem().runScript()
+                Preferences.shared.scripts.randomItem().runScript()
             }
         }
 

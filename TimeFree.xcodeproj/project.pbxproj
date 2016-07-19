@@ -11,14 +11,35 @@
 		1B093A5B1CF63E1A001B8500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */; };
 		1B093A5F1CF63E1A001B8500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B093A5E1CF63E1A001B8500 /* Assets.xcassets */; };
 		1B093A621CF63E1A001B8500 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B093A601CF63E1A001B8500 /* Main.storyboard */; };
+		1B09ECF11D3CC17500154A95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B09ECF01D3CC17500154A95 /* AppDelegate.m */; };
+		1B09ECF41D3CC17500154A95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B09ECF31D3CC17500154A95 /* main.m */; };
+		1B09ECF61D3CC17500154A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B09ECF51D3CC17500154A95 /* Assets.xcassets */; };
+		1B09ECF91D3CC17500154A95 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B09ECF71D3CC17500154A95 /* MainMenu.xib */; };
+		1B09ECFF1D3CC55E00154A95 /* TimeFree Helper.app in Copy TimeFree Helper */ = {isa = PBXBuildFile; fileRef = 1B09ECED1D3CC17500154A95 /* TimeFree Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B2567F11CF6F59E005D909C /* PowerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F01CF6F59E005D909C /* PowerManager.swift */; };
 		1B2567F31CF71862005D909C /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F21CF71862005D909C /* Preferences.swift */; };
 		1B2567F71CF7343F005D909C /* MouseActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F61CF7343F005D909C /* MouseActivities.swift */; };
+		1B857A1C1D3699C200D7DC22 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B857A1B1D3699C200D7DC22 /* Helper.swift */; };
 		1B90022B1CF81D86004462CF /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90022A1CF81D86004462CF /* Trigger.swift */; };
 		1BA4CB1F1CF8E93400D08F34 /* DefaultScripts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BA4CB1E1CF8E93400D08F34 /* DefaultScripts.plist */; };
 		1BA4CB211CFB2A3A00D08F34 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA4CB201CFB2A3A00D08F34 /* Array+Extensions.swift */; };
+		1BE5BC0A1D3CF10400C7DA46 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */; };
 		1BF489161CF641CA00A3CA97 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF489141CF641CA00A3CA97 /* Script.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1B87EAA51D353FBA00D2BD9B /* Copy TimeFree Helper */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				1B09ECFF1D3CC55E00154A95 /* TimeFree Helper.app in Copy TimeFree Helper */,
+			);
+			name = "Copy TimeFree Helper";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1B02B3DD1D0067A300C71E93 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
@@ -27,17 +48,35 @@
 		1B093A5E1CF63E1A001B8500 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B093A611CF63E1A001B8500 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B093A631CF63E1A001B8500 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B09ECED1D3CC17500154A95 /* TimeFree Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TimeFree Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B09ECEF1D3CC17500154A95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1B09ECF01D3CC17500154A95 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1B09ECF31D3CC17500154A95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1B09ECF51D3CC17500154A95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1B09ECF81D3CC17500154A95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1B09ECFA1D3CC17500154A95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B09ECFE1D3CC45400154A95 /* TimeFree Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "TimeFree Helper.entitlements"; sourceTree = "<group>"; };
 		1B2567F01CF6F59E005D909C /* PowerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerManager.swift; sourceTree = "<group>"; };
 		1B2567F21CF71862005D909C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		1B2567F61CF7343F005D909C /* MouseActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseActivities.swift; sourceTree = "<group>"; };
+		1B857A1B1D3699C200D7DC22 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		1B87EAF31D354D4A00D2BD9B /* TimeFree.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TimeFree.entitlements; sourceTree = "<group>"; };
 		1B90022A1CF81D86004462CF /* Trigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		1BA4CB1E1CF8E93400D08F34 /* DefaultScripts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultScripts.plist; sourceTree = "<group>"; };
 		1BA4CB201CFB2A3A00D08F34 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		1BF489141CF641CA00A3CA97 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1B093A541CF63E1A001B8500 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B09ECEA1D3CC17500154A95 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				1B093A591CF63E1A001B8500 /* TimeFree */,
+				1B09ECEE1D3CC17500154A95 /* TimeFree Helper */,
 				1B093A581CF63E1A001B8500 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				1B093A571CF63E1A001B8500 /* TimeFree.app */,
+				1B09ECED1D3CC17500154A95 /* TimeFree Helper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,12 +115,37 @@
 				1B2567F21CF71862005D909C /* Preferences.swift */,
 				1BF489141CF641CA00A3CA97 /* Script.swift */,
 				1BA4CB201CFB2A3A00D08F34 /* Array+Extensions.swift */,
+				1B857A1B1D3699C200D7DC22 /* Helper.swift */,
+				1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */,
 				1B093A5E1CF63E1A001B8500 /* Assets.xcassets */,
 				1B093A601CF63E1A001B8500 /* Main.storyboard */,
 				1B093A631CF63E1A001B8500 /* Info.plist */,
 				1BA4CB1E1CF8E93400D08F34 /* DefaultScripts.plist */,
+				1B87EAF31D354D4A00D2BD9B /* TimeFree.entitlements */,
 			);
 			path = TimeFree;
+			sourceTree = "<group>";
+		};
+		1B09ECEE1D3CC17500154A95 /* TimeFree Helper */ = {
+			isa = PBXGroup;
+			children = (
+				1B09ECFE1D3CC45400154A95 /* TimeFree Helper.entitlements */,
+				1B09ECEF1D3CC17500154A95 /* AppDelegate.h */,
+				1B09ECF01D3CC17500154A95 /* AppDelegate.m */,
+				1B09ECF51D3CC17500154A95 /* Assets.xcassets */,
+				1B09ECF71D3CC17500154A95 /* MainMenu.xib */,
+				1B09ECFA1D3CC17500154A95 /* Info.plist */,
+				1B09ECF21D3CC17500154A95 /* Supporting Files */,
+			);
+			path = "TimeFree Helper";
+			sourceTree = "<group>";
+		};
+		1B09ECF21D3CC17500154A95 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1B09ECF31D3CC17500154A95 /* main.m */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -92,6 +158,7 @@
 				1B093A531CF63E1A001B8500 /* Sources */,
 				1B093A541CF63E1A001B8500 /* Frameworks */,
 				1B093A551CF63E1A001B8500 /* Resources */,
+				1B87EAA51D353FBA00D2BD9B /* Copy TimeFree Helper */,
 			);
 			buildRules = (
 			);
@@ -102,20 +169,55 @@
 			productReference = 1B093A571CF63E1A001B8500 /* TimeFree.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1B09ECEC1D3CC17500154A95 /* TimeFree Helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B09ECFB1D3CC17500154A95 /* Build configuration list for PBXNativeTarget "TimeFree Helper" */;
+			buildPhases = (
+				1B09ECE91D3CC17500154A95 /* Sources */,
+				1B09ECEA1D3CC17500154A95 /* Frameworks */,
+				1B09ECEB1D3CC17500154A95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TimeFree Helper";
+			productName = "TimeFree Helper";
+			productReference = 1B09ECED1D3CC17500154A95 /* TimeFree Helper.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1B093A4F1CF63E1A001B8500 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Oleksii Naboichenko";
 				TargetAttributes = {
 					1B093A561CF63E1A001B8500 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = PVDZWY67J6;
+						DevelopmentTeamName = "Mobile Monday";
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					1B09ECEC1D3CC17500154A95 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = PVDZWY67J6;
+						DevelopmentTeamName = "Mobile Monday";
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -133,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				1B093A561CF63E1A001B8500 /* TimeFree */,
+				1B09ECEC1D3CC17500154A95 /* TimeFree Helper */,
 			);
 		};
 /* End PBXProject section */
@@ -148,6 +251,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B09ECEB1D3CC17500154A95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B09ECF61D3CC17500154A95 /* Assets.xcassets in Resources */,
+				1B09ECF91D3CC17500154A95 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -157,12 +269,23 @@
 			files = (
 				1B90022B1CF81D86004462CF /* Trigger.swift in Sources */,
 				1B2567F11CF6F59E005D909C /* PowerManager.swift in Sources */,
+				1BE5BC0A1D3CF10400C7DA46 /* NotificationManager.swift in Sources */,
+				1B857A1C1D3699C200D7DC22 /* Helper.swift in Sources */,
 				1B2567F31CF71862005D909C /* Preferences.swift in Sources */,
 				1BF489161CF641CA00A3CA97 /* Script.swift in Sources */,
 				1B02B3DE1D0067A300C71E93 /* PreferencesViewController.swift in Sources */,
 				1B2567F71CF7343F005D909C /* MouseActivities.swift in Sources */,
 				1BA4CB211CFB2A3A00D08F34 /* Array+Extensions.swift in Sources */,
 				1B093A5B1CF63E1A001B8500 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B09ECE91D3CC17500154A95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B09ECF41D3CC17500154A95 /* main.m in Sources */,
+				1B09ECF11D3CC17500154A95 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +298,14 @@
 				1B093A611CF63E1A001B8500 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1B09ECF71D3CC17500154A95 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B09ECF81D3CC17500154A95 /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -198,7 +329,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -243,7 +374,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -266,14 +397,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TimeFree/TimeFree.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = TimeFree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = QArea.TimeFree;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qarea.timefree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -282,16 +415,50 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TimeFree/TimeFree.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = TimeFree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = QArea.TimeFree;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qarea.timefree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		1B09ECFC1D3CC17500154A95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = "TimeFree Helper/TimeFree Helper.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "TimeFree Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qarea.timefree.helper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1B09ECFD1D3CC17500154A95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = "TimeFree Helper/TimeFree Helper.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "TimeFree Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qarea.timefree.helper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -312,6 +479,15 @@
 			buildConfigurations = (
 				1B093A671CF63E1A001B8500 /* Debug */,
 				1B093A681CF63E1A001B8500 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B09ECFB1D3CC17500154A95 /* Build configuration list for PBXNativeTarget "TimeFree Helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B09ECFC1D3CC17500154A95 /* Debug */,
+				1B09ECFD1D3CC17500154A95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

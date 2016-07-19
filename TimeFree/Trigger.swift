@@ -30,6 +30,7 @@ class Trigger: AnyObject {
     private var timer: Timer? = nil
     private lazy var globalMonitors = [AnyObject]()
     
+    // MARK: - Destructor
     deinit {
         stop()
     }
@@ -82,20 +83,12 @@ class Trigger: AnyObject {
     private func resetTickCounter() {
         print("reset tick counter")
         if tickCounter > timeoutOfUserActivity {
-            delegate?.didStartActivities()
+            delegate?.didPausedActivities()
         }
         tickCounter = 0
     }
     
     private func registrationObservers() {
-        //Check grant access
-        let options = NSDictionary(object: kCFBooleanTrue,
-                                   forKey: kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString) as CFDictionary
-        guard AXIsProcessTrustedWithOptions(options) == true else {
-            print("Grant access to this application in Security & Privacy preferences, located in System Preferences.")
-            return
-        }
-        
         //Action after user activity
         let handler:(NSEvent) -> Void = {[weak self] (event) in
             guard let strongSelf = self else {

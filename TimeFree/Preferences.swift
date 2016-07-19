@@ -25,11 +25,13 @@ class Preferences: NSObject, NSCoding {
         static let runScriptsKey = "runScripts"
         static let runScriptsFrequencyKey = "runScriptsFrequency"
         static let scriptsKey = "scripts"
+        static let autoLaunchKey = "autoLaunch"
+        static let showPreferencesAtStartAppKey = "showPreferencesAtStartApp"
     }
     
     // MARK: - Shared Instance
-    static let sharedPreferences: Preferences = {
-        if let preferencesData = UserDefaults.standard().object(forKey: PropertyKeys.preferencesKey) as? Data {
+    static let shared: Preferences = {
+        if let preferencesData = UserDefaults.standard.object(forKey: PropertyKeys.preferencesKey) as? Data {
             return NSKeyedUnarchiver.unarchiveObject(with: preferencesData) as! Preferences
         } else {
             return Preferences()
@@ -39,56 +41,70 @@ class Preferences: NSObject, NSCoding {
     // MARK: - Properties
     var dontAllowSleeping: Bool {
         didSet {
-            synchronizePreferences()
+            synchronize()
         }
     }
     
     var timeoutOfUserActivity: Int {
         didSet {
-            synchronizePreferences()
+            synchronize()
         }
     }
     
     var moveMousePointer: Bool {
         didSet {
-            synchronizePreferences()
+            synchronize()
         }
     }
     
     var moveMousePointerFrequency: Int {
         didSet {
-            synchronizePreferences()
+            synchronize()
         }
     }
 
     var runScripts: Bool {
         didSet {
-            synchronizePreferences()
+            synchronize()
         }
     }
     
     var runScriptsFrequency: Int {
         didSet {
-            synchronizePreferences()
+            synchronize()
         }
     }
     
     var scripts: [Script] {
         didSet {
-            synchronizePreferences()
+            synchronize()
         }
     }
     
-    // MARK: - Initialization
+    var autoLaunch: Bool {
+        didSet {
+            synchronize()
+        }
+    }
+    
+    var showPreferencesAtStartApp: Bool {
+        didSet {
+            synchronize()
+        }
+    }
+    
+    // MARK: - Constructors
     override init() {
-        dontAllowSleeping = false
+        dontAllowSleeping = true
         timeoutOfUserActivity = 30
-        moveMousePointer = false
+        moveMousePointer = true
         moveMousePointerFrequency = 30
-        runScripts = true
+        runScripts = false
         runScriptsFrequency = 30
+        autoLaunch = true
+        showPreferencesAtStartApp = false
         scripts = {
-            let path = Bundle.main().pathForResource("DefaultScripts", ofType: "plist")
+            let path = Bundle.main.pathForResource("DefaultScripts", ofType: "plist")
             return Script.scriptsFromFile(path)
         }()
         
@@ -103,6 +119,8 @@ class Preferences: NSObject, NSCoding {
         aCoder.encode(moveMousePointerFrequency, forKey: PropertyKeys.moveMousePointerFrequencyKey)
         aCoder.encode(runScripts, forKey: PropertyKeys.runScriptsKey)
         aCoder.encode(runScriptsFrequency, forKey: PropertyKeys.runScriptsFrequencyKey)
+        aCoder.encode(autoLaunch, forKey: PropertyKeys.autoLaunchKey)
+        aCoder.encode(showPreferencesAtStartApp, forKey: PropertyKeys.showPreferencesAtStartAppKey)
 
         let scriptsData = NSKeyedArchiver.archivedData(withRootObject: scripts)
         if scriptsData.count > 0 {
@@ -117,7 +135,9 @@ class Preferences: NSObject, NSCoding {
         moveMousePointerFrequency = aDecoder.decodeInteger(forKey: PropertyKeys.moveMousePointerFrequencyKey)
         runScripts = aDecoder.decodeBool(forKey: PropertyKeys.runScriptsKey)
         runScriptsFrequency = aDecoder.decodeInteger(forKey: PropertyKeys.runScriptsFrequencyKey)
-
+        autoLaunch = aDecoder.decodeBool(forKey: PropertyKeys.autoLaunchKey)
+        showPreferencesAtStartApp = aDecoder.decodeBool(forKey: PropertyKeys.showPreferencesAtStartAppKey)
+        
         if let scriptsData = aDecoder.decodeObject(forKey: PropertyKeys.scriptsKey) as? Data {
             scripts = NSKeyedUnarchiver.unarchiveObject(with: scriptsData) as! [Script]
         } else {
@@ -125,16 +145,15 @@ class Preferences: NSObject, NSCoding {
         }
     }
     
-    // MARK: - Private
-    private func synchronizePreferences() {
+    // MARK: - Private methods
+    private func synchronize() {
         let archivedData = NSKeyedArchiver.archivedData(withRootObject: self)
-        let userDefaults = UserDefaults.standard()
-        userDefaults.set(archivedData, forKey: PropertyKeys.preferencesKey)
-        userDefaults.synchronize()
+        UserDefaults.standard.set(archivedData, forKey: PropertyKeys.preferencesKey)
+        UserDefaults.standard.synchronize()
         self.noticeThatPreferencesHaveChanged()
     }
     
     private func noticeThatPreferencesHaveChanged() {
-        NotificationCenter.default().post(name: Notification.Name(rawValue: NotificationKeys.propertiesHaveBeenUpdatedKey), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.propertiesHaveBeenUpdatedKey), object: nil)
     }
 }

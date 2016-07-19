@@ -57,7 +57,7 @@ class Script: NSObject, NSCoding {
 
 extension Script {
     
-    func runScript() -> Bool {
+    @discardableResult func runScript() -> Bool {
         guard let scriptSource = self.scriptSource else {
             return false
         }

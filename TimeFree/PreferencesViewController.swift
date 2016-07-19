@@ -15,10 +15,11 @@ class PreferencesViewController: NSViewController {
     @IBOutlet weak var moveMousePointerFrequencySlider: NSSlider?
     @IBOutlet weak var runScriptsFrequencySlider: NSSlider?
     @IBOutlet weak var scriptsTableView: NSTableView?
+    @IBOutlet weak var autoLaunchButton: NSButton?
+    @IBOutlet weak var showPreferencesAtStartAppButton: NSButton?
 
     // MARK: - Properties
-    private let preferences = Preferences.sharedPreferences
-    private var scripts = Preferences.sharedPreferences.scripts
+    private var scripts = Preferences.shared.scripts
 
     // MARK: - UIViewController
     override func viewDidLoad() {
@@ -33,22 +34,32 @@ class PreferencesViewController: NSViewController {
     
     // MARK: - IBActions
     @IBAction func timeoutOfUserActivityDidChanged(_ sender: NSSlider) {
-        preferences.timeoutOfUserActivity = sender.integerValue
+        Preferences.shared.timeoutOfUserActivity = sender.integerValue
     }
     
     @IBAction func frequencyOfMovingMouseDidChanged(_ sender: NSSlider) {
-        preferences.moveMousePointerFrequency = sender.integerValue
+        Preferences.shared.moveMousePointerFrequency = sender.integerValue
     }
     
     @IBAction func frequencyOfRunningScriptsDidChanged(_ sender: NSSlider) {
-        preferences.runScriptsFrequency = sender.integerValue
+        Preferences.shared.runScriptsFrequency = sender.integerValue
+    }
+    
+    @IBAction func autoLaunch(_ sender: NSButton) {
+        Preferences.shared.autoLaunch = (sender.state == NSOnState)
+    }
+
+    @IBAction func showPreferencesAtStartApp(_ sender: NSButton) {
+        Preferences.shared.showPreferencesAtStartApp = (sender.state == NSOnState)
     }
     
     // MARK: - Private
     func setupInterface() {
-        timeoutOfUserActivitySlider?.integerValue = preferences.timeoutOfUserActivity
-        moveMousePointerFrequencySlider?.integerValue = preferences.moveMousePointerFrequency
-        runScriptsFrequencySlider?.integerValue = preferences.runScriptsFrequency
+        timeoutOfUserActivitySlider?.integerValue = Preferences.shared.timeoutOfUserActivity
+        moveMousePointerFrequencySlider?.integerValue = Preferences.shared.moveMousePointerFrequency
+        runScriptsFrequencySlider?.integerValue = Preferences.shared.runScriptsFrequency
+        autoLaunchButton?.state = Preferences.shared.autoLaunch == true ? NSOnState : NSOffState
+        showPreferencesAtStartAppButton?.state = Preferences.shared.showPreferencesAtStartApp == true ? NSOnState : NSOffState
         scriptsTableView?.reloadData()
     }
 }
