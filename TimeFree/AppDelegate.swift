@@ -42,6 +42,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
+        //Create directory for Users Scripts
+        createDirectioryForUsersScripts()
+        
         //Customize UI
         prepareStatusItem()
         prepareStatusMenuButtons()
@@ -163,7 +166,25 @@ extension AppDelegate {
     @discardableResult private func checkGrantAccess() -> Bool {
         let trustedCheckOptionPromptString = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
         let options: CFDictionary = [trustedCheckOptionPromptString: kCFBooleanTrue]
+        
         return AXIsProcessTrustedWithOptions(options)
+    }
+}
+
+extension AppDelegate {
+    
+    func createDirectioryForUsersScripts() {
+        guard let usersScriptsPath = Preferences.usersScriptsPath() else {
+            return
+        }
+        guard FileManager.default.fileExists(atPath: usersScriptsPath) == false else {
+            return
+        }
+        do {
+            try FileManager.default.createDirectory(atPath: usersScriptsPath, withIntermediateDirectories: true, attributes: nil)
+        }  catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -200,8 +221,6 @@ extension AppDelegate: TriggerDelegate {
                 Preferences.shared.scripts.randomItem().runScript()
             }
         }
-
     }
 }
-
 

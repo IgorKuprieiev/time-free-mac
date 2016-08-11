@@ -38,7 +38,7 @@ class Preferences: NSObject, NSCoding {
         }
     }()
     
-    // MARK: - Properties
+    // MARK: - Public Properties
     var dontAllowSleeping: Bool {
         didSet {
             synchronize()
@@ -155,5 +155,15 @@ class Preferences: NSObject, NSCoding {
     
     private func noticeThatPreferencesHaveChanged() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.propertiesHaveBeenUpdatedKey), object: nil)
+    }
+}
+
+extension Preferences {
+    
+    static func usersScriptsPath() -> String? {
+        guard let documentsPath = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first else {
+            return nil
+        }
+        return documentsPath + "/TimeFree/Scripts/"
     }
 }
