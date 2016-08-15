@@ -15,7 +15,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Outlets
     @IBOutlet weak var statusMenu: NSMenu?
-    @IBOutlet weak var preferencesWindowController: NSWindowController?
 
     // MARK: - Private Properties
     private var statusItem: NSStatusItem?
@@ -42,9 +41,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        //Create directory for Users Scripts
-        createDirectioryForUsersScripts()
-        
         //Customize UI
         prepareStatusItem()
         prepareStatusMenuButtons()
@@ -54,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         PowerManager.dontAllowSleeping(Preferences.shared.dontAllowSleeping)
         
         //Enable Autolaunching(if needed)
-        if Preferences.shared.autoLaunch == true {
+        if Preferences.shared.launchAppAtSystemStartup == true {
             addHelperAppToLoginItems()
         } else {
             removeHelperAppFromLoginItems()
@@ -82,10 +78,6 @@ extension AppDelegate {
         Preferences.shared.moveMousePointer = !Preferences.shared.moveMousePointer
     }
     
-    @IBAction func runScripts(_ sender: NSMenuItem) {
-        Preferences.shared.runScripts = !Preferences.shared.runScripts
-    }
-    
     @IBAction func quit(_ sender: AnyObject) {
         NSApplication.shared().terminate(self)
     }
@@ -100,7 +92,7 @@ extension AppDelegate {
         PowerManager.dontAllowSleeping(Preferences.shared.dontAllowSleeping)
         
         //Autolaunching
-        if Preferences.shared.autoLaunch == true {
+        if Preferences.shared.launchAppAtSystemStartup == true {
             addHelperAppToLoginItems()
         } else {
             removeHelperAppFromLoginItems()
@@ -128,7 +120,7 @@ extension AppDelegate {
             return
         }
         
-        statusItem = NSStatusBar.system().statusItem(withLength: -2)
+        statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
         statusItem?.menu = statusMenu
         if let statusItemImage = NSImage(named: "clock_color_icon") {
             statusItem?.image = statusItemImage
@@ -149,9 +141,6 @@ extension AppDelegate {
             moveMousePointerItem.state = Preferences.shared.moveMousePointer == true ? NSOnState : NSOffState
         }
         
-        if let runScriptsItem = statusMenu.item(at: 2) {
-            runScriptsItem.state = Preferences.shared.runScripts == true ? NSOnState : NSOffState
-        }
     }
     
     private func prepareAndStartTrigger() {
@@ -171,55 +160,21 @@ extension AppDelegate {
     }
 }
 
-extension AppDelegate {
-    
-    func createDirectioryForUsersScripts() {
-        guard let usersScriptsPath = Preferences.usersScriptsPath() else {
-            return
-        }
-        guard FileManager.default.fileExists(atPath: usersScriptsPath) == false else {
-            return
-        }
-        do {
-            try FileManager.default.createDirectory(atPath: usersScriptsPath, withIntermediateDirectories: true, attributes: nil)
-        }  catch let error as NSError {
-            print(error.localizedDescription)
-        }
-    }
-}
-
 // MARK: - ActivitiesManagerDelegate
 extension AppDelegate: TriggerDelegate {
     
     func didStartActivities() {
-        NotificationManager.shared.showNotification(title: NSLocalizedString("TimeFree found the lack of user activity", comment: ""),
-                                                    informativeText: NSLocalizedString("", comment: ""))
-        print("didStartActivities")
+        NotificationManager.shared.showNotification(title: NSLocalizedString("TimeFree found the lack of user activity", comment: ""))
     }
     
     func didPausedActivities() {
-        NotificationManager.shared.showNotification(title: NSLocalizedString("The user has returned", comment: ""),
-                                                    informativeText: NSLocalizedString("", comment: ""))
-
-        print("didPausedActivities")
+        NotificationManager.shared.showNotification(title: NSLocalizedString("The user has returned", comment: ""))
     }
     
     func triggerTick(trigger: Trigger) {
-        print("triggerTick")
-
         //Move mouse
         if Preferences.shared.moveMousePointer == true && (trigger.tickCounter % Preferences.shared.moveMousePointerFrequency) == 0 {
             MouseManager.moveMousePointerToRandomPosition()
-        }
-        
-        //Run script
-        if Preferences.shared.runScripts == true && (trigger.tickCounter % Preferences.shared.runScriptsFrequency) == 0 {
-            let enabledScripts = Preferences.shared.scripts.filter({ (script) -> Bool in
-                return script.scriptEnabled
-            })
-            if enabledScripts.count > 0 {
-                Preferences.shared.scripts.randomItem().runScript()
-            }
         }
     }
 }

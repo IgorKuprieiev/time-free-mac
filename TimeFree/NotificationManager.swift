@@ -11,9 +11,7 @@ import Foundation
 class NotificationManager: NSObject {
     
     // MARK: - Shared Instance
-    static let shared: NotificationManager = {
-        return NotificationManager()
-    }()
+    static let shared = NotificationManager()
     
     // MARK: - Constructors
     override init() {
@@ -23,10 +21,10 @@ class NotificationManager: NSObject {
     }
     
     // MARK: - Public Properties
-    func showNotification(title: String?, informativeText: String?) {
+    func showNotification(title: String?, details: String? = nil) {
         let notification = NSUserNotification()
         notification.title = title
-        notification.informativeText = informativeText
+        notification.informativeText = details
         notification.soundName = "Hero"
         NSUserNotificationCenter.default.deliver(notification)
     }
@@ -35,6 +33,6 @@ class NotificationManager: NSObject {
 extension NotificationManager: NSUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-        return true
+        return Preferences.shared.showNotifications
     }
 }

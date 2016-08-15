@@ -22,11 +22,9 @@ class Preferences: NSObject, NSCoding {
         static let timeoutOfUserActivityKey = "timeoutOfUserActivity"
         static let moveMousePointerKey = "moveMousePointer"
         static let moveMousePointerFrequencyKey = "moveMousePointerFrequency"
-        static let runScriptsKey = "runScripts"
-        static let runScriptsFrequencyKey = "runScriptsFrequency"
-        static let scriptsKey = "scripts"
-        static let autoLaunchKey = "autoLaunch"
+        static let launchAppAtSystemStartupKey = "launchAppAtSystemStartup"
         static let showPreferencesAtStartAppKey = "showPreferencesAtStartApp"
+        static let showNotificationsKey = "showNotifications"
     }
     
     // MARK: - Shared Instance
@@ -63,25 +61,7 @@ class Preferences: NSObject, NSCoding {
         }
     }
 
-    var runScripts: Bool {
-        didSet {
-            synchronize()
-        }
-    }
-    
-    var runScriptsFrequency: Int {
-        didSet {
-            synchronize()
-        }
-    }
-    
-    var scripts: [Script] {
-        didSet {
-            synchronize()
-        }
-    }
-    
-    var autoLaunch: Bool {
+    var launchAppAtSystemStartup: Bool {
         didSet {
             synchronize()
         }
@@ -93,20 +73,21 @@ class Preferences: NSObject, NSCoding {
         }
     }
     
+    var showNotifications: Bool {
+        didSet {
+            synchronize()
+        }
+    }
+    
     // MARK: - Constructors
     override init() {
         dontAllowSleeping = true
-        timeoutOfUserActivity = 30
+        timeoutOfUserActivity = 10
         moveMousePointer = true
-        moveMousePointerFrequency = 30
-        runScripts = false
-        runScriptsFrequency = 30
-        autoLaunch = true
+        moveMousePointerFrequency = 10
+        launchAppAtSystemStartup = true
         showPreferencesAtStartApp = false
-        scripts = {
-            let path = Bundle.main.pathForResource("DefaultScripts", ofType: "plist")
-            return Script.scriptsFromFile(path)
-        }()
+        showNotifications = false
         
         super.init()
     }
@@ -117,15 +98,10 @@ class Preferences: NSObject, NSCoding {
         aCoder.encode(timeoutOfUserActivity, forKey: PropertyKeys.timeoutOfUserActivityKey)
         aCoder.encode(moveMousePointer, forKey: PropertyKeys.moveMousePointerKey)
         aCoder.encode(moveMousePointerFrequency, forKey: PropertyKeys.moveMousePointerFrequencyKey)
-        aCoder.encode(runScripts, forKey: PropertyKeys.runScriptsKey)
-        aCoder.encode(runScriptsFrequency, forKey: PropertyKeys.runScriptsFrequencyKey)
-        aCoder.encode(autoLaunch, forKey: PropertyKeys.autoLaunchKey)
+        aCoder.encode(launchAppAtSystemStartup, forKey: PropertyKeys.launchAppAtSystemStartupKey)
         aCoder.encode(showPreferencesAtStartApp, forKey: PropertyKeys.showPreferencesAtStartAppKey)
+        aCoder.encode(showNotifications, forKey: PropertyKeys.showNotificationsKey)
 
-        let scriptsData = NSKeyedArchiver.archivedData(withRootObject: scripts)
-        if scriptsData.count > 0 {
-            aCoder.encode(scriptsData, forKey:PropertyKeys.scriptsKey)
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -133,16 +109,9 @@ class Preferences: NSObject, NSCoding {
         timeoutOfUserActivity = aDecoder.decodeInteger(forKey: PropertyKeys.timeoutOfUserActivityKey)
         moveMousePointer = aDecoder.decodeBool(forKey: PropertyKeys.moveMousePointerKey)
         moveMousePointerFrequency = aDecoder.decodeInteger(forKey: PropertyKeys.moveMousePointerFrequencyKey)
-        runScripts = aDecoder.decodeBool(forKey: PropertyKeys.runScriptsKey)
-        runScriptsFrequency = aDecoder.decodeInteger(forKey: PropertyKeys.runScriptsFrequencyKey)
-        autoLaunch = aDecoder.decodeBool(forKey: PropertyKeys.autoLaunchKey)
+        launchAppAtSystemStartup = aDecoder.decodeBool(forKey: PropertyKeys.launchAppAtSystemStartupKey)
         showPreferencesAtStartApp = aDecoder.decodeBool(forKey: PropertyKeys.showPreferencesAtStartAppKey)
-        
-        if let scriptsData = aDecoder.decodeObject(forKey: PropertyKeys.scriptsKey) as? Data {
-            scripts = NSKeyedUnarchiver.unarchiveObject(with: scriptsData) as! [Script]
-        } else {
-            scripts = [Script]()
-        }
+        showNotifications = aDecoder.decodeBool(forKey: PropertyKeys.showNotificationsKey)
     }
     
     // MARK: - Private methods
@@ -155,15 +124,5 @@ class Preferences: NSObject, NSCoding {
     
     private func noticeThatPreferencesHaveChanged() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.propertiesHaveBeenUpdatedKey), object: nil)
-    }
-}
-
-extension Preferences {
-    
-    static func usersScriptsPath() -> String? {
-        guard let documentsPath = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first else {
-            return nil
-        }
-        return documentsPath + "/TimeFree/Scripts/"
     }
 }

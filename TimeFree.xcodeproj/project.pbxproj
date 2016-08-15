@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B02B3DE1D0067A300C71E93 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02B3DD1D0067A300C71E93 /* PreferencesViewController.swift */; };
 		1B093A5B1CF63E1A001B8500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */; };
 		1B093A5F1CF63E1A001B8500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B093A5E1CF63E1A001B8500 /* Assets.xcassets */; };
 		1B093A621CF63E1A001B8500 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B093A601CF63E1A001B8500 /* Main.storyboard */; };
@@ -19,12 +18,11 @@
 		1B2567F11CF6F59E005D909C /* PowerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F01CF6F59E005D909C /* PowerManager.swift */; };
 		1B2567F31CF71862005D909C /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F21CF71862005D909C /* Preferences.swift */; };
 		1B2567F71CF7343F005D909C /* MouseActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F61CF7343F005D909C /* MouseActivities.swift */; };
+		1B2672CB1D5E4ED700A92DC5 /* MousePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2672CA1D5E4ED700A92DC5 /* MousePreferencesViewController.swift */; };
 		1B857A1C1D3699C200D7DC22 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B857A1B1D3699C200D7DC22 /* Helper.swift */; };
 		1B90022B1CF81D86004462CF /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90022A1CF81D86004462CF /* Trigger.swift */; };
-		1BA4CB1F1CF8E93400D08F34 /* DefaultScripts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BA4CB1E1CF8E93400D08F34 /* DefaultScripts.plist */; };
-		1BA4CB211CFB2A3A00D08F34 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA4CB201CFB2A3A00D08F34 /* Array+Extensions.swift */; };
+		1B927F461D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B927F451D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift */; };
 		1BE5BC0A1D3CF10400C7DA46 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */; };
-		1BF489161CF641CA00A3CA97 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF489141CF641CA00A3CA97 /* Script.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,7 +40,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1B02B3DD1D0067A300C71E93 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		1B093A571CF63E1A001B8500 /* TimeFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B093A5E1CF63E1A001B8500 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,13 +56,12 @@
 		1B2567F01CF6F59E005D909C /* PowerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerManager.swift; sourceTree = "<group>"; };
 		1B2567F21CF71862005D909C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		1B2567F61CF7343F005D909C /* MouseActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseActivities.swift; sourceTree = "<group>"; };
+		1B2672CA1D5E4ED700A92DC5 /* MousePreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MousePreferencesViewController.swift; sourceTree = "<group>"; };
 		1B857A1B1D3699C200D7DC22 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		1B87EAF31D354D4A00D2BD9B /* TimeFree.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TimeFree.entitlements; sourceTree = "<group>"; };
 		1B90022A1CF81D86004462CF /* Trigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
-		1BA4CB1E1CF8E93400D08F34 /* DefaultScripts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultScripts.plist; sourceTree = "<group>"; };
-		1BA4CB201CFB2A3A00D08F34 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		1B927F451D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		1BF489141CF641CA00A3CA97 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,19 +104,17 @@
 			isa = PBXGroup;
 			children = (
 				1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */,
-				1B02B3DD1D0067A300C71E93 /* PreferencesViewController.swift */,
 				1B90022A1CF81D86004462CF /* Trigger.swift */,
 				1B2567F01CF6F59E005D909C /* PowerManager.swift */,
 				1B2567F61CF7343F005D909C /* MouseActivities.swift */,
 				1B2567F21CF71862005D909C /* Preferences.swift */,
-				1BF489141CF641CA00A3CA97 /* Script.swift */,
-				1BA4CB201CFB2A3A00D08F34 /* Array+Extensions.swift */,
 				1B857A1B1D3699C200D7DC22 /* Helper.swift */,
 				1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */,
+				1B927F451D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift */,
+				1B2672CA1D5E4ED700A92DC5 /* MousePreferencesViewController.swift */,
 				1B093A5E1CF63E1A001B8500 /* Assets.xcassets */,
 				1B093A601CF63E1A001B8500 /* Main.storyboard */,
 				1B093A631CF63E1A001B8500 /* Info.plist */,
-				1BA4CB1E1CF8E93400D08F34 /* DefaultScripts.plist */,
 				1B87EAF31D354D4A00D2BD9B /* TimeFree.entitlements */,
 			);
 			path = TimeFree;
@@ -245,7 +239,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BA4CB1F1CF8E93400D08F34 /* DefaultScripts.plist in Resources */,
 				1B093A5F1CF63E1A001B8500 /* Assets.xcassets in Resources */,
 				1B093A621CF63E1A001B8500 /* Main.storyboard in Resources */,
 			);
@@ -268,15 +261,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B90022B1CF81D86004462CF /* Trigger.swift in Sources */,
+				1B927F461D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift in Sources */,
 				1B2567F11CF6F59E005D909C /* PowerManager.swift in Sources */,
 				1BE5BC0A1D3CF10400C7DA46 /* NotificationManager.swift in Sources */,
 				1B857A1C1D3699C200D7DC22 /* Helper.swift in Sources */,
 				1B2567F31CF71862005D909C /* Preferences.swift in Sources */,
-				1BF489161CF641CA00A3CA97 /* Script.swift in Sources */,
-				1B02B3DE1D0067A300C71E93 /* PreferencesViewController.swift in Sources */,
 				1B2567F71CF7343F005D909C /* MouseActivities.swift in Sources */,
-				1BA4CB211CFB2A3A00D08F34 /* Array+Extensions.swift in Sources */,
 				1B093A5B1CF63E1A001B8500 /* AppDelegate.swift in Sources */,
+				1B2672CB1D5E4ED700A92DC5 /* MousePreferencesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,8 +391,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TimeFree/TimeFree.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = PVDZWY67J6;
 				INFOPLIST_FILE = TimeFree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qarea.timefree;
@@ -417,8 +409,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TimeFree/TimeFree.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = PVDZWY67J6;
 				INFOPLIST_FILE = TimeFree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qarea.timefree;
