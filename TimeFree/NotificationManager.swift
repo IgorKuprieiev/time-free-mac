@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NotificationManager: NSObject {
+final class NotificationManager: NSObject {
     
     // MARK: - Shared Instance
     static let shared = NotificationManager()

@@ -681,16 +681,16 @@
                 </menu>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-707" y="-160"/>
+            <point key="canvasLocation" x="-687" y="-155"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="NxX-uL-EMI">
             <objects>
                 <windowController storyboardIdentifier="PreferencesWindowController" showSeguePresentationStyle="single" id="h6x-1M-NFT" sceneMemberID="viewController">
-                    <window key="window" identifier="PreferencesWindowController" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="aTz-qi-ko5">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="aTz-qi-ko5">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" texturedBackground="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="249" width="600" height="200"/>
+                        <rect key="contentRect" x="196" y="249" width="560" height="260"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
                         <contentBorderThickness minY="0.0" maxY="0.0"/>
                     </window>
@@ -702,16 +702,16 @@
             </objects>
             <point key="canvasLocation" x="-623" y="210"/>
         </scene>
-        <!--Tab View Controller-->
+        <!--Preferences Tab View Controller-->
         <scene sceneID="4dQ-ix-LjY">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="pnE-BT-Zpr" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="pnE-BT-Zpr" customClass="PreferencesTabViewController" customModule="TimeFree" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="" image="NSPreferencesGeneral" id="pDI-ry-XTC"/>
                         <tabViewItem label="Mouse" image="mouse" id="bEO-ar-rdz"/>
                     </tabViewItems>
                     <tabView key="tabView" misplaced="YES" type="noTabsNoBorder" id="pYt-8T-a1u">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="260"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems/>
@@ -723,18 +723,18 @@
                 </tabViewController>
                 <customObject id="30f-p6-GFP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="210"/>
+            <point key="canvasLocation" x="-623" y="682"/>
         </scene>
         <!--General Preferences View Controller-->
         <scene sceneID="pro-c7-frI">
             <objects>
                 <viewController id="fqT-VV-gdY" customClass="GeneralPreferencesViewController" customModule="TimeFree" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Lq1-Zy-3yD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="260"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="zSO-gz-QYC">
-                                <rect key="frame" x="18" y="149" width="564" height="18"/>
+                                <rect key="frame" x="18" y="109" width="524" height="18"/>
                                 <buttonCell key="cell" type="check" title="Launch TimeFree at system startup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LrE-KT-WOk">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -747,7 +747,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Mch-Ag-rPT">
-                                <rect key="frame" x="18" y="115" width="564" height="18"/>
+                                <rect key="frame" x="18" y="75" width="524" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show Preferences screen on application startup" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="IiG-12-cT8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -757,13 +757,13 @@
                                 </metadata>
                             </button>
                             <box borderType="line" title="Timeout of user activity" titlePosition="belowTop" translatesAutoresizingMaskIntoConstraints="NO" id="7Wv-DI-B5E">
-                                <rect key="frame" x="17" y="215" width="566" height="67"/>
+                                <rect key="frame" x="17" y="175" width="526" height="67"/>
                                 <view key="contentView" id="cQh-1B-R1h">
-                                    <rect key="frame" x="1" y="1" width="564" height="46"/>
+                                    <rect key="frame" x="1" y="1" width="524" height="46"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YIQ-Im-GBl">
-                                            <rect key="frame" x="10" y="15" width="476" height="27"/>
+                                            <rect key="frame" x="10" y="15" width="436" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="g71-Me-uGp"/>
                                             </constraints>
@@ -773,7 +773,7 @@
                                             </connections>
                                         </slider>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sjp-Oz-TQr">
-                                            <rect key="frame" x="490" y="27" width="64" height="17"/>
+                                            <rect key="frame" x="450" y="27" width="64" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="cff-z9-PEt"/>
                                             </constraints>
@@ -796,7 +796,7 @@
                                 <font key="titleFont" size="13" name=".AppleSystemUIFont"/>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="bQj-r4-Kwl">
-                                <rect key="frame" x="18" y="183" width="564" height="18"/>
+                                <rect key="frame" x="18" y="143" width="524" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show Notifications" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VnA-U4-8wW">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -833,24 +833,24 @@
                 </viewController>
                 <customObject id="1Wp-MF-u32" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-623" y="697"/>
+            <point key="canvasLocation" x="121" y="494"/>
         </scene>
         <!--Mouse Preferences View Controller-->
         <scene sceneID="xfy-T9-bUV">
             <objects>
                 <viewController id="foZ-yg-Ljw" customClass="MousePreferencesViewController" customModule="TimeFree" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ugF-Na-Ze6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="260"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box borderType="line" title="Frequency of moving the mouse" titlePosition="belowTop" translatesAutoresizingMaskIntoConstraints="NO" id="Y47-Wd-52W">
-                                <rect key="frame" x="17" y="215" width="566" height="67"/>
+                                <rect key="frame" x="17" y="175" width="526" height="67"/>
                                 <view key="contentView" id="xU8-k6-XFV">
-                                    <rect key="frame" x="1" y="1" width="564" height="46"/>
+                                    <rect key="frame" x="1" y="1" width="524" height="46"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eZB-Ub-iTQ">
-                                            <rect key="frame" x="10" y="15" width="476" height="27"/>
+                                            <rect key="frame" x="10" y="15" width="436" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="NMz-Gn-uPb"/>
                                             </constraints>
@@ -860,7 +860,7 @@
                                             </connections>
                                         </slider>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3XV-Qs-qbr">
-                                            <rect key="frame" x="490" y="27" width="64" height="17"/>
+                                            <rect key="frame" x="450" y="27" width="64" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="Piw-16-csV"/>
                                             </constraints>
@@ -896,7 +896,7 @@
                 </viewController>
                 <customObject id="rbu-dl-LiK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153" y="697"/>
+            <point key="canvasLocation" x="121" y="870"/>
         </scene>
     </scenes>
     <resources>

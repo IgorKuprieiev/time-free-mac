@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MousePreferencesViewController: NSViewController {
+final class MousePreferencesViewController: NSViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var moveMousePointerFrequencySlider: NSSlider!

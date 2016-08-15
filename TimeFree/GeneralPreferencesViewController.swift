@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class GeneralPreferencesViewController: NSViewController {
+final class GeneralPreferencesViewController: NSViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var timeoutOfUserActivitySlider: NSSlider!

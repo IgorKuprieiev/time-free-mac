@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Preferences: NSObject, NSCoding {
+final class Preferences: NSObject, NSCoding {
     
     // MARK: - NotificationKeys
     struct NotificationKeys {

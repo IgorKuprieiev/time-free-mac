@@ -13,7 +13,7 @@ import IOKit.pwr_mgt
 // This isn't defined in Swift, so we cheat and do so here.
 let kIOPMAssertionTypeNoDisplaySleep = "PreventUserIdleDisplaySleep" as CFString
 
-class PowerManager {
+final class PowerManager {
     
     // MARK: - Public Properties
     static var isSleepEnabled: Bool = true

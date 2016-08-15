@@ -18,7 +18,7 @@ protocol TriggerDelegate: class {
 }
 
 // MARK: - ActivitiesManager
-class Trigger: AnyObject {
+final class Trigger: AnyObject {
     
     // MARK: - Public Properties
     weak var delegate: TriggerDelegate?

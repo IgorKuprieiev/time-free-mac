@@ -174,7 +174,8 @@ extension AppDelegate: TriggerDelegate {
     func triggerTick(trigger: Trigger) {
         //Move mouse
         if Preferences.shared.moveMousePointer == true && (trigger.tickCounter % Preferences.shared.moveMousePointerFrequency) == 0 {
-            MouseManager.moveMousePointerToRandomPosition()
+            VirtualMouseManager.shared.moveMousePointerToRandomPosition()
+            print("The cursor has been moved to a random location.")
         }
     }
 }
