@@ -1,5 +1,5 @@
 //
-//  MouseManager.swift
+//  MouseService.swift
 //  TimeFree
 //
 //  Created by Oleksii Naboichenko on 5/26/16.
@@ -8,10 +8,7 @@
 
 import Cocoa
 
-final class VirtualMouseManager {
-    
-    // MARK: - Singletone Implementation
-    static let shared: VirtualMouseManager = VirtualMouseManager()
+final class MouseService {
     
     // MARK: - Private Properties
     private lazy var virtualMouse: VirtualMouse? = VirtualMouse()
@@ -22,9 +19,14 @@ final class VirtualMouseManager {
             return
         }
 
+        guard let virtualMouse = virtualMouse else {
+            return
+        }
+        
         let x = arc4random_uniform(UInt32(screen.visibleFrame.width))
         let y = arc4random_uniform(UInt32(screen.visibleFrame.height))
-        virtualMouse?.movePointerTo(x: x, y: y)
-        print("The cursor has been moved to a random location.")
+        if virtualMouse.movePointerTo(x: x, y: y) == true {
+            print("The cursor has been moved to a random location.")
+        }
     }
 }

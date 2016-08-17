@@ -23,7 +23,7 @@ final class MousePreferencesViewController: NSViewController {
         return formatter
     }()
     
-    // MARK: - UIViewController
+    // MARK: - NSViewController
     override func viewWillAppear() {
         super.viewWillAppear()
         
@@ -46,5 +46,4 @@ final class MousePreferencesViewController: NSViewController {
         let timeoutOfUserActivitySliderValue = moveMousePointerFrequencySlider.integerValue
         moveMousePointerFrequencyTextField.stringValue = dateComponentsFormatter.string(from: Double(timeoutOfUserActivitySliderValue))!
     }
-    
 }

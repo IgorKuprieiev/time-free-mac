@@ -12,7 +12,7 @@ import ServiceManagement
 private let helperAppBundleId = "com.qarea.timefree.helper"
 
 public func addHelperAppToLoginItems() {
-    if SMLoginItemSetEnabled(helperAppBundleId, true) {
+    if SMLoginItemSetEnabled(helperAppBundleId as CFString, true) {
         print("Successfully add login item.")
     } else {
         print("Failed to add login item.")
@@ -20,7 +20,7 @@ public func addHelperAppToLoginItems() {
 }
 
 public func removeHelperAppFromLoginItems() {
-    if SMLoginItemSetEnabled(helperAppBundleId, false) {
+    if SMLoginItemSetEnabled(helperAppBundleId as CFString, false) {
         NSLog("Successfully remove login item.")
     } else {
         NSLog("Failed to remove login item.")

@@ -10,14 +10,9 @@ import Cocoa
 
 final class Preferences: NSObject, NSCoding {
     
-    // MARK: - NotificationKeys
-    struct NotificationKeys {
-        static let propertiesHaveBeenUpdatedKey = "PropertiesHaveBeenUpdated"
-    }
-    
     // MARK: - PreferenceKeys
     private struct PropertyKeys {
-        static let preferencesKey = "preferences"
+        static let preferencesKey = "preferences_0_2_2"
         static let dontAllowSleepingKey = "dontAllowSleeping"
         static let timeoutOfUserActivityKey = "timeoutOfUserActivity"
         static let moveMousePointerKey = "moveMousePointer"
@@ -82,7 +77,7 @@ final class Preferences: NSObject, NSCoding {
     // MARK: - Constructors
     override init() {
         dontAllowSleeping = true
-        timeoutOfUserActivity = 10
+        timeoutOfUserActivity = 20
         moveMousePointer = true
         moveMousePointerFrequency = 10
         launchAppAtSystemStartup = true
@@ -119,10 +114,5 @@ final class Preferences: NSObject, NSCoding {
         let archivedData = NSKeyedArchiver.archivedData(withRootObject: self)
         UserDefaults.standard.set(archivedData, forKey: PropertyKeys.preferencesKey)
         UserDefaults.standard.synchronize()
-        self.noticeThatPreferencesHaveChanged()
-    }
-    
-    private func noticeThatPreferencesHaveChanged() {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationKeys.propertiesHaveBeenUpdatedKey), object: nil)
     }
 }

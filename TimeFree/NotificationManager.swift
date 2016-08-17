@@ -7,11 +7,15 @@
 //
 
 import Foundation
+import Cocoa
 
 final class NotificationManager: NSObject {
     
     // MARK: - Shared Instance
     static let shared = NotificationManager()
+    
+    // MARK: - Private Properties
+    private let defaultSoundName = "Purr"
     
     // MARK: - Constructors
     override init() {
@@ -25,14 +29,21 @@ final class NotificationManager: NSObject {
         let notification = NSUserNotification()
         notification.title = title
         notification.informativeText = details
-        notification.soundName = "Hero"
+        notification.soundName = defaultSoundName
         NSUserNotificationCenter.default.deliver(notification)
+    }
+    
+    func playSoundNotification() {
+        guard let sound = NSSound(named: defaultSoundName) else {
+            return
+        }
+        sound.play()
     }
 }
 
 extension NotificationManager: NSUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-        return Preferences.shared.showNotifications
+        return true
     }
 }

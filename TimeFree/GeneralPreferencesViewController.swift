@@ -25,7 +25,7 @@ final class GeneralPreferencesViewController: NSViewController {
         return formatter
     }()
     
-    // MARK: - UIViewController
+    // MARK: - NSViewController
     override func viewWillAppear() {
         super.viewWillAppear()
         

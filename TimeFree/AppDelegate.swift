@@ -16,14 +16,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Outlets
     @IBOutlet weak var statusMenu: NSMenu?
 
-    // MARK: - Private Properties
-    private var statusItem: NSStatusItem?
-    private lazy var trigger = Trigger()
+    // MARK: - Properties
+    var statusItem: NSStatusItem?
+    lazy var servicesManager = ServicesManager()
     
     // MARK: - NSApplicationDelegate
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
-        //Check Grant Access
+    func applicationWillFinishLaunching(_ notification: Notification) {
         checkGrantAccess()
         if checkGrantAccess() == false {
             let alert = NSAlert()
@@ -32,6 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.alertStyle = .critical
             alert.addButton(withTitle: "Exit & Open System Preferences")
             alert.addButton(withTitle: "Exit")
+            
             switch alert.runModal() {
             case NSAlertFirstButtonReturn:
                 NSWorkspace.shared().openFile("/System/Library/PreferencePanes/Security.prefPane")
@@ -40,14 +39,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 NSApp.terminate(nil)
             }
         }
-        
+    }
+    
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         //Customize UI
         prepareStatusItem()
         prepareStatusMenuButtons()
-        registrationObservers()
-        
-        //Disable sleeping(if needed)
-        PowerManager.dontAllowSleeping(Preferences.shared.dontAllowSleeping)
         
         //Enable Autolaunching(if needed)
         if Preferences.shared.launchAppAtSystemStartup == true {
@@ -56,14 +53,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             removeHelperAppFromLoginItems()
         }
         
-        //Start random activities
-        prepareAndStartTrigger()
+        servicesManager.resetAllServices()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        trigger.stop()
-        unregisterObservers()
-        PowerManager.dontAllowSleeping(false)
     }
 }
 
@@ -72,6 +65,7 @@ extension AppDelegate {
     // MARK: - Actions
     @IBAction func dontAllowSleeping(_ sender: AnyObject) {
         Preferences.shared.dontAllowSleeping = !Preferences.shared.dontAllowSleeping
+        servicesManager.resetPowerService()
     }
     
     @IBAction func moveMouse(_ sender: NSMenuItem) {
@@ -85,37 +79,7 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    func propertiesHaveBeenUpdated(_ notification: Notification) {
-        prepareStatusMenuButtons()
-        
-        //Sleep Mode
-        PowerManager.dontAllowSleeping(Preferences.shared.dontAllowSleeping)
-        
-        //Autolaunching
-        if Preferences.shared.launchAppAtSystemStartup == true {
-            addHelperAppToLoginItems()
-        } else {
-            removeHelperAppFromLoginItems()
-        }
-    }
-    
-    // MARK: - Private methods
-    private func registrationObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(AppDelegate.propertiesHaveBeenUpdated(_:)),
-                                               name: NSNotification.Name(rawValue: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey),
-                                               object: nil)
-    }
-    
-    private func unregisterObservers() {
-        let propertiesHaveBeenUpdatedKey = NSNotification.Name(rawValue: Preferences.NotificationKeys.propertiesHaveBeenUpdatedKey)
-        NotificationCenter.default.removeObserver(self, name: propertiesHaveBeenUpdatedKey, object: nil)
-    }
-}
-
-extension AppDelegate {
-    
-    private func prepareStatusItem() {
+    func prepareStatusItem() {
         guard let statusMenu = statusMenu else {
             return
         }
@@ -128,7 +92,7 @@ extension AppDelegate {
         }
     }
     
-    private func prepareStatusMenuButtons() {
+    func prepareStatusMenuButtons() {
         guard let statusMenu = statusMenu else {
             return
         }
@@ -142,41 +106,14 @@ extension AppDelegate {
         }
         
     }
-    
-    private func prepareAndStartTrigger() {
-        trigger.delegate = self
-        trigger.timeoutOfUserActivity = Preferences.shared.timeoutOfUserActivity
-        trigger.start()
-    }
 }
 
 extension AppDelegate {
     
-    @discardableResult private func checkGrantAccess() -> Bool {
+    @discardableResult func checkGrantAccess() -> Bool {
         let trustedCheckOptionPromptString = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
-        let options: CFDictionary = [trustedCheckOptionPromptString: kCFBooleanTrue]
-        
+        let options = [trustedCheckOptionPromptString: kCFBooleanTrue] as CFDictionary
         return AXIsProcessTrustedWithOptions(options)
-    }
-}
-
-// MARK: - ActivitiesManagerDelegate
-extension AppDelegate: TriggerDelegate {
-    
-    func didStartActivities() {
-        NotificationManager.shared.showNotification(title: NSLocalizedString("TimeFree found the lack of user activity", comment: ""))
-    }
-    
-    func didPausedActivities() {
-        NotificationManager.shared.showNotification(title: NSLocalizedString("The user has returned", comment: ""))
-    }
-    
-    func triggerTick(trigger: Trigger) {
-        //Move mouse
-        if Preferences.shared.moveMousePointer == true && (trigger.tickCounter % Preferences.shared.moveMousePointerFrequency) == 0 {
-            VirtualMouseManager.shared.moveMousePointerToRandomPosition()
-            print("The cursor has been moved to a random location.")
-        }
     }
 }
 

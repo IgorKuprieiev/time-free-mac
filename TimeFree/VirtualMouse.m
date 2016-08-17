@@ -62,6 +62,7 @@ static NSString * const virtualMouseDefaultDeviceSerialNumber = @"SN 123456";
 
 @implementation VirtualMouse
 
+
 - (instancetype)init {
     return [self initWithDeviceName:virtualMouseDefaultDeviceName deviceSerialNumber:virtualMouseDefaultDeviceSerialNumber];
 }
@@ -118,7 +119,11 @@ static NSString * const virtualMouseDefaultDeviceSerialNumber = @"SN 123456";
     return self;
 }
 
-- (void)movePointerToX:(UInt32)x y:(UInt32)y {
+- (void)dealloc {
+    IOServiceClose(self.connection);
+}
+
+- (BOOL)movePointerToX:(UInt32)x y:(UInt32)y {
     // Arguments to be passed through the HID message.
     struct FooHidMouse mouse;
     mouse.x = x;
@@ -134,7 +139,9 @@ static NSString * const virtualMouseDefaultDeviceSerialNumber = @"SN 123456";
     
     if (IOConnectCallScalarMethod(self.connection, FooHidActionSend, input, inputCount, NULL, 0) != KERN_SUCCESS) {
         printf("Unable to send message to HID device.\n");
+        return NO;
     }
+    return YES;
 }
 
 @end
