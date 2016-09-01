@@ -15,7 +15,7 @@ final class NotificationManager: NSObject {
     static let shared = NotificationManager()
     
     // MARK: - Private Properties
-    private let defaultSoundName = "Purr"
+    fileprivate let defaultSoundName = "Purr"
     
     // MARK: - Constructors
     override init() {

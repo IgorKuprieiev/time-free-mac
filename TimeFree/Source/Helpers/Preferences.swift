@@ -11,7 +11,7 @@ import Cocoa
 final class Preferences: NSObject, NSCoding {
     
     // MARK: - PreferenceKeys
-    private struct PropertyKeys {
+    fileprivate struct PropertyKeys {
         static let preferencesKey = "preferences_0_2_2"
         static let dontAllowSleepingKey = "dontAllowSleeping"
         static let timeoutOfUserActivityKey = "timeoutOfUserActivity"
@@ -110,7 +110,7 @@ final class Preferences: NSObject, NSCoding {
     }
     
     // MARK: - Private methods
-    private func synchronize() {
+    fileprivate func synchronize() {
         let archivedData = NSKeyedArchiver.archivedData(withRootObject: self)
         UserDefaults.standard.set(archivedData, forKey: PropertyKeys.preferencesKey)
         UserDefaults.standard.synchronize()

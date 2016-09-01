@@ -45,18 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //Customize UI
         prepareStatusItem()
         prepareStatusMenuButtons()
-        
-        //Enable Autolaunching(if needed)
-        if Preferences.shared.launchAppAtSystemStartup == true {
-            addHelperAppToLoginItems()
-        } else {
-            removeHelperAppFromLoginItems()
-        }
-        
         servicesManager.resetAllServices()
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
     }
 }
 
@@ -66,10 +55,12 @@ extension AppDelegate {
     @IBAction func dontAllowSleeping(_ sender: AnyObject) {
         Preferences.shared.dontAllowSleeping = !Preferences.shared.dontAllowSleeping
         servicesManager.resetPowerService()
+        updateStatusMenuButtons()
     }
     
     @IBAction func moveMouse(_ sender: NSMenuItem) {
         Preferences.shared.moveMousePointer = !Preferences.shared.moveMousePointer
+        updateStatusMenuButtons()
     }
     
     @IBAction func quit(_ sender: AnyObject) {
@@ -79,20 +70,27 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    func prepareStatusItem() {
+    fileprivate func prepareStatusItem() {
         guard let statusMenu = statusMenu else {
             return
         }
         
         statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
         statusItem?.menu = statusMenu
-        if let statusItemImage = NSImage(named: "clock_color_icon") {
-            statusItem?.image = statusItemImage
-            statusItem?.alternateImage = statusItemImage
+        
+        guard let statusItemImage = NSImage(named: "clock_color_icon") else {
+            return
         }
+        
+        statusItem?.image = statusItemImage
+        statusItem?.alternateImage = statusItemImage
     }
     
-    func prepareStatusMenuButtons() {
+    fileprivate func updateStatusMenuButtons() {
+        prepareStatusMenuButtons()
+    }
+    
+    fileprivate func prepareStatusMenuButtons() {
         guard let statusMenu = statusMenu else {
             return
         }
@@ -110,7 +108,8 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    @discardableResult func checkGrantAccess() -> Bool {
+    @discardableResult
+    func checkGrantAccess() -> Bool {
         let trustedCheckOptionPromptString = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
         let options = [trustedCheckOptionPromptString: kCFBooleanTrue] as CFDictionary
         return AXIsProcessTrustedWithOptions(options)

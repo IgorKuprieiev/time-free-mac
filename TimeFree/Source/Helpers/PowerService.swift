@@ -37,7 +37,7 @@ final class PowerService {
     }
     
     // MARK: - Private methods
-    private func updatePowerSettings() {
+    fileprivate func updatePowerSettings() {
         switch powerMode {
         case .governedBySystem:
             releaseSleepAssertion()
@@ -46,7 +46,7 @@ final class PowerService {
         }
     }
     
-    private func preventSleep() {
+    fileprivate func preventSleep() {
         releaseSleepAssertion()
         
         let assertionName = "Keep screen on for set time." as CFString
@@ -54,7 +54,7 @@ final class PowerService {
         IOPMAssertionCreateWithName(kIOPMAssertionTypeNoDisplaySleep, assertionLevel, assertionName,  &powerAssertionId)
     }
     
-    private func releaseSleepAssertion() {
+    fileprivate func releaseSleepAssertion() {
         IOPMAssertionRelease(powerAssertionId)
     }
 }

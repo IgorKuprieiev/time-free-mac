@@ -45,10 +45,16 @@ class ServicesManager {
     }
     
     func resetAutolaunchService() {
+        let bundle = Bundle.main
+        let bundlePath = bundle.bundlePath
+        let displayName = FileManager.default.displayName(atPath: bundlePath)
+
         if Preferences.shared.launchAppAtSystemStartup == true {
-            addHelperAppToLoginItems()
+            let scriptPath = bundle.path(forResource: "AddApplicationToLoginItems", ofType: "scpt")
+            executeAppleScript(path: scriptPath!, scriptArguments: [bundlePath])
         } else {
-            removeHelperAppFromLoginItems()
+            let scriptPath = bundle.path(forResource: "RemoveApplicationFromLoginItems", ofType: "scpt")
+            executeAppleScript(path: scriptPath!, scriptArguments: [displayName])
         }
     }
 }
@@ -82,12 +88,20 @@ extension ServicesManager: TimeCounterDelegate {
 
 extension ServicesManager: EventTrackerDelegate {
     
-    func didReceiveEvent(_ event: NSEvent) {
+    func didReceiveMouseEvent(_ event: NSEvent) {
         guard event.deviceID != 0 else {
             print("Detect event from Virtual Device")
             return
         }
         
+        handleReceivedEvent(event)
+    }
+    
+    func didReceiveKeyboardEvent(_ event: NSEvent) {
+        handleReceivedEvent(event)
+    }
+    
+    fileprivate func handleReceivedEvent(_ event: NSEvent) {
         let timeoutOfUserActivity = UInt64(Preferences.shared.timeoutOfUserActivity)
         let currentTickCount = (timeCounter?.tickCount)!
         if timeoutOfUserActivity > 0 && currentTickCount > timeoutOfUserActivity {
@@ -95,7 +109,7 @@ extension ServicesManager: EventTrackerDelegate {
             if Preferences.shared.showNotifications == true {
                 NotificationManager.shared.showNotification(title: "User is back.", details: "Activity imitation interrupted.")
             } else {
-                 NotificationManager.shared.playSoundNotification()
+                NotificationManager.shared.playSoundNotification()
             }
         }
         
