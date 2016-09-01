@@ -77,10 +77,13 @@ extension AppDelegate {
         
         statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
         statusItem?.menu = statusMenu
-        if let statusItemImage = NSImage(named: "clock_color_icon") {
-            statusItem?.image = statusItemImage
-            statusItem?.alternateImage = statusItemImage
+        
+        guard let statusItemImage = NSImage(named: "clock_color_icon") else {
+            return
         }
+        
+        statusItem?.image = statusItemImage
+        statusItem?.alternateImage = statusItemImage
     }
     
     fileprivate func updateStatusMenuButtons() {

@@ -49,7 +49,7 @@ final class EventTracker {
             self.delegate?.didReceiveMouseEvent(event)
         }
         
-        let mouseEventMasks: [NSEventMask] = [.mouseMoved, .scrollWheel, .keyDown, .gesture, .swipe, .rotate, .pressure]
+        let mouseEventMasks: [NSEventMask] = [.leftMouseDown, .leftMouseUp, .rightMouseUp, .rightMouseDown, .mouseMoved, .scrollWheel, .gesture, .swipe, .rotate, .pressure]
         for eventMask in mouseEventMasks {
             guard let eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: eventMask, handler: receivedMouseEventHandler) else {
                 continue
@@ -59,7 +59,7 @@ final class EventTracker {
         
         //Register monitors for keyboard
         let receivedKeyboardEventHandler:(NSEvent) -> Void = {[unowned self] (event) in
-            self.delegate?.didReceiveMouseEvent(event)
+            self.delegate?.didReceiveKeyboardEvent(event)
         }
         
         let keyboardEventMasks: [NSEventMask] = [.keyDown, .keyUp]
