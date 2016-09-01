@@ -45,11 +45,11 @@ class ServicesManager {
     }
     
     func resetAutolaunchService() {
-        if Preferences.shared.launchAppAtSystemStartup == true {
-            addHelperAppToLoginItems()
-        } else {
-            removeHelperAppFromLoginItems()
-        }
+//        if Preferences.shared.launchAppAtSystemStartup == true {
+//            addHelperAppToLoginItems()
+//        } else {
+//            removeHelperAppFromLoginItems()
+//        }
     }
 }
 

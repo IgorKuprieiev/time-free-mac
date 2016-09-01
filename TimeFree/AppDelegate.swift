@@ -45,14 +45,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //Customize UI
         prepareStatusItem()
         prepareStatusMenuButtons()
-        
-        //Enable Autolaunching(if needed)
-        if Preferences.shared.launchAppAtSystemStartup == true {
-            addHelperAppToLoginItems()
-        } else {
-            removeHelperAppFromLoginItems()
-        }
-        
         servicesManager.resetAllServices()
     }
 

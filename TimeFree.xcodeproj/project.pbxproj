@@ -10,18 +10,12 @@
 		1B093A5B1CF63E1A001B8500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */; };
 		1B093A5F1CF63E1A001B8500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B093A5E1CF63E1A001B8500 /* Assets.xcassets */; };
 		1B093A621CF63E1A001B8500 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B093A601CF63E1A001B8500 /* Main.storyboard */; };
-		1B09ECF11D3CC17500154A95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B09ECF01D3CC17500154A95 /* AppDelegate.m */; };
-		1B09ECF41D3CC17500154A95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B09ECF31D3CC17500154A95 /* main.m */; };
-		1B09ECF61D3CC17500154A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B09ECF51D3CC17500154A95 /* Assets.xcassets */; };
-		1B09ECF91D3CC17500154A95 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B09ECF71D3CC17500154A95 /* MainMenu.xib */; };
-		1B09ECFF1D3CC55E00154A95 /* TimeFree Helper.app in Copy TimeFree Helper */ = {isa = PBXBuildFile; fileRef = 1B09ECED1D3CC17500154A95 /* TimeFree Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B2567F11CF6F59E005D909C /* PowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F01CF6F59E005D909C /* PowerService.swift */; };
 		1B2567F31CF71862005D909C /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F21CF71862005D909C /* Preferences.swift */; };
 		1B2567F71CF7343F005D909C /* MouseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F61CF7343F005D909C /* MouseService.swift */; };
 		1B2672CB1D5E4ED700A92DC5 /* MousePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2672CA1D5E4ED700A92DC5 /* MousePreferencesViewController.swift */; };
 		1B5A3F151D634DC6009752A6 /* EventTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A3F141D634DC6009752A6 /* EventTracker.swift */; };
 		1B5A3F171D637453009752A6 /* ServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A3F161D637453009752A6 /* ServicesManager.swift */; };
-		1B857A1C1D3699C200D7DC22 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B857A1B1D3699C200D7DC22 /* Helper.swift */; };
 		1B90022B1CF81D86004462CF /* TimeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90022A1CF81D86004462CF /* TimeCounter.swift */; };
 		1B927F461D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B927F451D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift */; };
 		1BE5BC0A1D3CF10400C7DA46 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */; };
@@ -29,41 +23,18 @@
 		1BFB8A151D62450600C8AAC8 /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB8A141D62450600C8AAC8 /* PreferencesTabViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		1B87EAA51D353FBA00D2BD9B /* Copy TimeFree Helper */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Contents/Library/LoginItems;
-			dstSubfolderSpec = 1;
-			files = (
-				1B09ECFF1D3CC55E00154A95 /* TimeFree Helper.app in Copy TimeFree Helper */,
-			);
-			name = "Copy TimeFree Helper";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		1B093A571CF63E1A001B8500 /* TimeFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B093A5E1CF63E1A001B8500 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B093A611CF63E1A001B8500 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B093A631CF63E1A001B8500 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B09ECED1D3CC17500154A95 /* TimeFree Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TimeFree Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B09ECEF1D3CC17500154A95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1B09ECF01D3CC17500154A95 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1B09ECF31D3CC17500154A95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1B09ECF51D3CC17500154A95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1B09ECF81D3CC17500154A95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		1B09ECFA1D3CC17500154A95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B09ECFE1D3CC45400154A95 /* TimeFree Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "TimeFree Helper.entitlements"; sourceTree = "<group>"; };
 		1B2567F01CF6F59E005D909C /* PowerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerService.swift; sourceTree = "<group>"; };
 		1B2567F21CF71862005D909C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		1B2567F61CF7343F005D909C /* MouseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseService.swift; sourceTree = "<group>"; };
 		1B2672CA1D5E4ED700A92DC5 /* MousePreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MousePreferencesViewController.swift; sourceTree = "<group>"; };
 		1B5A3F141D634DC6009752A6 /* EventTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
 		1B5A3F161D637453009752A6 /* ServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesManager.swift; sourceTree = "<group>"; };
-		1B857A1B1D3699C200D7DC22 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		1B87EAF31D354D4A00D2BD9B /* TimeFree.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TimeFree.entitlements; sourceTree = "<group>"; };
 		1B90022A1CF81D86004462CF /* TimeCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCounter.swift; sourceTree = "<group>"; };
 		1B927F451D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -82,13 +53,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1B09ECEA1D3CC17500154A95 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -96,7 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				1B093A591CF63E1A001B8500 /* TimeFree */,
-				1B09ECEE1D3CC17500154A95 /* TimeFree Helper */,
 				1B093A581CF63E1A001B8500 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				1B093A571CF63E1A001B8500 /* TimeFree.app */,
-				1B09ECED1D3CC17500154A95 /* TimeFree Helper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,7 +82,6 @@
 				1B2567F61CF7343F005D909C /* MouseService.swift */,
 				1B5A3F141D634DC6009752A6 /* EventTracker.swift */,
 				1B2567F21CF71862005D909C /* Preferences.swift */,
-				1B857A1B1D3699C200D7DC22 /* Helper.swift */,
 				1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */,
 				1BFB8A141D62450600C8AAC8 /* PreferencesTabViewController.swift */,
 				1B927F451D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift */,
@@ -136,28 +97,6 @@
 			path = TimeFree;
 			sourceTree = "<group>";
 		};
-		1B09ECEE1D3CC17500154A95 /* TimeFree Helper */ = {
-			isa = PBXGroup;
-			children = (
-				1B09ECFE1D3CC45400154A95 /* TimeFree Helper.entitlements */,
-				1B09ECEF1D3CC17500154A95 /* AppDelegate.h */,
-				1B09ECF01D3CC17500154A95 /* AppDelegate.m */,
-				1B09ECF51D3CC17500154A95 /* Assets.xcassets */,
-				1B09ECF71D3CC17500154A95 /* MainMenu.xib */,
-				1B09ECFA1D3CC17500154A95 /* Info.plist */,
-				1B09ECF21D3CC17500154A95 /* Supporting Files */,
-			);
-			path = "TimeFree Helper";
-			sourceTree = "<group>";
-		};
-		1B09ECF21D3CC17500154A95 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1B09ECF31D3CC17500154A95 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,7 +107,6 @@
 				1B093A531CF63E1A001B8500 /* Sources */,
 				1B093A541CF63E1A001B8500 /* Frameworks */,
 				1B093A551CF63E1A001B8500 /* Resources */,
-				1B87EAA51D353FBA00D2BD9B /* Copy TimeFree Helper */,
 			);
 			buildRules = (
 			);
@@ -177,23 +115,6 @@
 			name = TimeFree;
 			productName = TimeFree;
 			productReference = 1B093A571CF63E1A001B8500 /* TimeFree.app */;
-			productType = "com.apple.product-type.application";
-		};
-		1B09ECEC1D3CC17500154A95 /* TimeFree Helper */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1B09ECFB1D3CC17500154A95 /* Build configuration list for PBXNativeTarget "TimeFree Helper" */;
-			buildPhases = (
-				1B09ECE91D3CC17500154A95 /* Sources */,
-				1B09ECEA1D3CC17500154A95 /* Frameworks */,
-				1B09ECEB1D3CC17500154A95 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "TimeFree Helper";
-			productName = "TimeFree Helper";
-			productReference = 1B09ECED1D3CC17500154A95 /* TimeFree Helper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -218,17 +139,6 @@
 							};
 						};
 					};
-					1B09ECEC1D3CC17500154A95 = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = PVDZWY67J6;
-						DevelopmentTeamName = "Mobile Monday";
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.Sandbox = {
-								enabled = 1;
-							};
-						};
-					};
 				};
 			};
 			buildConfigurationList = 1B093A521CF63E1A001B8500 /* Build configuration list for PBXProject "TimeFree" */;
@@ -245,7 +155,6 @@
 			projectRoot = "";
 			targets = (
 				1B093A561CF63E1A001B8500 /* TimeFree */,
-				1B09ECEC1D3CC17500154A95 /* TimeFree Helper */,
 			);
 		};
 /* End PBXProject section */
@@ -257,15 +166,6 @@
 			files = (
 				1B093A5F1CF63E1A001B8500 /* Assets.xcassets in Resources */,
 				1B093A621CF63E1A001B8500 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1B09ECEB1D3CC17500154A95 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1B09ECF61D3CC17500154A95 /* Assets.xcassets in Resources */,
-				1B09ECF91D3CC17500154A95 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,22 +182,12 @@
 				1B2567F11CF6F59E005D909C /* PowerService.swift in Sources */,
 				1BE5BC0A1D3CF10400C7DA46 /* NotificationManager.swift in Sources */,
 				1BFB8A111D622D6D00C8AAC8 /* VirtualMouse.m in Sources */,
-				1B857A1C1D3699C200D7DC22 /* Helper.swift in Sources */,
 				1B2567F31CF71862005D909C /* Preferences.swift in Sources */,
 				1B2567F71CF7343F005D909C /* MouseService.swift in Sources */,
 				1B093A5B1CF63E1A001B8500 /* AppDelegate.swift in Sources */,
 				1B2672CB1D5E4ED700A92DC5 /* MousePreferencesViewController.swift in Sources */,
 				1BFB8A151D62450600C8AAC8 /* PreferencesTabViewController.swift in Sources */,
 				1B5A3F151D634DC6009752A6 /* EventTracker.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1B09ECE91D3CC17500154A95 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1B09ECF41D3CC17500154A95 /* main.m in Sources */,
-				1B09ECF11D3CC17500154A95 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,14 +200,6 @@
 				1B093A611CF63E1A001B8500 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		1B09ECF71D3CC17500154A95 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1B09ECF81D3CC17500154A95 /* Base */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -447,38 +329,6 @@
 			};
 			name = Release;
 		};
-		1B09ECFC1D3CC17500154A95 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_ENTITLEMENTS = "TimeFree Helper/TimeFree Helper.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "TimeFree Helper/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.qarea.timefree.helper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		1B09ECFD1D3CC17500154A95 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_ENTITLEMENTS = "TimeFree Helper/TimeFree Helper.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "TimeFree Helper/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.qarea.timefree.helper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -496,15 +346,6 @@
 			buildConfigurations = (
 				1B093A671CF63E1A001B8500 /* Debug */,
 				1B093A681CF63E1A001B8500 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1B09ECFB1D3CC17500154A95 /* Build configuration list for PBXNativeTarget "TimeFree Helper" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1B09ECFC1D3CC17500154A95 /* Debug */,
-				1B09ECFD1D3CC17500154A95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
