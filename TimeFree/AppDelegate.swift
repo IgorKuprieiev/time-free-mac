@@ -47,9 +47,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         prepareStatusMenuButtons()
         servicesManager.resetAllServices()
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-    }
 }
 
 extension AppDelegate {
@@ -58,10 +55,12 @@ extension AppDelegate {
     @IBAction func dontAllowSleeping(_ sender: AnyObject) {
         Preferences.shared.dontAllowSleeping = !Preferences.shared.dontAllowSleeping
         servicesManager.resetPowerService()
+        updateStatusMenuButtons()
     }
     
     @IBAction func moveMouse(_ sender: NSMenuItem) {
         Preferences.shared.moveMousePointer = !Preferences.shared.moveMousePointer
+        updateStatusMenuButtons()
     }
     
     @IBAction func quit(_ sender: AnyObject) {
@@ -71,7 +70,7 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    func prepareStatusItem() {
+    fileprivate func prepareStatusItem() {
         guard let statusMenu = statusMenu else {
             return
         }
@@ -84,7 +83,11 @@ extension AppDelegate {
         }
     }
     
-    func prepareStatusMenuButtons() {
+    fileprivate func updateStatusMenuButtons() {
+        prepareStatusMenuButtons()
+    }
+    
+    fileprivate func prepareStatusMenuButtons() {
         guard let statusMenu = statusMenu else {
             return
         }
