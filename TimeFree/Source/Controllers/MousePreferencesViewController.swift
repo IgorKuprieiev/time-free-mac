@@ -15,7 +15,7 @@ final class MousePreferencesViewController: NSViewController {
     @IBOutlet weak var moveMousePointerFrequencyTextField: NSTextField!
     
     // MARK: - Private Properties
-    private lazy var dateComponentsFormatter: DateComponentsFormatter = {
+    fileprivate lazy var dateComponentsFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.zeroFormattingBehavior = .dropAll
         formatter.allowedUnits = [.minute, .second]
@@ -38,11 +38,11 @@ final class MousePreferencesViewController: NSViewController {
     }
     
     // MARK: - Private methods
-    private func prepareControls() {
+    fileprivate func prepareControls() {
         moveMousePointerFrequencySlider?.integerValue = Preferences.shared.moveMousePointerFrequency
     }
     
-    private func updateTextFields() {
+    fileprivate func updateTextFields() {
         let timeoutOfUserActivitySliderValue = moveMousePointerFrequencySlider.integerValue
         moveMousePointerFrequencyTextField.stringValue = dateComponentsFormatter.string(from: Double(timeoutOfUserActivitySliderValue))!
     }

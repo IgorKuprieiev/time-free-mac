@@ -59,7 +59,7 @@ final class TimeCounter {
     }
 
     // MARK: - Private methods
-    private func initializeTimer() {
+    fileprivate func initializeTimer() {
         timer = Timer.scheduledTimer(timeInterval: TimeInterval(tickDuration),
                                      target: self,
                                      selector: #selector(TimeCounter.tick),
@@ -67,7 +67,7 @@ final class TimeCounter {
                                      repeats: true)
     }
     
-    private func destroyTimer() {
+    fileprivate func destroyTimer() {
         timer?.invalidate()
         timer = nil
     }

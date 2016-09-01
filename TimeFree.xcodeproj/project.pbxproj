@@ -7,42 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B093A5B1CF63E1A001B8500 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */; };
 		1B093A5F1CF63E1A001B8500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B093A5E1CF63E1A001B8500 /* Assets.xcassets */; };
 		1B093A621CF63E1A001B8500 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B093A601CF63E1A001B8500 /* Main.storyboard */; };
-		1B2567F11CF6F59E005D909C /* PowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F01CF6F59E005D909C /* PowerService.swift */; };
-		1B2567F31CF71862005D909C /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F21CF71862005D909C /* Preferences.swift */; };
-		1B2567F71CF7343F005D909C /* MouseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2567F61CF7343F005D909C /* MouseService.swift */; };
-		1B2672CB1D5E4ED700A92DC5 /* MousePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2672CA1D5E4ED700A92DC5 /* MousePreferencesViewController.swift */; };
-		1B5A3F151D634DC6009752A6 /* EventTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A3F141D634DC6009752A6 /* EventTracker.swift */; };
-		1B5A3F171D637453009752A6 /* ServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5A3F161D637453009752A6 /* ServicesManager.swift */; };
-		1B90022B1CF81D86004462CF /* TimeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90022A1CF81D86004462CF /* TimeCounter.swift */; };
-		1B927F461D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B927F451D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift */; };
-		1BE5BC0A1D3CF10400C7DA46 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */; };
-		1BFB8A111D622D6D00C8AAC8 /* VirtualMouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB8A101D622D6D00C8AAC8 /* VirtualMouse.m */; };
-		1BFB8A151D62450600C8AAC8 /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB8A141D62450600C8AAC8 /* PreferencesTabViewController.swift */; };
+		1B565B121D784C5D00C61369 /* AddApplicationToLoginItems.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 1B565B011D784C5D00C61369 /* AddApplicationToLoginItems.scpt */; };
+		1B565B131D784C5D00C61369 /* RemoveApplicationFromLoginItems.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 1B565B021D784C5D00C61369 /* RemoveApplicationFromLoginItems.scpt */; };
+		1B565B321D784E3200C61369 /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B221D784E3200C61369 /* GeneralPreferencesViewController.swift */; };
+		1B565B331D784E3200C61369 /* MousePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B231D784E3200C61369 /* MousePreferencesViewController.swift */; };
+		1B565B341D784E3200C61369 /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B241D784E3200C61369 /* PreferencesTabViewController.swift */; };
+		1B565B351D784E3200C61369 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B261D784E3200C61369 /* AppDelegate.swift */; };
+		1B565B361D784E3200C61369 /* EventTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B271D784E3200C61369 /* EventTracker.swift */; };
+		1B565B371D784E3200C61369 /* MouseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B281D784E3200C61369 /* MouseService.swift */; };
+		1B565B381D784E3200C61369 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B291D784E3200C61369 /* NotificationManager.swift */; };
+		1B565B391D784E3200C61369 /* PowerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B2A1D784E3200C61369 /* PowerService.swift */; };
+		1B565B3A1D784E3200C61369 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B2B1D784E3200C61369 /* Preferences.swift */; };
+		1B565B3B1D784E3200C61369 /* ProcessHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B2C1D784E3200C61369 /* ProcessHelper.swift */; };
+		1B565B3C1D784E3200C61369 /* ServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B2D1D784E3200C61369 /* ServicesManager.swift */; };
+		1B565B3E1D784E3200C61369 /* VirtualMouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B311D784E3200C61369 /* VirtualMouse.m */; };
+		1B565B401D784E5700C61369 /* TimeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B565B3F1D784E5700C61369 /* TimeCounter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1B093A571CF63E1A001B8500 /* TimeFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B093A5E1CF63E1A001B8500 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B093A611CF63E1A001B8500 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B093A631CF63E1A001B8500 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B2567F01CF6F59E005D909C /* PowerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerService.swift; sourceTree = "<group>"; };
-		1B2567F21CF71862005D909C /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		1B2567F61CF7343F005D909C /* MouseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseService.swift; sourceTree = "<group>"; };
-		1B2672CA1D5E4ED700A92DC5 /* MousePreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MousePreferencesViewController.swift; sourceTree = "<group>"; };
-		1B5A3F141D634DC6009752A6 /* EventTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
-		1B5A3F161D637453009752A6 /* ServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesManager.swift; sourceTree = "<group>"; };
-		1B87EAF31D354D4A00D2BD9B /* TimeFree.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TimeFree.entitlements; sourceTree = "<group>"; };
-		1B90022A1CF81D86004462CF /* TimeCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCounter.swift; sourceTree = "<group>"; };
-		1B927F451D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
-		1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		1B565B011D784C5D00C61369 /* AddApplicationToLoginItems.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AddApplicationToLoginItems.scpt; sourceTree = "<group>"; };
+		1B565B021D784C5D00C61369 /* RemoveApplicationFromLoginItems.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RemoveApplicationFromLoginItems.scpt; sourceTree = "<group>"; };
+		1B565B221D784E3200C61369 /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
+		1B565B231D784E3200C61369 /* MousePreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MousePreferencesViewController.swift; sourceTree = "<group>"; };
+		1B565B241D784E3200C61369 /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
+		1B565B261D784E3200C61369 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1B565B271D784E3200C61369 /* EventTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
+		1B565B281D784E3200C61369 /* MouseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseService.swift; sourceTree = "<group>"; };
+		1B565B291D784E3200C61369 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		1B565B2A1D784E3200C61369 /* PowerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerService.swift; sourceTree = "<group>"; };
+		1B565B2B1D784E3200C61369 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		1B565B2C1D784E3200C61369 /* ProcessHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessHelper.swift; sourceTree = "<group>"; };
+		1B565B2D1D784E3200C61369 /* ServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesManager.swift; sourceTree = "<group>"; };
+		1B565B301D784E3200C61369 /* VirtualMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualMouse.h; sourceTree = "<group>"; };
+		1B565B311D784E3200C61369 /* VirtualMouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualMouse.m; sourceTree = "<group>"; };
+		1B565B3F1D784E5700C61369 /* TimeCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCounter.swift; sourceTree = "<group>"; };
 		1BFB8A0B1D622C9700C8AAC8 /* TimeFree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TimeFree-Bridging-Header.h"; sourceTree = "<group>"; };
-		1BFB8A0F1D622D6D00C8AAC8 /* VirtualMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualMouse.h; sourceTree = "<group>"; };
-		1BFB8A101D622D6D00C8AAC8 /* VirtualMouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualMouse.m; sourceTree = "<group>"; };
-		1BFB8A141D62450600C8AAC8 /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,26 +80,76 @@
 		1B093A591CF63E1A001B8500 /* TimeFree */ = {
 			isa = PBXGroup;
 			children = (
-				1B093A5A1CF63E1A001B8500 /* AppDelegate.swift */,
-				1B5A3F161D637453009752A6 /* ServicesManager.swift */,
-				1B90022A1CF81D86004462CF /* TimeCounter.swift */,
-				1B2567F01CF6F59E005D909C /* PowerService.swift */,
-				1B2567F61CF7343F005D909C /* MouseService.swift */,
-				1B5A3F141D634DC6009752A6 /* EventTracker.swift */,
-				1B2567F21CF71862005D909C /* Preferences.swift */,
-				1BE5BC091D3CF10400C7DA46 /* NotificationManager.swift */,
-				1BFB8A141D62450600C8AAC8 /* PreferencesTabViewController.swift */,
-				1B927F451D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift */,
-				1B2672CA1D5E4ED700A92DC5 /* MousePreferencesViewController.swift */,
-				1BFB8A0F1D622D6D00C8AAC8 /* VirtualMouse.h */,
-				1BFB8A101D622D6D00C8AAC8 /* VirtualMouse.m */,
+				1B565B031D784C5D00C61369 /* Source */,
+				1B565AFF1D784C5D00C61369 /* Resources */,
 				1BFB8A0B1D622C9700C8AAC8 /* TimeFree-Bridging-Header.h */,
 				1B093A5E1CF63E1A001B8500 /* Assets.xcassets */,
 				1B093A601CF63E1A001B8500 /* Main.storyboard */,
 				1B093A631CF63E1A001B8500 /* Info.plist */,
-				1B87EAF31D354D4A00D2BD9B /* TimeFree.entitlements */,
 			);
 			path = TimeFree;
+			sourceTree = "<group>";
+		};
+		1B565AFF1D784C5D00C61369 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1B565B001D784C5D00C61369 /* Scripts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1B565B001D784C5D00C61369 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				1B565B011D784C5D00C61369 /* AddApplicationToLoginItems.scpt */,
+				1B565B021D784C5D00C61369 /* RemoveApplicationFromLoginItems.scpt */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		1B565B031D784C5D00C61369 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1B565B211D784E3200C61369 /* Controllers */,
+				1B565B251D784E3200C61369 /* Helpers */,
+				1B565B2E1D784E3200C61369 /* Models */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		1B565B211D784E3200C61369 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1B565B221D784E3200C61369 /* GeneralPreferencesViewController.swift */,
+				1B565B231D784E3200C61369 /* MousePreferencesViewController.swift */,
+				1B565B241D784E3200C61369 /* PreferencesTabViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1B565B251D784E3200C61369 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1B565B3F1D784E5700C61369 /* TimeCounter.swift */,
+				1B565B261D784E3200C61369 /* AppDelegate.swift */,
+				1B565B271D784E3200C61369 /* EventTracker.swift */,
+				1B565B281D784E3200C61369 /* MouseService.swift */,
+				1B565B291D784E3200C61369 /* NotificationManager.swift */,
+				1B565B2A1D784E3200C61369 /* PowerService.swift */,
+				1B565B2B1D784E3200C61369 /* Preferences.swift */,
+				1B565B2C1D784E3200C61369 /* ProcessHelper.swift */,
+				1B565B2D1D784E3200C61369 /* ServicesManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1B565B2E1D784E3200C61369 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1B565B301D784E3200C61369 /* VirtualMouse.h */,
+				1B565B311D784E3200C61369 /* VirtualMouse.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +190,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -165,7 +220,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B093A5F1CF63E1A001B8500 /* Assets.xcassets in Resources */,
+				1B565B131D784C5D00C61369 /* RemoveApplicationFromLoginItems.scpt in Resources */,
 				1B093A621CF63E1A001B8500 /* Main.storyboard in Resources */,
+				1B565B121D784C5D00C61369 /* AddApplicationToLoginItems.scpt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,18 +233,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B90022B1CF81D86004462CF /* TimeCounter.swift in Sources */,
-				1B927F461D5E3D5E00C7F69B /* GeneralPreferencesViewController.swift in Sources */,
-				1B5A3F171D637453009752A6 /* ServicesManager.swift in Sources */,
-				1B2567F11CF6F59E005D909C /* PowerService.swift in Sources */,
-				1BE5BC0A1D3CF10400C7DA46 /* NotificationManager.swift in Sources */,
-				1BFB8A111D622D6D00C8AAC8 /* VirtualMouse.m in Sources */,
-				1B2567F31CF71862005D909C /* Preferences.swift in Sources */,
-				1B2567F71CF7343F005D909C /* MouseService.swift in Sources */,
-				1B093A5B1CF63E1A001B8500 /* AppDelegate.swift in Sources */,
-				1B2672CB1D5E4ED700A92DC5 /* MousePreferencesViewController.swift in Sources */,
-				1BFB8A151D62450600C8AAC8 /* PreferencesTabViewController.swift in Sources */,
-				1B5A3F151D634DC6009752A6 /* EventTracker.swift in Sources */,
+				1B565B3E1D784E3200C61369 /* VirtualMouse.m in Sources */,
+				1B565B351D784E3200C61369 /* AppDelegate.swift in Sources */,
+				1B565B401D784E5700C61369 /* TimeCounter.swift in Sources */,
+				1B565B371D784E3200C61369 /* MouseService.swift in Sources */,
+				1B565B361D784E3200C61369 /* EventTracker.swift in Sources */,
+				1B565B391D784E3200C61369 /* PowerService.swift in Sources */,
+				1B565B321D784E3200C61369 /* GeneralPreferencesViewController.swift in Sources */,
+				1B565B3C1D784E3200C61369 /* ServicesManager.swift in Sources */,
+				1B565B381D784E3200C61369 /* NotificationManager.swift in Sources */,
+				1B565B341D784E3200C61369 /* PreferencesTabViewController.swift in Sources */,
+				1B565B331D784E3200C61369 /* MousePreferencesViewController.swift in Sources */,
+				1B565B3A1D784E3200C61369 /* Preferences.swift in Sources */,
+				1B565B3B1D784E3200C61369 /* ProcessHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +350,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = TimeFree/TimeFree.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = PVDZWY67J6;
@@ -313,7 +370,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = TimeFree/TimeFree.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = PVDZWY67J6;

@@ -105,7 +105,8 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    @discardableResult func checkGrantAccess() -> Bool {
+    @discardableResult
+    func checkGrantAccess() -> Bool {
         let trustedCheckOptionPromptString = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
         let options = [trustedCheckOptionPromptString: kCFBooleanTrue] as CFDictionary
         return AXIsProcessTrustedWithOptions(options)

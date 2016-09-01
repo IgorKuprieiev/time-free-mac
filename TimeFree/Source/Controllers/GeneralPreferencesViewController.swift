@@ -17,7 +17,7 @@ final class GeneralPreferencesViewController: NSViewController {
     @IBOutlet weak var launchAppAtSystemStartupButton: NSButton!
 
     // MARK: - Private Properties
-    private lazy var dateComponentsFormatter: DateComponentsFormatter = {
+    fileprivate lazy var dateComponentsFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.zeroFormattingBehavior = .dropAll
         formatter.allowedUnits = [.minute, .second]
@@ -48,13 +48,13 @@ final class GeneralPreferencesViewController: NSViewController {
     }
 
     // MARK: - Private methods
-    private func prepareControls() {
+    fileprivate func prepareControls() {
         timeoutOfUserActivitySlider?.integerValue = Preferences.shared.timeoutOfUserActivity
         launchAppAtSystemStartupButton?.state = Preferences.shared.launchAppAtSystemStartup == true ? NSOnState : NSOffState
         showNotificationsButton?.state = Preferences.shared.showNotifications == true ? NSOnState : NSOffState
     }
     
-    private func updateTextFields() {
+    fileprivate func updateTextFields() {
         let timeoutOfUserActivitySliderValue = timeoutOfUserActivitySlider.integerValue
         if timeoutOfUserActivitySliderValue > 0 {
             timeoutOfUserActivityTextField.stringValue = dateComponentsFormatter.string(from: Double(timeoutOfUserActivitySliderValue))!

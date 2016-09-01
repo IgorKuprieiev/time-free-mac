@@ -11,7 +11,7 @@ import Cocoa
 final class MouseService {
     
     // MARK: - Private Properties
-    private lazy var virtualMouse: VirtualMouse? = VirtualMouse()
+    fileprivate lazy var virtualMouse: VirtualMouse? = VirtualMouse()
     
     // MARK: - Public
     func moveMousePointerToRandomPosition() {
